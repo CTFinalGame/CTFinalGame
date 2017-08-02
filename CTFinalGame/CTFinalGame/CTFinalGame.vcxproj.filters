@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{91b12ca2-73fc-445e-b920-c5935c3532c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Enemies">
+      <UniqueIdentifier>{b46bb309-f69c-4c19-b445-7ef75ffc44e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Object">
+      <UniqueIdentifier>{68d291b2-fad8-4326-aafa-56eb91d6fbd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork">
+      <UniqueIdentifier>{6033e2e4-cf25-4d00-9177-96df506acff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Scene">
+      <UniqueIdentifier>{6da4c0db-f1e1-45ef-ba48-9a9fe4339b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Map">
+      <UniqueIdentifier>{3cb400c6-3802-4626-9df6-e2658684a698}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Bullets">
+      <UniqueIdentifier>{5fef15ea-6c9a-46be-9ccc-e0bb3a7cb0f1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CTFinalGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContraGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Event.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\InputController.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Sprite.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\SpriteManager.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Texture.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Transformable.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Scene\Scene.cpp">
+      <Filter>FrameWork\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Scene\SceneManager.cpp">
+      <Filter>FrameWork\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\DeviceManager.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\GameTime.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Graphics.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\TimeSpan.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Viewport.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Scene\PlayScene.cpp">
+      <Filter>FrameWork\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Animation.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\IComponent.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\BaseObject.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\BaseEnemy.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Cannon.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Rifleman.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Soldier.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\WallTurret.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\Bill.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\Bridge.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\Explosion.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\Land.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Map\Map.cpp">
+      <Filter>FrameWork\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Map\Tile.cpp">
+      <Filter>FrameWork\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Map\TileSet.cpp">
+      <Filter>FrameWork\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\StopWatch.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bullets\Bullet.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bullets\BulletManager.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bullets\F_Bullet.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bullets\M_Bullet.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bullets\S_Bullet.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Sprite.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\SpriteManager.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Event.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Transformable.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Texture.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Viewport.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="ContraGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene\SceneManager.h">
+      <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\InputController.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene\Scene.h">
+      <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene\PlayScene.h">
+      <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Animation.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponent.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\define.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\BaseObject.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\DeviceManager.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\GameTime.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Graphics.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\TimeSpan.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\BaseEnemy.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Cannon.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Rifleman.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Soldier.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\WallTurret.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\Bill.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\Bridge.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\Explosion.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\Land.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Map\Map.h">
+      <Filter>FrameWork\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Map\Tile.h">
+      <Filter>FrameWork\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Map\TileSet.h">
+      <Filter>FrameWork\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\StopWatch.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\Bullet.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\BulletManager.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\F_Bullet.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\M_Bullet.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\S_Bullet.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
