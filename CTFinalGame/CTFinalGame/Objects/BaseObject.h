@@ -72,6 +72,7 @@ public:
 	Sprite* getSprite();
 
 	virtual RECT getBounding();
+	virtual Box getBox();
 
 	virtual float checkCollision(BaseObject* object, float dt);
 

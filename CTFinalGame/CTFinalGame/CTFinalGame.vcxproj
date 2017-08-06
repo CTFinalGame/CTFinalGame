@@ -99,6 +99,7 @@
     <ClCompile Include="FrameWork\Sprite.cpp" />
     <ClCompile Include="FrameWork\SpriteManager.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
+    <ClCompile Include="FrameWork\SweptAABB\Collision.cpp" />
     <ClCompile Include="FrameWork\Texture.cpp" />
     <ClCompile Include="FrameWork\TimeSpan.cpp" />
     <ClCompile Include="FrameWork\Transformable.cpp" />
@@ -138,6 +139,8 @@
     <ClInclude Include="FrameWork\Sprite.h" />
     <ClInclude Include="FrameWork\SpriteManager.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
+    <ClInclude Include="FrameWork\SweptAABB\Collision.h" />
+    <ClInclude Include="FrameWork\SweptAABB\SweptAABB.h" />
     <ClInclude Include="FrameWork\Texture.h" />
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />

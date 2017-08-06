@@ -179,7 +179,10 @@ RECT BaseObject::getBounding()
 {
 	return _sprite->getBounding();
 }
-
+Box BaseObject::getBox()
+{
+	return _sprite->getBox();
+}
 float BaseObject::checkCollision(BaseObject * object, float dt)
 {
 	return 0.0f;
