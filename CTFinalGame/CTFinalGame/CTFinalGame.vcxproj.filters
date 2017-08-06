@@ -34,6 +34,9 @@
     <Filter Include="Object\Bullets">
       <UniqueIdentifier>{5fef15ea-6c9a-46be-9ccc-e0bb3a7cb0f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\SweptAABB">
+      <UniqueIdentifier>{d0d58692-85e7-4293-9951-e5efc1f3d983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CTFinalGame.cpp">
@@ -150,6 +153,9 @@
     <ClCompile Include="Objects\Bullets\S_Bullet.cpp">
       <Filter>Object\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\SweptAABB\Collision.cpp">
+      <Filter>FrameWork\SweptAABB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -265,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="Objects\Bullets\S_Bullet.h">
       <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\SweptAABB\Collision.h">
+      <Filter>FrameWork\SweptAABB</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\SweptAABB\SweptAABB.h">
+      <Filter>FrameWork\SweptAABB</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

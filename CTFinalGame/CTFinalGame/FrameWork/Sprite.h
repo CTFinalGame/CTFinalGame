@@ -7,7 +7,7 @@
 #include "Texture.h"
 #include "Viewport.h"
 #include "Transformable.h"
-
+#include "../FrameWork/SweptAABB/SweptAABB.h"
 using namespace std;
 
 NS_FRAMEWORK
@@ -57,8 +57,9 @@ public:
 	void setOrigin(GVector2 origin);
 
 	void setZIndex(float z);
-
 	RECT getBounding();
+
+	Box  getBox();
 
 	void setFrameRect(RECT rect);
 	void setFrameRect(float top, float right, float bottom, float left);
