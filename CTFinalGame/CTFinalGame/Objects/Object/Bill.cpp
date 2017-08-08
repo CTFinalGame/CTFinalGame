@@ -19,7 +19,12 @@ void Bill::init()
 	_sprite->setZIndex(1.0f);
 	auto movement = new Movement(GVector2(0, 0), GVector2(0, 0), _sprite);
 	_componentList["Movement"] = movement;
-	_componentList["Gravity"] = new Gravity(GVector2(0, 0), movement);
+	_componentList["Gravity"] = new Gravity(GVector2(0, -GRAVITY), movement);
+	auto collisionBody = new CollisionBody(this);
+	_componentList["CollisionBody"] = collisionBody;
+
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bill::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Bill::onCollisionEnd);
 
 	_animations[eStatus::NORMAL] = new Animation(_sprite, 0.1f);
 	_animations[eStatus::NORMAL]->addFrameRect(eID::BILL, "normal_01", NULL);
@@ -82,7 +87,7 @@ void Bill::init()
 	_animations[eStatus::DYING]->addFrameRect(eID::BILL, "dead_01", "dead_02", "dead_03", "dead_04", NULL);
 
 	this->setOrigin(GVector2(0.5f, 0.0f));
-	this->setStatus(eStatus::NORMAL);
+	this->setStatus(eStatus::FALLING);
 
 	// create stopWatch
 	_stopWatch = new StopWatch();
@@ -123,12 +128,6 @@ void Bill::update(float deltatime)
 	if (_protectTime > 0)
 	{
 		_protectTime -= deltatime;
-	}
-	if (this->getPositionY() < 200){
-		if (this->isInStatus(eStatus::JUMPING)){
-			this->removeStatus(eStatus::JUMPING);
-			standing();
-		}
 	}
 }
 
@@ -246,7 +245,7 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 					  if (this->isInStatus(eStatus::DIVING))
 						  return;
 
-					 // this->removeStatus(eStatus::LAYING_DOWN);
+					  // this->removeStatus(eStatus::LAYING_DOWN);
 					  this->removeStatus(eStatus::MOVING_LEFT);
 					  this->addStatus(eStatus::MOVING_RIGHT);
 
@@ -262,8 +261,8 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 					 else
 					 {
 						 this->addStatus(eStatus::DIVING);
-						/// this->removeStatus(eStatus::MOVING_LEFT);
-						// this->removeStatus(eStatus::MOVING_RIGHT);
+						 /// this->removeStatus(eStatus::MOVING_LEFT);
+						 // this->removeStatus(eStatus::MOVING_RIGHT);
 					 }
 
 					 break;
@@ -358,10 +357,10 @@ void Bill::onKeyReleased(KeyEventArg * key_event)
 	}
 	case DIK_Z:
 	{
-				//  this->removeStatus(eStatus::SHOOTING);
+				  //  this->removeStatus(eStatus::SHOOTING);
 				  _isHolding = false;
 				  break;
-				 
+
 	}
 	default:
 		break;
@@ -391,8 +390,6 @@ void Bill::standing()
 {
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(GVector2(0, 0));
-	auto gravity = (Gravity*)this->_componentList["Gravity"];
-	gravity->setGravity(GVector2(0, 0));
 	this->removeStatus(eStatus::JUMPING);
 	this->removeStatus(eStatus::FALLING);
 }
@@ -439,9 +436,9 @@ void Bill::jump()
 		move->setVelocity(GVector2(move->getVelocity().x, BILL_JUMP_VEL));
 	}
 
-	auto g = (Gravity*)this->_componentList["Gravity"];
-	g->setGravity(GVector2(0, -GRAVITY));
-	g->setStatus(eGravityStatus::FALLING__DOWN);
+		auto g = (Gravity*)this->_componentList["Gravity"];
+		g->setGravity(GVector2(0, -GRAVITY));
+		g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
 void Bill::layDown()
@@ -764,6 +761,106 @@ void safeCheckCollision(BaseObject* activeobj, BaseObject* passiveobj, float dt)
 		activeobj->checkCollision(passiveobj, dt);
 	}
 }
+void Bill::onCollisionBegin(CollisionEventArg * collision_arg)
+{
+	eID objectID = collision_arg->_otherObject->getId();
+	switch (objectID)
+	{
+	case AIRCRAFT:
+		break;
+	case eID::LAND:
+	case eID::BRIDGE:
+	{
+
+						//	break;
+	}
+	case eID::RIFLEMAN:
+	case eID::SOLDIER:
+	case eID::REDCANNON:
+	case eID::WALL_TURRET:
+	default:
+		break;
+	}
+}
+
+void Bill::onCollisionEnd(CollisionEventArg * collision_event)
+{
+	eID objectID = collision_event->_otherObject->getId();
+
+	switch (objectID)
+	{
+	case AIRCRAFT:
+		break;
+	case eID::LAND:
+	{
+					  if (_preObject == collision_event->_otherObject)
+					  {
+						  // hết chạm với land là fall chứ ko có jump
+						  this->removeStatus(eStatus::JUMPING);
+						  _preObject = nullptr;
+					  }
+					  break;
+	}
+	case eID::BRIDGE:
+		break;
+	default:
+		break;
+	}
+}
+float Bill::checkCollision(BaseObject * object, float dt)
+{
+	if (object->getStatus() == eStatus::DESTROY || this->isInStatus(eStatus::DYING))
+		return 0.0f;
+	if (this == object)
+		return 0.0f;
+
+	auto collisionBody = (CollisionBody*)_componentList["CollisionBody"];
+	eID objectId = object->getId();
+	eDirection direction;
+		// nếu ko phải là nhảy xuống, mới dừng gravity
+		if (!this->isInStatus(eStatus(eStatus::JUMPING | eStatus::FALLING)) && collisionBody->checkCollision(object, direction, dt, false))
+		{
+			// kt coi chổ đứng có cho nhảy xuống ko
+			if (objectId == eID::LAND)
+			{
+				// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
+				if (direction == eDirection::TOP && !(this->getVelocity().y > -200 && this->isInStatus(eStatus::JUMPING)))
+				{
+					// vận tốc lớn hơn 200 hướng xuống => cho trường hợp nhảy từ dưới lên
+					// xử lý đặc biệt, Collision body update position bt ko được
+					// khi vào đây mới update position cho nó
+					float moveX, moveY;
+					if (collisionBody->isColliding(object, moveX, moveY, dt))
+					{
+						collisionBody->updateTargetPosition(object, direction, false, GVector2(moveX, moveY));
+					}
+
+					auto gravity = (Gravity*)this->_componentList["Gravity"];
+					gravity->setStatus(eGravityStatus::SHALLOWED);
+
+					this->standing();
+
+					_preObject = object;
+				}
+			}
+		}
+			else if (_preObject == object)
+			{
+				// kiểm tra coi nhảy hết qua cái land cũ chưa
+				// để gọi event end.
+				collisionBody->checkCollision(object, dt, false);
+
+				auto gravity = (Gravity*)this->_componentList["Gravity"];
+				gravity->setStatus(eGravityStatus::FALLING__DOWN);
+
+				if (!this->isInStatus(eStatus::JUMPING) && !this->isInStatus(eStatus::FALLING))
+				{
+					this->addStatus(eStatus::FALLING);
+				}
+			}
+		
+	return 0.0f;
+}
 void Bill::shoot()
 {
 	if (this->isInStatus(eStatus::DIVING))
@@ -842,7 +939,35 @@ void Bill::shoot()
 
 
 }
-
+void Bill::forceMoveRight()
+{
+	onKeyPressed(new KeyEventArg(DIK_RIGHT));
+}
+void Bill::unforceMoveRight()
+{
+	onKeyReleased(new KeyEventArg(DIK_RIGHT));
+}
+void Bill::forceMoveLeft()
+{
+	onKeyPressed(new KeyEventArg(DIK_LEFT));
+}
+void Bill::unforceMoveLeft()
+{
+	onKeyReleased(new KeyEventArg(DIK_LEFT));
+}
+void Bill::forceJump()
+{
+	onKeyPressed(new KeyEventArg(DIK_X));
+}
+void Bill::unforceJump()
+{
+	onKeyReleased(new KeyEventArg(DIK_X));
+}
+void Bill::removeGravity()
+{
+	auto graivity = (Gravity*)(this->_componentList.find("Gravity")->second);
+	graivity->setGravity(VECTOR2ZERO);
+}
 void Bill::deleteBullet()
 {
 	for (auto bullet : _listBullets)

@@ -215,12 +215,7 @@ RECT Sprite::getBounding()
 
 	return _bound;
 }
-Box Sprite::getBox()
-{
-	float scaleW = _frameWidth * abs(_scale.x);
-	float scaleH = _frameHeight * abs(_scale.y);
-	return  Box(_bound.left,_bound.top,scaleW,scaleH);
-}
+
 
 void Sprite::setFrameRect(RECT rect)
 {
