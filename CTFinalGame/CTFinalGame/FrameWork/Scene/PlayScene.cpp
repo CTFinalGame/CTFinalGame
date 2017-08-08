@@ -52,7 +52,9 @@ bool PlayScene::init()
 	 auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
 	 landbottom->init();
 	 _listobject.push_back(landbottom);
-	
+	 auto water = new Land(0, 40, 500, 20, eDirection::ALL, eLandType::WATER);
+	 water->init();
+	 _listobject.push_back(water);
 	return true;
 }
 void PlayScene::updateInput(float dt)
