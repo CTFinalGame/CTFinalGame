@@ -13,6 +13,7 @@
 #include "../Bullets/Bullet.h"
 #include "../Bullets/M_Bullet.h"
 #include "../../FrameWork/StopWatch.h"
+#include "../../FrameWork/Collision/CollisionBody.h"
 
 
 #define BILL_MOVE_SPEED 125
@@ -39,12 +40,24 @@ public:
 
 	void onKeyPressed(KeyEventArg* key_event);
 	void onKeyReleased(KeyEventArg* key_event);
-
 	void setShootSpeed(float speed);
 	float getShootSpeed();
 
+	void onCollisionBegin(CollisionEventArg* collision_arg);
+	void onCollisionEnd(CollisionEventArg* collision_arg);
+	float checkCollision(BaseObject* object, float dt);
 	void checkPosition();
 	void setStatus(eStatus status) override;
+
+
+	void removeGravity();
+	void forceMoveRight();
+	void unforceMoveRight();
+	void forceMoveLeft();
+	void unforceMoveLeft();
+	void forceJump();
+	void unforceJump();
+	void unhookinputevent();
 	// Character action.
 	void standing();
 	void moveLeft();

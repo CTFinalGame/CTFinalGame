@@ -1,4 +1,3 @@
-
 #include "BaseObject.h"
 
 IControlable::IControlable()
@@ -178,10 +177,6 @@ Sprite * BaseObject::getSprite()
 RECT BaseObject::getBounding()
 {
 	return _sprite->getBounding();
-}
-Box BaseObject::getBox()
-{
-	return _sprite->getBox();
 }
 float BaseObject::checkCollision(BaseObject * object, float dt)
 {

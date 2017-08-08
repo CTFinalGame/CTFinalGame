@@ -192,7 +192,6 @@ RECT Land::getBounding()
 {
 	return _bound;
 }
-
 eLandType Land::getType()
 {
 	return _type;

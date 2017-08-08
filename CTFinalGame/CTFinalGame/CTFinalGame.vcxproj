@@ -84,6 +84,7 @@
     <ClCompile Include="ContraGame.cpp" />
     <ClCompile Include="CTFinalGame.cpp" />
     <ClCompile Include="FrameWork\Animation.cpp" />
+    <ClCompile Include="FrameWork\Collision\CollisionBody.cpp" />
     <ClCompile Include="FrameWork\DeviceManager.cpp" />
     <ClCompile Include="FrameWork\Event.cpp" />
     <ClCompile Include="FrameWork\GameTime.cpp" />
@@ -99,7 +100,6 @@
     <ClCompile Include="FrameWork\Sprite.cpp" />
     <ClCompile Include="FrameWork\SpriteManager.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
-    <ClCompile Include="FrameWork\SweptAABB\Collision.cpp" />
     <ClCompile Include="FrameWork\Texture.cpp" />
     <ClCompile Include="FrameWork\TimeSpan.cpp" />
     <ClCompile Include="FrameWork\Transformable.cpp" />
@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="ContraGame.h" />
     <ClInclude Include="FrameWork\Animation.h" />
+    <ClInclude Include="FrameWork\Collision\CollisionBody.h" />
     <ClInclude Include="FrameWork\define.h" />
     <ClInclude Include="FrameWork\DeviceManager.h" />
     <ClInclude Include="FrameWork\Event.h" />
@@ -139,8 +140,6 @@
     <ClInclude Include="FrameWork\Sprite.h" />
     <ClInclude Include="FrameWork\SpriteManager.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
-    <ClInclude Include="FrameWork\SweptAABB\Collision.h" />
-    <ClInclude Include="FrameWork\SweptAABB\SweptAABB.h" />
     <ClInclude Include="FrameWork\Texture.h" />
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />

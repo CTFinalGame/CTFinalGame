@@ -20,37 +20,39 @@ bool PlayScene::init()
 
 	auto bill = new Bill();
 	bill->init();
-	bill->setPosition(0, 300);
+	bill->setPosition(200, 500);
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
 	_listobject.push_back(bill);
-	auto _soldier = new Soldier(eStatus::RUNNING,GVector2(0,200),1);
-	_soldier->init();	
-	_listobject.push_back(_soldier);
+	//auto _soldier = new Soldier(eStatus::RUNNING,GVector2(0,200),1);
+	//_soldier->init();	
+	//_listobject.push_back(_soldier);
 	_bulletmanager = new BulletManager();
 	_bulletmanager->init();
-	auto wallTurret = new Cannon(eStatus::NORMAL, 300, 300, 1);
-	wallTurret->init();
-	//_listobject.push_back(wallTurret);
-
-	auto cannon = new Cannon(eStatus::NORMAL, 400, 200, 2);
-	cannon->init();
-	//_listobject.push_back(cannon);
-
-	background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
-
-	/*auto _soldier = new Soldier(eStatus::RUNNING, GVector2(100, 200), 1);
-	_soldier->init();
-	_listobject.push_back(_soldier);*/
-	auto fifleman = new Rifleman(eStatus::NORMAL, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	fifleman->init();
-	_listobject.push_back(fifleman);
-	auto fifleman1 = new Rifleman(eStatus::HIDDEN, WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2);
-	fifleman1->init();
-	_listobject.push_back(fifleman1);
-	//auto wallTurret = new WallTurret(eStatus::NORMAL, GVector2(250, 400));
+	//auto wallTurret = new Cannon(eStatus::NORMAL, 300, 300, 1);
 	//wallTurret->init();
-	//_listobject.push_back(wallTurret);
+	////_listobject.push_back(wallTurret);
+
+	//auto cannon = new Cannon(eStatus::NORMAL, 400, 200, 2);
+	//cannon->init();
+	////_listobject.push_back(cannon);
+
+     background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
+	//auto fifleman = new Rifleman(eStatus::NORMAL, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	//fifleman->init();
+	//_listobject.push_back(fifleman);
+	//auto fifleman1 = new Rifleman(eStatus::HIDDEN, WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2);
+	//fifleman1->init();
+	//_listobject.push_back(fifleman1);	 auto fifleman1 = new Rifleman(eStatus::HIDDEN,320,220);
+	 
+
+	 auto land = new Land(50, 240, 270, 20, eDirection::ALL, eLandType::GRASS);
+	 land->init();
+	 _listobject.push_back(land);
+	 auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
+	 landbottom->init();
+	 _listobject.push_back(landbottom);
+	
 	return true;
 }
 void PlayScene::updateInput(float dt)
@@ -129,23 +131,21 @@ void PlayScene::update(float dt)
 
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
-	
 	// [Bước 6]
-	//for (BaseObject* obj : _active_object)
-	//{
-	//	// một vài trạng thái không cần thiết phải check hàm va chạm
-	//	if (obj == nullptr || obj->isInStatus(eStatus::DESTROY) || obj->getId() == eID::LAND || 
-	//		obj->getId() == eID::WALL_TURRET || obj->getId() == eID::REDCANNON || obj->getId() == eID::ROCKFLY)
-	//		continue;
+	for (BaseObject* obj : _active_object)
+	{
+		// một vài trạng thái không cần thiết phải check hàm va chạm
+		if (obj == nullptr || obj->isInStatus(eStatus::DESTROY) || obj->getId() == eID::LAND || 
+			obj->getId() == eID::WALL_TURRET || obj->getId() == eID::REDCANNON || obj->getId() == eID::ROCKFLY)
+			continue;
 
-	//	for (BaseObject* passiveobj : _active_object)
-	//	{
-	//		if (passiveobj == nullptr || passiveobj == obj || passiveobj->isInStatus(eStatus::DESTROY))
-	//			continue;
-
-	//		obj->checkCollision(passiveobj, dt);
-	//	}
-	//}
+		for (BaseObject* passiveobj : _active_object)
+		{
+			if (passiveobj == nullptr || passiveobj == obj || passiveobj->isInStatus(eStatus::DESTROY))
+				continue;
+			obj->checkCollision(passiveobj, dt);
+		}
+	}
 
 	if (_bulletmanager != nullptr)
 	{
