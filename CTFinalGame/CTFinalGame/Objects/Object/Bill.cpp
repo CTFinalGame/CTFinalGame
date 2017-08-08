@@ -823,6 +823,25 @@ float Bill::checkCollision(BaseObject * object, float dt)
 			// kt coi chổ đứng có cho nhảy xuống ko
 			if (objectId == eID::LAND)
 			{
+				auto land = (Land*)object;
+				eLandType preType = land->getType();
+
+				// lấy type của preObject
+				if (_preObject != nullptr && _preObject->getId() == eID::LAND)
+				{
+					preType = ((Land*)_preObject)->getType();
+				}
+
+				if (land->getType() == eLandType::WATER)
+				{
+					// nếu trước đó không phải là nước thì mới cho bơi
+					if (preType == eLandType::BRIDGELAND || preType == eLandType::GRASS || _preObject == nullptr)
+					{
+						// swim
+						this->swimming();
+					}
+
+				}
 				// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
 				if (direction == eDirection::TOP && !(this->getVelocity().y > -200 && this->isInStatus(eStatus::JUMPING)))
 				{
