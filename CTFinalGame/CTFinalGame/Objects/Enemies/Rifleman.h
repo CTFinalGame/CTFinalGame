@@ -37,7 +37,9 @@ public:
 	void setShootingAngle(double);
 	void die();
 	void shoot();
-
+	void onCollisionBegin(CollisionEventArg*);
+	void onCollisionEnd(CollisionEventArg*);
+	float checkCollision(BaseObject*, float);
 	IComponent* getComponent(string);
 
 private:

@@ -24,9 +24,9 @@ bool PlayScene::init()
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
 	_listobject.push_back(bill);
-	//auto _soldier = new Soldier(eStatus::RUNNING,GVector2(0,200),1);
-	//_soldier->init();	
-	//_listobject.push_back(_soldier);
+	auto _soldier = new Soldier(eStatus::RUNNING, GVector2(300, 240), -1);
+	_soldier->init();	
+	_listobject.push_back(_soldier);
 	_bulletmanager = new BulletManager();
 	_bulletmanager->init();
 	//auto wallTurret = new Cannon(eStatus::NORMAL, 300, 300, 1);
