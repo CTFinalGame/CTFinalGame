@@ -40,7 +40,9 @@ public:
 	void setPosition(GVector2);
 	GVector2 getVelocity();
 	IComponent* getComponent(string);
-
+	void onCollisionBegin(CollisionEventArg*);
+	void onCollisionEnd(CollisionEventArg*);
+	float checkCollision(BaseObject*, float);
 private:
 	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;

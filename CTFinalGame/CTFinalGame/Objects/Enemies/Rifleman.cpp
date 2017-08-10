@@ -209,7 +209,58 @@ void Rifleman::update(float deltatime)
 
 	_animations[this->getStatus()]->update(deltatime);
 }
+void Rifleman::onCollisionBegin(CollisionEventArg* collision_event)
+{
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::BILL:
+	{
+					  if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
+					  {
+						  collision_event->_otherObject->setStatus(eStatus::DYING);
+						  ((Bill*)collision_event->_otherObject)->die();
+					  }
+					  break;
+	}
+	default:
+		break;
+	}
+}
 
+void Rifleman::onCollisionEnd(CollisionEventArg* collision_event)
+{
+
+}
+
+float Rifleman::checkCollision(BaseObject * object, float dt)
+{
+	if (this->getStatus() == eStatus::DESTROY)
+		return 0.0f;
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	eID objectId = object->getId();
+	eDirection direction;
+
+	if (objectId == eID::BRIDGE || objectId == eID::LAND)
+	{
+		if (collisionBody->checkCollision(object, direction, dt))
+		{
+			if (direction == eDirection::TOP && this->getVelocity().y <= 0)
+			{
+				auto gravity = (Gravity*)this->_listComponent["Gravity"];
+				auto movement = (Movement*)this->_listComponent["Movement"];
+				movement->setVelocity(GVector2(movement->getVelocity().x, 0));
+				gravity->setStatus(eGravityStatus::SHALLOWED);
+			}
+		}
+	}
+	else
+	{
+		collisionBody->checkCollision(object, dt);
+	}
+	return 0.0f;
+
+}
 void Rifleman::calculateShootingAngle() {
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
 	float dx = (this->getPosition().x) - (bill->getPosition().x);
