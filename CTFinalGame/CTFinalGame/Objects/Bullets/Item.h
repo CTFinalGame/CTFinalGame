@@ -3,8 +3,8 @@
 #ifndef __ITEM__
 #define __ITEM__
 
-#include "../../FrameWork/Animation.h"
-#include "../BaseObject.h"
+#include "../../FrameWork\Animation.h"
+#include "../../Objects/BaseObject.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Scene/PlayScene.h"
 

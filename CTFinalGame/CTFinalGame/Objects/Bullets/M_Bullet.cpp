@@ -15,10 +15,10 @@ void MBullet::init()
 	auto movement = new Movement(GVector2(0, 0), veloc, _sprite);
 	_componentList.insert(pair<string, IComponent*>("Movement", movement));
 
-	//auto collisionBody = new CollisionBody(this);
-	//_componentList.insert(pair<string, IComponent*>("CollisionBody", collisionBody));
+	auto collisionBody = new CollisionBody(this);
+	_componentList.insert(pair<string, IComponent*>("CollisionBody", collisionBody));
 
-	//__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bullet::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bullet::onCollisionBegin);
 }
 
 MBullet::MBullet(GVector2 startPosition, float degree)

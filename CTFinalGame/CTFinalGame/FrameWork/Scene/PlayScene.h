@@ -18,6 +18,8 @@
 #include "../../Objects/Enemies/Soldier.h"
 #include "../../Objects/Enemies/Cannon.h"
 
+#include "../../Objects/Bullets/AirCraft.h"
+
 #define BOSS_VIEWPORT_ANCHOR		6112
 
 using namespace std;
@@ -44,7 +46,7 @@ public:
 	// id: kiểu enum eID, định danh một đối tượng.
 	// return: đối tượng cần tìm.
 	BaseObject* getObject(eID id);
-	BaseObject* getBill();
+	Bill* getBill();
 	BaseObject* _bulletmanager;
 private:
 	//void destroyobject();				// kiển tra nếu object hết hạn sử dụng thì phá huỷ đối tượng

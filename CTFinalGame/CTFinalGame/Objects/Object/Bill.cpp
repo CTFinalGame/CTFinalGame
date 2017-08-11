@@ -318,6 +318,16 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 				  changeBulletType(eAirCraftType::M);
 				  break;
 	}
+	case DIK_S:
+	{
+		changeBulletType(eAirCraftType::S);
+		break;
+	}
+	case DIK_F:
+	{
+		changeBulletType(eAirCraftType::F);
+		break;
+	}
 	default:
 		break;
 	}
@@ -878,7 +888,43 @@ float Bill::checkCollision(BaseObject * object, float dt)
 					this->addStatus(eStatus::FALLING);
 				}
 			}
-		
+		if (objectId != eID::LAND && objectId)
+		{
+			for (auto it = _listBullets.begin(); it != _listBullets.end(); it++)
+			{
+
+				if (objectId == eID::ROCKCREATOR)
+				{
+					//safeCheckCollision((*it), ((RockCreator*)object)->getRock(), dt);
+
+				}
+				if (objectId == eID::SHADOW_BEAST)
+				{
+					/*safeCheckCollision((*it), ((ShadowBeast*)object)->getLeftArm(), dt);
+					safeCheckCollision((*it), ((ShadowBeast*)object)->getRigtArm(), dt);
+					safeCheckCollision((*it), ((ShadowBeast*)object)->getMouth(), dt);*/
+				}
+				else if (objectId == eID::BOSS_STAGE1)
+				{
+					/*safeCheckCollision((*it), ((Boss*)object)->getGun1(), dt);
+					safeCheckCollision((*it), ((Boss*)object)->getGun2(), dt);
+					safeCheckCollision((*it), ((Boss*)object)->getShield(), dt);
+					safeCheckCollision((*it), ((Boss*)object)->getRifleMan(), dt);*/
+				}
+				else if (objectId == eID::CREATOR)
+				{
+					//auto children = ((ObjectCreator*)object)->getObjects();
+					/*for (auto child : children)
+					{
+					safeCheckCollision((*it), child, dt);
+					}*/
+				}
+				else
+				{
+					(*it)->checkCollision(object, dt);
+				}
+			}
+		}
 	return 0.0f;
 }
 void Bill::shoot()
@@ -997,6 +1043,21 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 		bullet = new MBullet(position, angle);
 
 	}
+	else if ((_currentGun & S_BULLET) == S_BULLET)
+	{
+		if (_listBullets.size() >= _maxBullet)
+			return nullptr;
+
+		bullet = new SBullet(position, angle);
+	}
+	else if ((_currentGun & F_BULLET) == F_BULLET)
+	{
+		if (_listBullets.size() >= _maxBullet)
+			return nullptr;
+
+		bullet = new FBullet(position, angle);
+	}
+
 	return bullet;
 }
 

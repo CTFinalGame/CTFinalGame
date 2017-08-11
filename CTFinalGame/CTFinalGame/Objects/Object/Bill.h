@@ -6,12 +6,14 @@
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/InputController.h"
 #include "../../FrameWork/Scene/SceneManager.h"
-#include "../../FrameWork/Scene/PlayScene.h"
+
 #include "../BaseObject.h"
 #include "../../FrameWork/IComponent.h"
 #include <algorithm>
 #include "../Bullets/Bullet.h"
 #include "../Bullets/M_Bullet.h"
+#include "../Bullets/S_Bullet.h"
+#include "../Bullets/F_Bullet.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/Collision/CollisionBody.h"
 
