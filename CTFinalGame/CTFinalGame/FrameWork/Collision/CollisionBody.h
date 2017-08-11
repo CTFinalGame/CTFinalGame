@@ -6,8 +6,6 @@
 #include <queue>
 
 /*
-by Luu The Vinh
-updated: 2/10/2015
 
 Sử dụng cho đối tượng muốn kt va chạm
 - Thêm nó như là một Component vào object

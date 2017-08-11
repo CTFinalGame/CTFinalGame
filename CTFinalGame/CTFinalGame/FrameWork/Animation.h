@@ -2,9 +2,6 @@
 #define __ANIMATION_H__
 
 /*
-update 23/11/2015
-Luu The Vinh
-
 - Thêm tùy chỉnh lặp cho Animation
 */
 
