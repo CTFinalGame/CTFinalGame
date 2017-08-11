@@ -106,6 +106,7 @@
     <ClCompile Include="FrameWork\Viewport.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Objects\BaseObject.cpp" />
+    <ClCompile Include="Objects\Bullets\AirCraft.cpp" />
     <ClCompile Include="Objects\Bullets\Bullet.cpp" />
     <ClCompile Include="Objects\Bullets\BulletManager.cpp" />
     <ClCompile Include="Objects\Bullets\Falcon.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="Objects\BaseObject.h" />
+    <ClInclude Include="Objects\Bullets\AirCraft.h" />
     <ClInclude Include="Objects\Bullets\Bullet.h" />
     <ClInclude Include="Objects\Bullets\BulletManager.h" />
     <ClInclude Include="Objects\Bullets\Falcon.h" />

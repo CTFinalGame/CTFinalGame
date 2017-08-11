@@ -26,6 +26,13 @@ void Rifleman::init()
 	GVector2 a(0, 0);
 	Movement *movement = new Movement(a, v, this->_sprite);
 	this->_listComponent.insert(pair<string, IComponent*>("Movement", movement));
+	auto collisionBody = new CollisionBody(this);
+	_listComponent["CollisionBody"] = collisionBody;
+
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Soldier::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Soldier::onCollisionEnd);
+
+
 	if (this->getStatus() != eStatus::HIDDEN && this->getStatus() != eStatus::HIDING)
 		this->_listComponent.insert(pair<string, IComponent*>("Gravity", new Gravity(GVector2(0, -0), movement)));
 	else

@@ -38,12 +38,15 @@ bool PlayScene::init()
 	////_listobject.push_back(cannon);
 
      background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
-	//auto fifleman = new Rifleman(eStatus::NORMAL, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	//fifleman->init();
-	//_listobject.push_back(fifleman);
-	//auto fifleman1 = new Rifleman(eStatus::HIDDEN, WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2);
-	//fifleman1->init();
-	//_listobject.push_back(fifleman1);	 auto fifleman1 = new Rifleman(eStatus::HIDDEN,320,220);
+	
+	 auto fifleman = new Rifleman(eStatus::NORMAL, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	fifleman->init();
+	_listobject.push_back(fifleman);
+	
+	auto fifleman1 = new Rifleman(eStatus::HIDDEN, WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2);
+	fifleman1->init();
+	_listobject.push_back(fifleman1);
+	
 	 auto bire = new Bridge(GVector2(1550,230));
 	 bire->init();
 	 _listobject.push_back(bire);	
@@ -60,6 +63,16 @@ bool PlayScene::init()
 	 auto water = new Land(0, 40, 500, 20, eDirection::ALL, eLandType::WATER);
 	 water->init();
 	 _listobject.push_back(water);
+
+	 //Tao airCraft
+	 GVector2 pos(50, 300), hVeloc = AIRCRAFT_HORIZONTAL_VELOC, ampl = AIRCRAFT_AMPLITUDE;
+	 float freq = AIRCRAFT_FREQUENCY;
+	 eAirCraftType type = S;
+	 auto airCraft = new AirCraft(pos, hVeloc / 2, ampl, freq, type);
+
+	 airCraft->init();
+	 _listobject.push_back(airCraft);
+
 	return true;
 }
 void PlayScene::updateInput(float dt)
@@ -229,7 +242,7 @@ void PlayScene::updateViewport(BaseObject* objTracker)
 	_viewport->setPositionWorld(new_position);
 }
 
-BaseObject* PlayScene::getBill()
+Bill* PlayScene::getBill()
 {
 	return (Bill*)this->_bill;
 }

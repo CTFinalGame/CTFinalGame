@@ -96,9 +96,9 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 
 	//
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//aircraft.png", 10, 10);
-	//this->_listSprite[eID::AIRCRAFT] = sp;
-	//this->loadSpriteInfo(eID::AIRCRAFT, "Resources//Images//aircraft_animation.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//aircraft.png", 10, 10);
+	this->_listSprite[eID::AIRCRAFT] = sp;
+	this->loadSpriteInfo(eID::AIRCRAFT, "Resource//Images//aircraft_animation.txt");
 
 	//sp = new Sprite(spriteHandle, L"Resources//Images//falcon.png", 7, 7);
 	//this->_listSprite[eID::FALCON] = sp;

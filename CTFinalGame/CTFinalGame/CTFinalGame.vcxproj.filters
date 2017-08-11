@@ -162,6 +162,9 @@
     <ClCompile Include="Objects\Bullets\Item.cpp">
       <Filter>Object\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Bullets\AirCraft.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -285,6 +288,9 @@
       <Filter>Object\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Bullets\Item.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\AirCraft.h">
       <Filter>Object\Bullets</Filter>
     </ClInclude>
   </ItemGroup>

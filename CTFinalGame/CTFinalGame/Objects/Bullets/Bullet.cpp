@@ -1,5 +1,5 @@
 ﻿#include "Bullet.h"
-
+#include "Falcon.h"
 
 Bullet::Bullet(GVector2 startPosition, eBulletType type, eDirection dir) : BaseObject(eID::BULLET)
 {
@@ -51,11 +51,11 @@ void Bullet::init()
 	_componentList.insert(pair<string, IComponent*>("Movement", movement));
 	
 
-	//auto collisionBody = new CollisionBody(this);
-	//_componentList.insert(pair<string, IComponent*>("CollisionBody", collisionBody));
+	auto collisionBody = new CollisionBody(this);
+	_componentList.insert(pair<string, IComponent*>("CollisionBody", collisionBody));
 	
 
-	//__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bullet::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bullet::onCollisionBegin);
 
 	//_bursttime = new StopWatch();
 }
@@ -199,74 +199,42 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 		case FALCON:
 			if (collision_arg->_otherObject->getStatus() == eStatus::EXPLORED)
 				return;
-			/*if (((Falcon*)collision_arg->_otherObject)->isOpenned() == false)
-				return;*/
+			if (((Falcon*)collision_arg->_otherObject)->isOpenned() == false)
+				return;
 			collision_arg->_otherObject->setStatus(eStatus::BURST);
 			if (this->_type != eBulletType::L_BULLET)
 				this->setStatus(eStatus::DESTROY);
 			break;
 		case SOLDIER: case RIFLEMAN: case SCUBASOLDIER:
+
 			if (collision_arg->_otherObject->getStatus() != HIDDEN && collision_arg->_otherObject->getStatus() != EXPOSING && collision_arg->_otherObject->getStatus() != DIVING)
 				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
 			// Đạn laser đi xuyên qua soldier và rifleman
 			if (this->_type != eBulletType::L_BULLET)
 				this->setStatus(eStatus::DESTROY);
 			break;
-		case SHADOW_MOUTH:
-		case SHADOW_ARM:
-		case BOSS_SHIELD:
-		case BOSS_GUN:
-			break;
-			// RockFall: map 2
-		case ROCKFALL:
-			((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
-			this->setStatus(eStatus::DESTROY);
-		//	SoundManager::getInstance()->Play(eSoundId::ATTACK_CANNON);
-			if (((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
-				this->setStatus(eStatus::NORMAL);
-			break;
-		}
-	}
-
-	if (this->isEnemyBullet())
-	{
-		switch (objectID)
-		{
-		case BILL:
-		{
-			if (this->isContainType(eBulletType::SCUBABULLET))
+		case WALL_TURRET:
+			//if (((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
+			if (true)
 			{
-				if (this->getVelocity().y > 0)
-				{
-					return;
-				}
-			}
-			if (collision_arg->_otherObject->isInStatus(eStatus::DYING) == false)
-			{
-				collision_arg->_otherObject->setStatus(eStatus::DYING);
-				//((Bill*)collision_arg->_otherObject)->die();
-			}
-			break;
-		}
-		case LAND:
-		{
-			if (this->isContainType(eBulletType::SCUBABULLET))
-			{
-				auto movement = (Movement*)_componentList["Movement"];
-				if (movement->getVelocity().y < -300.0f)
+				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
+				this->setStatus(eStatus::DESTROY);
+				if (this->isContainType(eBulletType::L_BULLET) == true && ((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
+					this->setStatus(eStatus::NORMAL);
+				//SoundManager::getInstance()->Play(eSoundId::ATTACK_CANNON);
+				if (this->isContainType(eBulletType::NORMAL_BULLET))
 				{
 					this->setStatus(eStatus::BURST);
+					this->_sprite->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BULLET, "explose"));
+					this->_sprite->setOpacity(0.5f);
+					auto movement = this->_componentList.find("Movement")->second;
+					((Movement*)movement)->setVelocity(VECTOR2ZERO);
 				}
 			}
-			if (this->isContainType(eBulletType::BOSSSTAGE1_BULLET))
-			{
-				this->setStatus(eStatus::BURST);
-			}
-		}
-		break;
-
+			break;
 		}
 	}
+
 }
 
 float Bullet::checkCollision(BaseObject * object, float dt)
