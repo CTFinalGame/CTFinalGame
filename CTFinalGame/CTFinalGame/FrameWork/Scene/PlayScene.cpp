@@ -18,15 +18,13 @@ PlayScene::~PlayScene()
 bool PlayScene::init()
 {
 
-	auto bill = new Bill();
-	bill->init();
-	bill->setPosition(200, 500);
-	this->_bill = bill;
-	_listControlObject.push_back(bill);
-	_listobject.push_back(bill);
+	
 	auto _soldier = new Soldier(eStatus::RUNNING, GVector2(300, 240), -1);
 	_soldier->init();	
 	_listobject.push_back(_soldier);
+	auto _soldier1 = new Soldier(eStatus::RUNNING, GVector2(800, 240), -1);
+	_soldier1->init();
+	_listobject.push_back(_soldier1);
 	_bulletmanager = new BulletManager();
 	_bulletmanager->init();
 	//auto wallTurret = new Cannon(eStatus::NORMAL, 300, 300, 1);
@@ -39,11 +37,11 @@ bool PlayScene::init()
 
      background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
 	
-	 auto fifleman = new Rifleman(eStatus::NORMAL, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	 auto fifleman = new Rifleman(eStatus::NORMAL, 580, 60);
 	fifleman->init();
 	_listobject.push_back(fifleman);
 	
-	auto fifleman1 = new Rifleman(eStatus::HIDDEN, WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2);
+	auto fifleman1 = new Rifleman(eStatus::HIDDEN, 700, 300);
 	fifleman1->init();
 	_listobject.push_back(fifleman1);
 	
@@ -54,16 +52,18 @@ bool PlayScene::init()
 	 auto land = new Land(50, 240, 1450, 20, eDirection::ALL, eLandType::GRASS);
 	 land->init();
 	 _listobject.push_back(land);
-	 auto falon = new Falcon(260,260,eAirCraftType::S);
+	 auto falon = new Falcon(650,140,eAirCraftType::S);
 	 falon->init();
 	 _listobject.push_back(falon);
 	 auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
 	 landbottom->init();
 	 _listobject.push_back(landbottom);
-	 auto water = new Land(0, 40, 500, 20, eDirection::ALL, eLandType::WATER);
+	 auto water = new Land(0, 40, 1500, 20, eDirection::ALL, eLandType::WATER);
 	 water->init();
 	 _listobject.push_back(water);
-
+	 auto landwater = new Land(550,60, 200, 20, eDirection::ALL, eLandType::GRASS);
+	 landwater->init();
+	 _listobject.push_back(landwater);
 	 //Tao airCraft
 	 GVector2 pos(50, 300), hVeloc = AIRCRAFT_HORIZONTAL_VELOC, ampl = AIRCRAFT_AMPLITUDE;
 	 float freq = AIRCRAFT_FREQUENCY;
@@ -72,7 +72,12 @@ bool PlayScene::init()
 
 	 airCraft->init();
 	 _listobject.push_back(airCraft);
-
+	 auto bill = new Bill();
+	 bill->init();
+	 bill->setPosition(200, 500);
+	 this->_bill = bill;
+	 _listControlObject.push_back(bill);
+	 _listobject.push_back(bill);
 	return true;
 }
 void PlayScene::updateInput(float dt)
@@ -169,7 +174,7 @@ void PlayScene::update(float dt)
 
 	if (_bulletmanager != nullptr)
 	{
-		//_bulletmanager->checkcollision(_bill, dt);
+		_bulletmanager->checkCollision(_bill, dt);
 		_bulletmanager->update(dt);
 	}
 

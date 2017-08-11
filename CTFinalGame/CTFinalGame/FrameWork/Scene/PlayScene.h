@@ -72,7 +72,6 @@ private:
 	//QNode* _root;
 	// Trỏ đến bill, một số đối tượng cần truyền bill vào để xử lý, lấy ở đây.
 	
-//	BaseObject* _bulletmanager;
 	BaseObject* _bill;
 	void updateViewport(BaseObject* objTracker);
 

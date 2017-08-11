@@ -849,6 +849,16 @@ float Bill::checkCollision(BaseObject * object, float dt)
 					}
 
 				}
+				else if (this->isInStatus(eStatus::SWIMING))
+				{
+					if (direction == eDirection::TOP)
+					{
+						
+						this->removeStatus(eStatus::SWIMING);
+						this->removeStatus(eStatus::DIVING);
+						//this->setPositionY(object->getBounding().top);
+					}
+				}
 				// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
 				if (direction == eDirection::TOP && !(this->getVelocity().y >  -200 && this->isInStatus(eStatus::JUMPING)))
 				{

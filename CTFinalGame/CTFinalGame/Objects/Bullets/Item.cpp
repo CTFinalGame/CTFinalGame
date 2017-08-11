@@ -1,4 +1,4 @@
-#include "Item.h"
+﻿#include "Item.h"
 RECT Item::getFrameRectFromType(eAirCraftType type)
 {
 	switch (type)
@@ -41,21 +41,26 @@ float Item::checkCollision(BaseObject* object, float dt)
 	auto objeciId = object->getId();
 	eDirection direction;
 
-	if (collisionBody->checkCollision(object, direction, dt))
+
+	if (objeciId == eID::LAND || objeciId == eID::BRIDGE)		// => ??
 	{
-		if (objeciId == eID::LAND || objeciId == eID::BRIDGE)		// => ??
+		if (this->getVelocity().y > 0)
+			return 0.0;
+		if (collisionBody->checkCollision(object, direction, dt))
 		{
-			if (this->getVelocity().y > 0)
-				return 0.0;
 			if (direction == eDirection::TOP)
 			{
 				auto gravity = (Gravity*)this->_listComponent["Gravity"];
 				gravity->setStatus(eGravityStatus::SHALLOWED);
 				gravity->setGravity(VECTOR2ZERO);
-
 				auto move = (Movement*) this->_listComponent["Movement"];
 				move->setVelocity(VECTOR2ZERO);
+
 			}
+			else	if (direction == eDirection::BOTTOM){
+				return 0.0f;
+			}
+
 		}
 		if (objeciId == eID::BILL)
 		{

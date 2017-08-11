@@ -234,7 +234,45 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			break;
 		}
 	}
+	if (this->isEnemyBullet())
+	{
+		switch (objectID)
+		{
+		case BILL:
+		{
+					 if (this->isContainType(eBulletType::SCUBABULLET))
+					 {
+						 if (this->getVelocity().y > 0)
+						 {
+							 return;
+						 }
+					 }
+					 if (collision_arg->_otherObject->isInStatus(eStatus::DYING) == false)
+					 {
+						 collision_arg->_otherObject->setStatus(eStatus::DYING);
+						 ((Bill*)collision_arg->_otherObject)->die();
+					 }
+					 break;
+		}
+		case LAND:
+		{
+					 if (this->isContainType(eBulletType::SCUBABULLET))
+					 {
+						 auto movement = (Movement*)_componentList["Movement"];
+						 if (movement->getVelocity().y < -300.0f)
+						 {
+							 this->setStatus(eStatus::BURST);
+						 }
+					 }
+					 if (this->isContainType(eBulletType::BOSSSTAGE1_BULLET))
+					 {
+						 this->setStatus(eStatus::BURST);
+					 }
+		}
+			break;
 
+		}
+	}
 }
 
 float Bullet::checkCollision(BaseObject * object, float dt)

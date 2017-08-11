@@ -174,7 +174,7 @@ bool Falcon::isOpenned()
 {
 	int index = _animations->getIndex();
 	if (index >= 9 && index <= 15)
-		return true;
+		return true;		
 	return false;
 }
 
