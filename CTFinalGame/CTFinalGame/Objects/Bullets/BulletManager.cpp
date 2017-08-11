@@ -10,7 +10,7 @@ void BulletManager::init()
 
 float BulletManager::checkCollision(BaseObject * object, float dt)
 {
-	// Tùng: sử chỉ cho kiểm tra va chạm với bill và land
+	// sử chỉ cho kiểm tra va chạm với bill và land
 	eID id = object->getId();
 	if (id != BILL && id != LAND)
 	{

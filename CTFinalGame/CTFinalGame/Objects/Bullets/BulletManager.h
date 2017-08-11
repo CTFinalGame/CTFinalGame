@@ -6,8 +6,7 @@
 #include "Bullet.h"
 
 /*
-*	Author: Tùng Hồ
-*	Date Modified: 2/12/2015
+
 *	Purpose:
 *			Class để quản lý danh sách các đạn,
 *
