@@ -8,6 +8,7 @@
 #include "../../FrameWork/GameTime.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../Object/Explosion.h"
+#include "../../FrameWork/Collision/CollisionBody.h"
 using namespace std;
 
 #define RIFLEMAN_HITPOINT 1

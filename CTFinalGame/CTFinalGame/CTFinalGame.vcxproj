@@ -108,7 +108,9 @@
     <ClCompile Include="Objects\BaseObject.cpp" />
     <ClCompile Include="Objects\Bullets\Bullet.cpp" />
     <ClCompile Include="Objects\Bullets\BulletManager.cpp" />
+    <ClCompile Include="Objects\Bullets\Falcon.cpp" />
     <ClCompile Include="Objects\Bullets\F_Bullet.cpp" />
+    <ClCompile Include="Objects\Bullets\Item.cpp" />
     <ClCompile Include="Objects\Bullets\M_Bullet.cpp" />
     <ClCompile Include="Objects\Bullets\S_Bullet.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
@@ -149,7 +151,9 @@
     <ClInclude Include="Objects\BaseObject.h" />
     <ClInclude Include="Objects\Bullets\Bullet.h" />
     <ClInclude Include="Objects\Bullets\BulletManager.h" />
+    <ClInclude Include="Objects\Bullets\Falcon.h" />
     <ClInclude Include="Objects\Bullets\F_Bullet.h" />
+    <ClInclude Include="Objects\Bullets\Item.h" />
     <ClInclude Include="Objects\Bullets\M_Bullet.h" />
     <ClInclude Include="Objects\Bullets\S_Bullet.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />

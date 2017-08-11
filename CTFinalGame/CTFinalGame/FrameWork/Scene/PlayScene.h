@@ -12,6 +12,7 @@
 #include "../../Objects/Enemies/Rifleman.h"
 #include "../IComponent.h"
 #include "Scene.h"
+#include "../../Objects/Bullets/Falcon.h"
 #include "../../Objects/Object/Bridge.h"
 #include "../../Objects/Enemies/WallTurret.h"
 #include "../../Objects/Enemies/Soldier.h"

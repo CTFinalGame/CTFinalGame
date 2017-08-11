@@ -2,7 +2,7 @@
 #include "../../FrameWork/Scene/PlayScene.h"
 Bill::Bill() :BaseObject(eID::BILL)
 {
-
+	_canJumpDown = true;
 }
 Bill::~Bill()
 {
@@ -209,9 +209,7 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 	{
 	case DIK_X:
 	{
-				  if (this->isInStatus(eStatus::LAYING_DOWN)){
-					  break;
-				  }
+			
 				  if (!this->isInStatus(eStatus::LAYING_DOWN) || this->isInStatus(eStatus::MOVING_LEFT) || this->isInStatus(eStatus::MOVING_RIGHT))
 				  {
 					  if (!this->isInStatus(eStatus::SWIMING))
@@ -219,7 +217,7 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 				  }
 				  else
 				  {
-					  if (!this->isInStatus(eStatus::JUMPING) && !this->isInStatus(eStatus::FALLING))
+					  if (_canJumpDown &&!this->isInStatus(eStatus::JUMPING) && !this->isInStatus(eStatus::FALLING))
 					  {
 						  this->removeStatus(eStatus::SHOOTING);
 						  this->addStatus(eStatus::JUMPING);
@@ -234,7 +232,6 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 					 if (this->isInStatus(eStatus::DIVING))
 						 return;
 
-					 //this->removeStatus(eStatus::LAYING_DOWN);
 					 this->removeStatus(eStatus::MOVING_RIGHT);
 					 this->addStatus(eStatus::MOVING_LEFT);
 
@@ -245,7 +242,6 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 					  if (this->isInStatus(eStatus::DIVING))
 						  return;
 
-					  // this->removeStatus(eStatus::LAYING_DOWN);
 					  this->removeStatus(eStatus::MOVING_LEFT);
 					  this->addStatus(eStatus::MOVING_RIGHT);
 
@@ -261,8 +257,8 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 					 else
 					 {
 						 this->addStatus(eStatus::DIVING);
-						 /// this->removeStatus(eStatus::MOVING_LEFT);
-						 // this->removeStatus(eStatus::MOVING_RIGHT);
+						 this->removeStatus(eStatus::MOVING_LEFT);
+						 this->removeStatus(eStatus::MOVING_RIGHT);
 					 }
 
 					 break;
@@ -772,7 +768,7 @@ void Bill::onCollisionBegin(CollisionEventArg * collision_arg)
 	case eID::BRIDGE:
 	{
 
-						//	break;
+	break;
 	}
 	case eID::RIFLEMAN:
 	case eID::SOLDIER:
@@ -826,7 +822,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 
 				auto land = (Land*)object;
 				eLandType preType = land->getType();
-
+				_canJumpDown = land->canJump();
 				// lấy type của preObject
 				if (_preObject != nullptr && _preObject->getId() == eID::LAND)
 				{
@@ -863,6 +859,9 @@ float Bill::checkCollision(BaseObject * object, float dt)
 
 					_preObject = object;
 				}
+			}
+			else{
+				_canJumpDown = false;
 			}
 		}
 			else if (_preObject == object)

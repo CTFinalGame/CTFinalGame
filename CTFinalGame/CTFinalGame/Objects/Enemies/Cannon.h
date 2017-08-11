@@ -60,6 +60,7 @@ public:
 	void checkIfOutofScreen();
 	IComponent* getComponent(string);
 private:
+	eID cID;
 	int type;
 	map < string, IComponent*> _listComponent;
 	map<int, Animation*> _animation;
