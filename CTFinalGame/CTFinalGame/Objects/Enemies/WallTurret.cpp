@@ -22,6 +22,7 @@ WallTurret::WallTurret(eStatus status, float x, float y) :BaseEnemy(eID::WALL_TU
 	this->setWTStatus(eWT_Status::WT_NORMAL);
 
 }
+
 WallTurret::WallTurret(eWT_Status wtstatus, GVector2 position) :BaseEnemy(eID::WALL_TURRET)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
@@ -382,36 +383,36 @@ float WallTurret::getShootingAngle()
 	return _shootingAngle;
 }
 
-//void WallTurret::onCollisionBegin(CollisionEventArg* collision_event)
-//{
-//	eID objectID = collision_event->_otherObject->getId();
-//	switch (objectID)
-//	{
-//	case eID::BILL:
-//	{
-//		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
-//		{
-//			collision_event->_otherObject->setStatus(eStatus::DYING);
-//			((Bill*)collision_event->_otherObject)->die();
-//		}
-//		break;
-//	}
-//	default:
-//		break;
-//	}
-//}
-//void WallTurret::onCollisionEnd(CollisionEventArg* collision_event)
-//{
-//
-//}
-//float WallTurret::checkCollision(BaseObject* object, float dt)
-//{
-//	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-//	eID objectId = object->getId();
-//	if (objectId == eID::BILL)
-//		collisionBody->checkCollision(object, dt);
-//	return 0.0f;
-//}
+void WallTurret::onCollisionBegin(CollisionEventArg* collision_event)
+{
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::BILL:
+	{
+		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
+		{
+			collision_event->_otherObject->setStatus(eStatus::DYING);
+			((Bill*)collision_event->_otherObject)->die();
+		}
+		break;
+	}
+	default:
+		break;
+	}
+}
+void WallTurret::onCollisionEnd(CollisionEventArg* collision_event)
+{
+
+}
+float WallTurret::checkCollision(BaseObject* object, float dt)
+{
+	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+	eID objectId = object->getId();
+	if (objectId == eID::BILL)
+		collisionBody->checkCollision(object, dt);
+	return 0.0f;
+}
 RECT WallTurret::getBounding()
 {
 	auto baseBound = BaseObject::getBounding();

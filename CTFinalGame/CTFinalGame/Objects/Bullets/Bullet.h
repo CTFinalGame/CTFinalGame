@@ -3,11 +3,10 @@
 
 #include "../../FrameWork/define.h"
 #include "../../FrameWork/Scene/SceneManager.h"
-//#include "../../FrameWork/StopWatch.h"
 #include "../Enemies/BaseEnemy.h"
 #include "../BaseObject.h"
 #include "../../FrameWork/IComponent.h"
-//#include "../CollisionBody.h"
+#include "../../FrameWork/Collision/CollisionBody.h"
 #define NORMAL_BULLET_SPEED 300
 
 #define TOP_SHOOT_ANGLE					0.0f
@@ -58,9 +57,9 @@ public:
 	bool isBillBullet();
 	bool isEnemyBullet();
 	bool isContainType(eBulletType type);
-	//void onCollisionBegin(CollisionEventArg* collision_arg);
+	void onCollisionBegin(CollisionEventArg* collision_arg);
 
-	//virtual float checkCollision(BaseObject* object, float dt);
+	virtual float checkCollision(BaseObject* object, float dt);
 
 protected:
 	GVector2 _startPosition;
@@ -72,7 +71,6 @@ protected:
 	GVector2 initveloc(float bullet_speed);
 
 	map<string, IComponent*> _componentList;
-	//StopWatch* _bursttime;
 
 
 };

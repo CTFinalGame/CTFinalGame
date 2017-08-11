@@ -72,7 +72,7 @@ void Bridge::burst(float deltatime)
 	if (_explode->getStatus() == DESTROY)
 	{
 		_explode->release();
-		if (_stopwatch->isStopWatch(30))
+		if (_stopwatch->isStopWatch(40))
 		{
 			_wave++;
 			GVector2 pos = this->getPosition();

@@ -156,6 +156,12 @@
     <ClCompile Include="FrameWork\Collision\CollisionBody.cpp">
       <Filter>FrameWork\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Bullets\Falcon.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Bullets\Item.cpp">
+      <Filter>Object\Bullets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -274,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="FrameWork\Collision\CollisionBody.h">
       <Filter>FrameWork\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\Falcon.h">
+      <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Bullets\Item.h">
+      <Filter>Object\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

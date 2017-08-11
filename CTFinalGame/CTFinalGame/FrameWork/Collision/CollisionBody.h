@@ -44,7 +44,6 @@ public:
 	BaseObject* _otherObject;
 	eDirection _sideCollision;
 private:
-
 };
 
 [event_source(native)]

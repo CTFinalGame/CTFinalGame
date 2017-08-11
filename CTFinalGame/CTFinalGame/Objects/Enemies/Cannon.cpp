@@ -5,6 +5,7 @@ Cannon::Cannon(eStatus status, GVector2 position, int type) :BaseEnemy(eID::WALL
 	this->type = type;
 	if (type == 1)
 	{
+		this->cID = eID::WALL_TURRET;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		this->setPosition(position);
@@ -14,7 +15,7 @@ Cannon::Cannon(eStatus status, GVector2 position, int type) :BaseEnemy(eID::WALL
 	else
 	{
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
-
+		this->cID = eID::REDCANNON;
 		_sprite->setFrameRect(0, 0, 32, 32);
 		this->setPosition(position);
 		this->setStatus(status);
@@ -27,6 +28,7 @@ Cannon::Cannon(eStatus status, float x, float y, int type) :BaseEnemy(eID::WALL_
 	this->type = type;
 	if (type == 1)
 	{
+		this->cID = eID::WALL_TURRET;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		GVector2 pos(x, y);
@@ -36,6 +38,7 @@ Cannon::Cannon(eStatus status, float x, float y, int type) :BaseEnemy(eID::WALL_
 	}
 	else
 	{
+		this->cID = eID::REDCANNON;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		GVector2 pos(x, y);
@@ -49,6 +52,7 @@ Cannon::Cannon(eWT_Status wtstatus, GVector2 position, int type) :BaseEnemy(eID:
 	this->type = type;
 	if (type == 1)
 	{
+		this->cID = eID::WALL_TURRET;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		this->setPosition(position);
@@ -56,6 +60,7 @@ Cannon::Cannon(eWT_Status wtstatus, GVector2 position, int type) :BaseEnemy(eID:
 	}
 	else
 	{
+		this->cID = eID::REDCANNON;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		this->setPosition(position);
@@ -67,6 +72,7 @@ Cannon::Cannon(eWT_Status wtstatus, float x, float y, int type) :BaseEnemy(eID::
 	this->type = type;
 	if (type == 1)
 	{
+		this->cID = eID::WALL_TURRET;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		GVector2 pos(x, y);
@@ -75,6 +81,7 @@ Cannon::Cannon(eWT_Status wtstatus, float x, float y, int type) :BaseEnemy(eID::
 	}
 	else
 	{
+		this->cID = eID::REDCANNON;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		GVector2 pos(x, y);

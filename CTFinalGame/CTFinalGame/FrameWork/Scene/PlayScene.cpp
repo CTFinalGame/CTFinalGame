@@ -44,11 +44,16 @@ bool PlayScene::init()
 	//auto fifleman1 = new Rifleman(eStatus::HIDDEN, WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2);
 	//fifleman1->init();
 	//_listobject.push_back(fifleman1);	 auto fifleman1 = new Rifleman(eStatus::HIDDEN,320,220);
-	 
+	 auto bire = new Bridge(GVector2(1550,230));
+	 bire->init();
+	 _listobject.push_back(bire);	
 
-	 auto land = new Land(50, 240, 270, 20, eDirection::ALL, eLandType::GRASS);
+	 auto land = new Land(50, 240, 1450, 20, eDirection::ALL, eLandType::GRASS);
 	 land->init();
 	 _listobject.push_back(land);
+	 auto falon = new Falcon(260,260,eAirCraftType::S);
+	 falon->init();
+	 _listobject.push_back(falon);
 	 auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
 	 landbottom->init();
 	 _listobject.push_back(landbottom);

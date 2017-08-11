@@ -1,28 +1,16 @@
-﻿Build started 10/08/2017 23:16:51.
+﻿Build started 11/08/2017 12:39:02.
      1>Project "E:\HK Hè\FinalProject\CTFinalGame\CTFinalGame\CTFinalGame\CTFinalGame\CTFinalGame.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CTFinalGame.cpp ContraGame.cpp FrameWork\Scene\PlayScene.cpp Objects\Enemies\Cannon.cpp Objects\Enemies\Rifleman.cpp Objects\Enemies\Soldier.cpp Objects\Enemies\WallTurret.cpp Objects\Object\Bill.cpp Objects\Object\Bridge.cpp
-         Soldier.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FrameWork\Scene\PlayScene.cpp FrameWork\SpriteManager.cpp
+         SpriteManager.cpp
          c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\soldier.cpp(4): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\soldier.cpp(21): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\soldier.cpp(37): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\soldier.cpp(54): warning C4244: 'argument' : conversion from 'int' to 'FLOAT', possible loss of data
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\soldier.cpp(353): warning C4244: '+=' : conversion from 'double' to 'FLOAT', possible loss of data
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\soldier.cpp(358): warning C4244: '-=' : conversion from 'double' to 'FLOAT', possible loss of data
-         Rifleman.cpp
-         c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\rifleman.cpp(285): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\objects\enemies\rifleman.cpp(314): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         Bridge.cpp
-         Bill.cpp
-         WallTurret.cpp
-         Cannon.cpp
          PlayScene.cpp
-         ContraGame.cpp
-         CTFinalGame.cpp
+         c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\framework\scene\playscene.cpp(112): warning C4244: '=' : conversion from 'FLOAT' to 'LONG', possible loss of data
+     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\framework\scene\playscene.cpp(113): warning C4244: '=' : conversion from 'float' to 'LONG', possible loss of data
+     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\framework\scene\playscene.cpp(76): warning C4101: 'objectID' : unreferenced local variable
+     1>e:\hk hè\finalproject\ctfinalgame\ctfinalgame\ctfinalgame\ctfinalgame\framework\scene\playscene.cpp(193): warning C4101: 'objectID' : unreferenced local variable
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\HK Hè\FinalProject\CTFinalGame\CTFinalGame\CTFinalGame\Debug\CTFinalGame.exe" /INCREMENTAL /NOLOGO d3d9.lib d3dx9.lib dinput8.lib dxguid.lib dsound.lib dxerr.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\HK Hè\FinalProject\CTFinalGame\CTFinalGame\CTFinalGame\Debug\CTFinalGame.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\HK Hè\FinalProject\CTFinalGame\CTFinalGame\CTFinalGame\Debug\CTFinalGame.lib" /MACHINE:X86 Debug\ContraGame.obj
          Debug\CTFinalGame.obj
@@ -51,7 +39,9 @@
          Debug\BaseObject.obj
          Debug\Bullet.obj
          Debug\BulletManager.obj
+         Debug\Falcon.obj
          Debug\F_Bullet.obj
+         Debug\Item.obj
          Debug\M_Bullet.obj
          Debug\S_Bullet.obj
          Debug\BaseEnemy.obj
@@ -68,4 +58,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.21
+Time Elapsed 00:00:04.33

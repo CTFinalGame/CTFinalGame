@@ -61,6 +61,8 @@ public:
 	float getMovingSpeed();
 
 	void shoot();
+	// Đổi kiểu đạn. 
+	void changeBulletType(eAirCraftType);
 
 	RECT getBounding() override;
 
@@ -89,9 +91,7 @@ private:
 	eBulletType _currentGun;
 	float _shootSpeed;
 	int _maxBullet;
-	// Đổi kiểu đạn. 
-	void changeBulletType(eAirCraftType);
-
+	
 	StopWatch* _stopWatch;
 	StopWatch* _shootStopWatch;
 	StopWatch* _shootAnimateStopWatch;
