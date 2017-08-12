@@ -42,12 +42,14 @@ float Item::checkCollision(BaseObject* object, float dt)
 	eDirection direction;
 
 
-	if (objeciId == eID::LAND || objeciId == eID::BRIDGE)		// => ??
-	{
+	
 		if (this->getVelocity().y > 0)
 			return 0.0;
+		
 		if (collisionBody->checkCollision(object, direction, dt))
 		{
+			if (objeciId == eID::LAND || objeciId == eID::BRIDGE)		// => ??
+			{
 			if (direction == eDirection::TOP)
 			{
 				auto gravity = (Gravity*)this->_listComponent["Gravity"];
@@ -62,12 +64,13 @@ float Item::checkCollision(BaseObject* object, float dt)
 			}
 
 		}
-		if (objeciId == eID::BILL)
-		{
-			this->setStatus(eStatus::DESTROY);
-			((Bill*)object)->changeBulletType(this->_type);
-		}
+			if (objeciId == eID::BILL)
+			{
+				this->setStatus(eStatus::DESTROY);
+				((Bill*)object)->changeBulletType(this->_type);
+			}
 	}
+		
 	return 0.0f;
 }
 
