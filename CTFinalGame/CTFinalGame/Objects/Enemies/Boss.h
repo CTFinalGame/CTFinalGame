@@ -11,8 +11,8 @@
 #include "Rifleman.h"
 
 
-#define BOSS_SHIELD_HP		32
-#define BOSS_GUN_HP			16
+#define BOSS_SHIELD_HP		10
+#define BOSS_GUN_HP			1
 
 #define SHIELD_SCORE		10000
 #define GUN_SCORE			1000

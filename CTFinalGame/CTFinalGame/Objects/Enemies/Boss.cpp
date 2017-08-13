@@ -25,11 +25,11 @@ void Boss::init()
 
 	_shield = new BossShield(GVector2(_startposition.x + 14.0f, _startposition.y + 65.0f));
 	_shield->init();
-	/*_bigmoudler = SpriteManager::getInstance()->getSprite(eID::BOSS_STAGE1);
+	_bigmoudler = SpriteManager::getInstance()->getSprite(eID::BOSS_STAGE1);
 	_bigmoudler->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BOSS_STAGE1, "big_moulder"));
 	_bigmoudler->setScale(SCALE_FACTOR);
 	_bigmoudler->setOrigin(_shield->getOrigin());
-	_bigmoudler->setPosition(_shield->getPosition());*/
+	_bigmoudler->setPosition(_shield->getPosition());
 
 	// Thanh niên núp lùm
 	_rifleman = new Rifleman(eStatus::HIDDEN, _startposition.x + 32.0f, _startposition.y + 282.0f);
@@ -134,7 +134,7 @@ void Boss::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 	{
 		if (_shield->getStatus() == eStatus::DESTROY)
 		{
-			//_bigmoudler->render(spriteHandle, viewport);
+			_bigmoudler->render(spriteHandle, viewport);
 			if (_octexplose != nullptr)
 			{
 				_octexplose->draw(spriteHandle, viewport);
@@ -501,7 +501,7 @@ void Boss::BossShield::update(float deltatime)
 	}
 	if (status == eStatus::BURST)
 	{
-		/*if (_explosion == nullptr)
+		if (_explosion == nullptr)
 		{
 			this->_explosion = new Explosion(2);
 			_explosion->init();
@@ -515,7 +515,7 @@ void Boss::BossShield::update(float deltatime)
 			{
 				this->setStatus(eStatus::DESTROY);
 			}
-		}*/
+		}
 	}
 }
 void Boss::BossShield::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)

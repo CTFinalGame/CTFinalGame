@@ -196,8 +196,6 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			if (this->_type != eBulletType::L_BULLET)
 				this->setStatus(eStatus::DESTROY);
 			break;
-		case BOSS_SHIELD:
-		case BOSS_GUN:
 		case FALCON:
 			if (collision_arg->_otherObject->getStatus() == eStatus::EXPLORED)
 				return;
@@ -215,8 +213,27 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			if (this->_type != eBulletType::L_BULLET)
 				this->setStatus(eStatus::DESTROY);
 			break;
+		case BOSS_SHIELD:
+		case BOSS_GUN:
+		case REDCANNON:
+			//if (((RedCannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((RedCannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
+			if (true){
+				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
+				this->setStatus(eStatus::DESTROY);
+				if (this->isContainType(eBulletType::L_BULLET) == true && ((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
+					this->setStatus(eStatus::NORMAL);
+				if (this->isContainType(eBulletType::NORMAL_BULLET))
+				{
+					this->setStatus(eStatus::BURST);
+					this->_sprite->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BULLET, "explose"));
+					this->_sprite->setOpacity(0.5f);
+					auto movement = this->_componentList.find("Movement")->second;
+					((Movement*)movement)->setVelocity(VECTOR2ZERO);
+				}
+			}
+			break;
 		case WALL_TURRET:
-			//if (((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
+			if (((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
 			if (true)
 			{
 				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
