@@ -19,14 +19,13 @@ bool PlayScene::init()
 {
 
 	
-	auto _soldier = new Soldier(eStatus::RUNNING, GVector2(300, 240), -1);
+	/*auto _soldier = new Soldier(eStatus::RUNNING, GVector2(300, 240), -1);
 	_soldier->init();	
 	_listobject.push_back(_soldier);
 	auto _soldier1 = new Soldier(eStatus::RUNNING, GVector2(800, 240), -1);
 	_soldier1->init();
 	_listobject.push_back(_soldier1);
-	_bulletmanager = new BulletManager();
-	_bulletmanager->init();
+	*/
 	//auto wallTurret = new Cannon(eStatus::NORMAL, 300, 300, 1);
 	//wallTurret->init();
 	////_listobject.push_back(wallTurret);
@@ -36,8 +35,14 @@ bool PlayScene::init()
 	////_listobject.push_back(cannon);
 
      background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
-	
-	 auto fifleman = new Rifleman(eStatus::NORMAL, 580, 60);
+	 _bulletmanager = new BulletManager();
+	 _bulletmanager->init();
+
+	 auto boss = new Boss(GVector2(400, 140), 100);
+	 boss->init();
+	 _listobject.push_back(boss);
+
+	/* auto fifleman = new Rifleman(eStatus::NORMAL, 580, 60);
 	fifleman->init();
 	_listobject.push_back(fifleman);
 	
@@ -47,7 +52,7 @@ bool PlayScene::init()
 	
 	 auto bire = new Bridge(GVector2(1550,230));
 	 bire->init();
-	 _listobject.push_back(bire);	
+	 _listobject.push_back(bire);	*/
 
 	 auto land = new Land(50, 240, 1450, 20, eDirection::ALL, eLandType::GRASS);
 	 land->init();
@@ -94,9 +99,8 @@ void PlayScene::update(float dt)
 	eID objectID;
 	if (_bill->isInStatus(eStatus::DYING) == false)
 	{
-		//this->updateViewport(_bill);
+		this->updateViewport(_bill);
 	}
-	this->updateViewport(_bill);
 	//// IMPORTANT
 
 	/*
