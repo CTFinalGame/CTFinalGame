@@ -15,7 +15,7 @@
 #include <vector>
 
 //#include "..\debug.h"
-//#include "utils.h"
+#include "utils.h"
 using namespace std;
 
 #define WINDOW_WIDTH 512

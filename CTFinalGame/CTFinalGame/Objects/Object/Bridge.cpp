@@ -185,7 +185,7 @@ void Bridge::trackBill(BaseObject* bill)
 	RECT billBound = bill->getBounding();
 	RECT bridgeBound = this->getBounding();
 
-	if (billBound.right >= bridgeBound.left)
+	if (billBound.right >= bridgeBound.left+25)
 		this->setStatus(eStatus::BURST);
 }
 

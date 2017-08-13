@@ -16,7 +16,7 @@
 #include "../Bullets/F_Bullet.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/Collision/CollisionBody.h"
-
+#include "LifeUI.h"
 
 #define BILL_MOVE_SPEED 125
 #define BILL_JUMP_VEL 450
@@ -32,7 +32,8 @@ class Bill : public BaseObject, public IControlable
 {
 
 public:
-	Bill();
+	//Bill();
+	Bill(int life = 3);
 	~Bill();
 	void init();
 	void updateInput(float dt);
@@ -50,6 +51,8 @@ public:
 	float checkCollision(BaseObject* object, float dt);
 	void checkPosition();
 	void setStatus(eStatus status) override;
+	void setLifeNumber(int number);
+	int getLifeNumber();
 	// Character action.
 	void standing();
 	void moveLeft();
@@ -93,7 +96,7 @@ private:
 	eBulletType _currentGun;
 	float _shootSpeed;
 	int _maxBullet;
-	
+	int _lifeNum;
 	StopWatch* _stopWatch;
 	StopWatch* _shootStopWatch;
 	StopWatch* _shootAnimateStopWatch;
@@ -111,6 +114,7 @@ private:
 
 	BaseObject* _preObject;
 	bool _isHolding;
+	LifeUI* _lifeUI;
 };
 
 #endif // !__BILL_H__

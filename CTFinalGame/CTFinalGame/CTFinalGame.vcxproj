@@ -103,6 +103,7 @@
     <ClCompile Include="FrameWork\Texture.cpp" />
     <ClCompile Include="FrameWork\TimeSpan.cpp" />
     <ClCompile Include="FrameWork\Transformable.cpp" />
+    <ClCompile Include="FrameWork\utils.cpp" />
     <ClCompile Include="FrameWork\Viewport.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Objects\BaseObject.cpp" />
@@ -122,8 +123,10 @@
     <ClCompile Include="Objects\Enemies\WallTurret.cpp" />
     <ClCompile Include="Objects\Object\Bill.cpp" />
     <ClCompile Include="Objects\Object\Bridge.cpp" />
+    <ClCompile Include="Objects\Object\EmptyObject.cpp" />
     <ClCompile Include="Objects\Object\Explosion.cpp" />
     <ClCompile Include="Objects\Object\Land.cpp" />
+    <ClCompile Include="Objects\Object\LifeUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContraGame.h" />
@@ -147,6 +150,7 @@
     <ClInclude Include="FrameWork\Texture.h" />
     <ClInclude Include="FrameWork\TimeSpan.h" />
     <ClInclude Include="FrameWork\Transformable.h" />
+    <ClInclude Include="FrameWork\utils.h" />
     <ClInclude Include="FrameWork\Viewport.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="IComponent.h" />
@@ -167,8 +171,10 @@
     <ClInclude Include="Objects\Enemies\WallTurret.h" />
     <ClInclude Include="Objects\Object\Bill.h" />
     <ClInclude Include="Objects\Object\Bridge.h" />
+    <ClInclude Include="Objects\Object\EmptyObject.h" />
     <ClInclude Include="Objects\Object\Explosion.h" />
     <ClInclude Include="Objects\Object\Land.h" />
+    <ClInclude Include="Objects\Object\LifeUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

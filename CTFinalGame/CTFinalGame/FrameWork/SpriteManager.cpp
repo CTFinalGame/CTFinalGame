@@ -125,9 +125,9 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	//this->loadSpriteInfo(eID::SHADOW_ARM, "Resources//Images//shadowarm_animation.txt");
 
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//Life.png");
-	//this->_listSprite[eID::LIFE_ICON] = sp;
-	//this->loadSpriteInfo(eID::LIFE_ICON, "Resources//Images//life_info.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//Life.png");
+	this->_listSprite[eID::LIFE_ICON] = sp;
+	this->loadSpriteInfo(eID::LIFE_ICON, "Resource//Images//life_info.txt");
 	//
 	//sp = new Sprite(spriteHandle, L"Resources//Images//boss_stage3.png");
 	//this->_listSprite[eID::SHADOW_MOUTH] = sp;

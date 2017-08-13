@@ -94,8 +94,7 @@ void AirCraft::updateHiding()
 void AirCraft::updateExploring(float deltatime)
 {
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
-	//if (isRectangleIntersected(bill->getBounding(), this->getBounding())) //THANG
-	if (true)
+	if (isRectangleIntersected(bill->getBounding(), this->getBounding())) //THANG
 	{
 		this->setStatus(eStatus::DESTROY);
 		bill->changeBulletType(this->_type);

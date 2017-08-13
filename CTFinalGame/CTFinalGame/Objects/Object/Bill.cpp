@@ -1,8 +1,9 @@
 ﻿#include "Bill.h"
 #include "../../FrameWork/Scene/PlayScene.h"
-Bill::Bill() :BaseObject(eID::BILL)
+Bill::Bill(int life) : BaseObject(eID::BILL)
 {
 	_canJumpDown = true;
+	_lifeNum = life;
 }
 Bill::~Bill()
 {
@@ -98,7 +99,10 @@ void Bill::init()
 	_isHolding = false;
 
 	this->resetValues();
-
+	// UI
+	// tạo ở đây cho dễ cập nhật khi chết, khỏi trỏ lung tung
+	_lifeUI = new LifeUI(GVector2(20, 30), this->getLifeNumber());
+	_lifeUI->init();
 }
 
 void Bill::update(float deltatime)
@@ -181,6 +185,8 @@ void Bill::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 	{
 		(*it)->draw(spriteHandle, viewport);
 	}
+	// DRAW Life
+	_lifeUI->draw(spriteHandle, viewport);
 }
 
 void Bill::release()
@@ -198,6 +204,7 @@ void Bill::release()
 	_componentList.clear();
 
 	SAFE_DELETE(_sprite);
+	SAFE_DELETE(_lifeUI);
 }
 
 void Bill::onKeyPressed(KeyEventArg* key_event)
@@ -326,6 +333,12 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 	case DIK_F:
 	{
 		changeBulletType(eAirCraftType::F);
+		break;
+	}
+	case DIK_L:
+	{
+		_lifeNum++;
+		_lifeUI->setLifeNumber(_lifeNum);
 		break;
 	}
 	default:
@@ -482,6 +495,12 @@ void Bill::revive()
 
 	/*auto gravity = (Gravity*)this->_componentList["Gravity"];
 	gravity->setStatus(eGravityStatus::FALLING__DOWN);*/
+
+	// trừ mạng
+	this->setLifeNumber(_lifeNum - 1);
+
+	// cập nhật UI
+	_lifeUI->setLifeNumber(_lifeNum);
 }
 
 // Từ thuộc tính currentGun mà chọn loại đoạn trả về thích hợp
@@ -611,22 +630,22 @@ void Bill::updateStatus(float dt)
 {
 	if (this->isInStatus(eStatus::DYING))
 	{
-		//if (_lifeNum < 0)
-		//{
-		//	//this->setStatus(eStatus::BURST);
-		//	// thua cnmr
-		//	return;
-		//}
+		if (_lifeNum < 0)
+		{
+			//this->setStatus(eStatus::BURST);
+			// thua cnmr
+			return;
+		}
 
 		// còn mạng thì hồi sinh
-		/*if (_reviveStopWatch == nullptr)
-		_reviveStopWatch = new StopWatch();*/
+		if (_reviveStopWatch == nullptr)
+			_reviveStopWatch = new StopWatch();
 
-		/*	if (!_animations[eStatus::DYING]->isAnimate() && _reviveStopWatch->isStopWatch(REVIVE_TIME))
+		if (!_animations[eStatus::DYING]->isAnimate() && _reviveStopWatch->isStopWatch(REVIVE_TIME))
 		{
-		this->revive();
-		SAFE_DELETE(_reviveStopWatch);
-		}*/
+			this->revive();
+			SAFE_DELETE(_reviveStopWatch);
+		}
 
 		return;
 	}
@@ -849,6 +868,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 					}
 
 				}
+
 				else if (this->isInStatus(eStatus::SWIMING))
 				{
 					if (direction == eDirection::TOP)
@@ -1081,7 +1101,15 @@ int Bill::getMaxBullet()
 {
 	return _maxBullet;
 }
-
+int Bill::getLifeNumber()
+{
+	return _lifeNum;
+}
+void Bill::setLifeNumber(int number)
+{
+	if (number != _lifeNum)
+		_lifeNum = number;
+}
 void Bill::setShootSpeed(float speed)
 {
 	if (speed != _shootSpeed)

@@ -168,6 +168,15 @@
     <ClCompile Include="Objects\Enemies\Boss.cpp">
       <Filter>Object\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\utils.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\LifeUI.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\EmptyObject.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -298,6 +307,15 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Boss.h">
       <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\utils.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\LifeUI.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\EmptyObject.h">
+      <Filter>Object\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
