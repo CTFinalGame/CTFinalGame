@@ -94,6 +94,9 @@
     <ClCompile Include="FrameWork\Map\Map.cpp" />
     <ClCompile Include="FrameWork\Map\Tile.cpp" />
     <ClCompile Include="FrameWork\Map\TileSet.cpp" />
+    <ClCompile Include="FrameWork\Scene\BeginPlayScene.cpp" />
+    <ClCompile Include="FrameWork\Scene\GameOverScene.cpp" />
+    <ClCompile Include="FrameWork\Scene\IntroScene.cpp" />
     <ClCompile Include="FrameWork\Scene\PlayScene.cpp" />
     <ClCompile Include="FrameWork\Scene\Scene.cpp" />
     <ClCompile Include="FrameWork\Scene\SceneManager.cpp" />
@@ -141,6 +144,9 @@
     <ClInclude Include="FrameWork\Map\Map.h" />
     <ClInclude Include="FrameWork\Map\Tile.h" />
     <ClInclude Include="FrameWork\Map\TileSet.h" />
+    <ClInclude Include="FrameWork\Scene\BeginPlayScene.h" />
+    <ClInclude Include="FrameWork\Scene\GameOverScene.h" />
+    <ClInclude Include="FrameWork\Scene\IntroScene.h" />
     <ClInclude Include="FrameWork\Scene\PlayScene.h" />
     <ClInclude Include="FrameWork\Scene\Scene.h" />
     <ClInclude Include="FrameWork\Scene\SceneManager.h" />

@@ -177,6 +177,15 @@
     <ClCompile Include="Objects\Object\EmptyObject.cpp">
       <Filter>Object\Object</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\Scene\BeginPlayScene.cpp">
+      <Filter>FrameWork\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Scene\IntroScene.cpp">
+      <Filter>FrameWork\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\Scene\GameOverScene.cpp">
+      <Filter>FrameWork\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -316,6 +325,15 @@
     </ClInclude>
     <ClInclude Include="Objects\Object\EmptyObject.h">
       <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene\BeginPlayScene.h">
+      <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene\IntroScene.h">
+      <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scene\GameOverScene.h">
+      <Filter>FrameWork\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

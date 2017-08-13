@@ -6,6 +6,7 @@
 #include "../../FrameWork/Sprite.h"
 #include "../../FrameWork/SpriteManager.h"
 #include "../../FrameWork/Scene/SceneManager.h"
+#include "../../FrameWork/Scene/GameOverScene.h"
 #include "../../FrameWork/Animation.h"
 #include"../../Objects/Object/Bill.h"
 #include "../../Objects/BaseObject.h"
@@ -91,7 +92,7 @@ private:
 	//// Xử lý thằng bill tự đi sau khi giết boss
 	//void ScenarioKillBoss(float deltatime);
 
-	//bool checkGameLife();
+	bool checkGameLife();
 
 };
 

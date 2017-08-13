@@ -77,7 +77,7 @@ bool PlayScene::init()
 
 	 airCraft->init();
 	 _listobject.push_back(airCraft);
-	 auto bill = new Bill();
+	 auto bill = new Bill(1);
 	 bill->init();
 	 bill->setPosition(200, 500);
 	 this->_bill = bill;
@@ -97,6 +97,8 @@ void PlayScene::update(float dt)
 {
 	// id của đối tượng, được get trong vòng lặp duyệt đối tượng.
 	eID objectID;
+	if (this->checkGameLife() == true)
+		return;
 	if (_bill->isInStatus(eStatus::DYING) == false)
 	{
 		this->updateViewport(_bill);
@@ -207,6 +209,18 @@ void PlayScene::release()
 	}
 	background->release();
 
+}
+bool PlayScene::checkGameLife()
+{
+	if (((Bill*)_bill)->getLifeNumber() < 0)
+	{
+		auto gameoverScene = new GameOverScene(20, 1);
+		/*SoundManager::getInstance()->Stop(eSoundId::BACKGROUND_STAGE1);
+		*/
+		SceneManager::getInstance()->replaceScene(gameoverScene);
+		return true;
+	}
+	return false;
 }
 BaseObject* PlayScene::getObject(eID id)
 {

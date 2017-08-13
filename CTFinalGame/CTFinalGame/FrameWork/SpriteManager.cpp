@@ -128,6 +128,15 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Images//Life.png");
 	this->_listSprite[eID::LIFE_ICON] = sp;
 	this->loadSpriteInfo(eID::LIFE_ICON, "Resource//Images//life_info.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//intro.png");
+	this->_listSprite[eID::MENU] = sp;
+
+	sp = new Sprite(spriteHandle, L"Resource//Images//yellowfalcon.png");
+	this->_listSprite[eID::YELLOWFALCON] = sp;
+	sp = new Sprite(spriteHandle, L"Resource/Images//BeginState3.png");
+	this->_listSprite[eID::BEGIN_STAGE3] = sp;
+	sp = new Sprite(spriteHandle, L"Resource//Images//GameOver.png");
+	this->_listSprite[eID::GAME_OVER_SCENE] = sp;
 	//
 	//sp = new Sprite(spriteHandle, L"Resources//Images//boss_stage3.png");
 	//this->_listSprite[eID::SHADOW_MOUTH] = sp;
@@ -148,20 +157,15 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	//sp = new Sprite(spriteHandle, L"Resources//Fonts//fontFull.png", 54, 6);
 	//this->_listSprite[eID::FONTFULL] = sp;
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//BeginState3.png");
-	//this->_listSprite[eID::BEGIN_STAGE3] = sp;
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//GameOver.png");
-	//this->_listSprite[eID::GAME_OVER_SCENE] = sp;
+
+
 
 	//sp = new Sprite(spriteHandle, L"Resources//Images//blank.png");
 	//this->_listSprite[eID::BLANK] = sp;
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//intro.png");
-	//this->_listSprite[eID::MENU] = sp;
+	
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//yellowfalcon.png");
-	//this->_listSprite[eID::YELLOWFALCON] = sp;
 
 	//sp = new Sprite(spriteHandle, L"Resources//Images//tuts_layer.png");
 	//this->_listSprite[eID::TUT_LAYER] = sp;
