@@ -196,6 +196,8 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			if (this->_type != eBulletType::L_BULLET)
 				this->setStatus(eStatus::DESTROY);
 			break;
+		case BOSS_SHIELD:
+		case BOSS_GUN:
 		case FALCON:
 			if (collision_arg->_otherObject->getStatus() == eStatus::EXPLORED)
 				return;

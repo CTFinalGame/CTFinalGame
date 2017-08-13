@@ -75,11 +75,6 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	Sprite* bill = new Sprite(spriteHandle, L"Resource//bill_animation.png");
 	this->_listSprite[eID::BILL] = bill;
 	this->loadSpriteInfo(eID::BILL, "Resource//bill_animation.txt");
-
-	//sp = new Sprite(spriteHandle, L"Resource//standing.png",1,1);
-	//this->_listSprite.insert(pair<eID, Sprite*>(eID::BILL, sp));
-	//RECT rexct
-	//this->_sourceRectList[id][string(name)] = rect;
 	sp = new Sprite(spriteHandle, L"Resource//Images//Falcon.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::FALCON, sp));
 	this->loadSpriteInfo(eID::FALCON, "Resource//Images//falcon_animation.txt");
@@ -108,18 +103,9 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eID::EXPLOSION] = sp;
 	this->loadSpriteInfo(eID::EXPLOSION, "Resource//Images//explosion_animation.txt");
 
-
-	/*Sprite* bill = new Sprite(spriteHandle, L"Resource//Images//bill_animation.png");
-	this->_listSprite[eID::BILL] = bill;
-	this->loadSpriteInfo(eID::BILL, "Resource//Images//bill_animation.txt");*/
-
-	//sp = new Sprite(spriteHandle, L"Resources//Images//rifleman.png");
-	//this->_listSprite[eID::RIFLEMAN] = sp;
-	//this->loadSpriteInfo(eID::RIFLEMAN, "Resources//Images//rifleman_animation.txt");
-
-	//sp = new Sprite(spriteHandle, L"Resources//Images//boss_stage1.png");
-	//this->_listSprite[eID::BOSS_STAGE1] = sp;
-	//this->loadSpriteInfo(eID::BOSS_STAGE1, "Resources//Images//boss_stage1_animation.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//boss_stage1.png");
+	this->_listSprite[eID::BOSS_STAGE1] = sp;
+	this->loadSpriteInfo(eID::BOSS_STAGE1, "Resource//Images//boss_stage1_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//bridge.png", 6, 3);
 	this->_listSprite[eID::BRIDGE] = sp;

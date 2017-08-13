@@ -856,7 +856,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 						
 						this->removeStatus(eStatus::SWIMING);
 						this->removeStatus(eStatus::DIVING);
-						//this->setPositionY(object->getBounding().top);
+						this->setPositionY(object->getBounding().top);
 					}
 				}
 				// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
@@ -916,10 +916,10 @@ float Bill::checkCollision(BaseObject * object, float dt)
 				}
 				else if (objectId == eID::BOSS_STAGE1)
 				{
-					/*safeCheckCollision((*it), ((Boss*)object)->getGun1(), dt);
+					safeCheckCollision((*it), ((Boss*)object)->getGun1(), dt);
 					safeCheckCollision((*it), ((Boss*)object)->getGun2(), dt);
 					safeCheckCollision((*it), ((Boss*)object)->getShield(), dt);
-					safeCheckCollision((*it), ((Boss*)object)->getRifleMan(), dt);*/
+					safeCheckCollision((*it), ((Boss*)object)->getRifleMan(), dt);
 				}
 				else if (objectId == eID::CREATOR)
 				{

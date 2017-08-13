@@ -14,6 +14,7 @@
 #include "Scene.h"
 #include "../../Objects/Bullets/Falcon.h"
 #include "../../Objects/Object/Bridge.h"
+#include "../../Objects/Enemies/Boss.h"
 #include "../../Objects/Enemies/WallTurret.h"
 #include "../../Objects/Enemies/Soldier.h"
 #include "../../Objects/Enemies/Cannon.h"

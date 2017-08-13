@@ -115,6 +115,7 @@
     <ClCompile Include="Objects\Bullets\M_Bullet.cpp" />
     <ClCompile Include="Objects\Bullets\S_Bullet.cpp" />
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
+    <ClCompile Include="Objects\Enemies\Boss.cpp" />
     <ClCompile Include="Objects\Enemies\Cannon.cpp" />
     <ClCompile Include="Objects\Enemies\Rifleman.cpp" />
     <ClCompile Include="Objects\Enemies\Soldier.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Objects\Bullets\M_Bullet.h" />
     <ClInclude Include="Objects\Bullets\S_Bullet.h" />
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
+    <ClInclude Include="Objects\Enemies\Boss.h" />
     <ClInclude Include="Objects\Enemies\Cannon.h" />
     <ClInclude Include="Objects\Enemies\Rifleman.h" />
     <ClInclude Include="Objects\Enemies\Soldier.h" />

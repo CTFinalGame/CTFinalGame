@@ -60,7 +60,6 @@ void Animation::nextFrame()
 }
 int Animation::getIndex()
 {
-	// 7ung -> use in Explostion::update
 	return _index;
 }
 void Animation::setIndex(int index)

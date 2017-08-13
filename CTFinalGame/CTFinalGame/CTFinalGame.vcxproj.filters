@@ -165,6 +165,9 @@
     <ClCompile Include="Objects\Bullets\AirCraft.cpp">
       <Filter>Object\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\Boss.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Bullets\AirCraft.h">
       <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Boss.h">
+      <Filter>Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
