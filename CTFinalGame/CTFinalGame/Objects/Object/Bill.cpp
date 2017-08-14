@@ -108,7 +108,10 @@ void Bill::init()
 void Bill::update(float deltatime)
 {
 	// đang protect thì đếm xuống
-
+	if (_protectTime > 0)
+	{
+		_protectTime -= deltatime;
+	}
 	this->checkPosition();
 
 	this->updateStatus(deltatime);
@@ -117,21 +120,15 @@ void Bill::update(float deltatime)
 
 	_animations[_currentAnimateIndex]->update(deltatime);
 	// update component để sau cùng để sửa bên trên sau đó nó cập nhật đúng
+	// Huỷ các bullet đã hết hiệu lực.
+	this->deleteBullet();
 	for (auto it = _componentList.begin(); it != _componentList.end(); it++)
 	{
 		it->second->update(deltatime);
 	}
-
-	// Huỷ các bullet đã hết hiệu lực.
-	this->deleteBullet();
-
 	for (auto bullet : _listBullets)
 	{
 		bullet->update(deltatime);
-	}
-	if (_protectTime > 0)
-	{
-		_protectTime -= deltatime;
 	}
 }
 
@@ -205,13 +202,20 @@ void Bill::release()
 
 	SAFE_DELETE(_sprite);
 	SAFE_DELETE(_lifeUI);
+	this->unhookinputevent();
+
 }
 
+void Bill::unhookinputevent()
+{
+	if (_input != nullptr)
+		__unhook(_input);
+
+}
 void Bill::onKeyPressed(KeyEventArg* key_event)
 {
 	if (this->isInStatus(eStatus::DYING))
-		return;
-
+		return; 
 	switch (key_event->_key)
 	{
 	case DIK_X:
@@ -251,7 +255,6 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 
 					  this->removeStatus(eStatus::MOVING_LEFT);
 					  this->addStatus(eStatus::MOVING_RIGHT);
-
 					  break;
 	}
 	case DIK_DOWN:
@@ -449,11 +452,11 @@ void Bill::jump()
 
 	this->addStatus(eStatus::JUMPING);
 
-	if (!this->isInStatus(eStatus::LAYING_DOWN))
-	{
+	//if (!this->isInStatus(eStatus::LAYING_DOWN))
+	
 		auto move = (Movement*)this->_componentList["Movement"];
 		move->setVelocity(GVector2(move->getVelocity().x, BILL_JUMP_VEL));
-	}
+	
 
 		auto g = (Gravity*)this->_componentList["Gravity"];
 		g->setGravity(GVector2(0, -GRAVITY));
@@ -493,9 +496,6 @@ void Bill::revive()
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(GVector2(100, 0));
 
-	/*auto gravity = (Gravity*)this->_componentList["Gravity"];
-	gravity->setStatus(eGravityStatus::FALLING__DOWN);*/
-
 	// trừ mạng
 	this->setLifeNumber(_lifeNum - 1);
 
@@ -511,8 +511,9 @@ void Bill::die()
 	if (this->isInStatus(eStatus::DIVING))
 		return;
 
-	if (!this->isInStatus(eStatus::DYING))
+	if (!this->isInStatus(eStatus::DYING)){
 		this->setStatus(eStatus::DYING);
+	}
 
 	auto move = (Movement*)this->_componentList["Movement"];
 	move->setVelocity(GVector2(-BILL_MOVE_SPEED * (this->getScale().x / SCALE_FACTOR), BILL_JUMP_VEL));
@@ -632,7 +633,6 @@ void Bill::updateStatus(float dt)
 	{
 		if (_lifeNum < 0)
 		{
-			//this->setStatus(eStatus::BURST);
 			// thua cnmr
 			return;
 		}

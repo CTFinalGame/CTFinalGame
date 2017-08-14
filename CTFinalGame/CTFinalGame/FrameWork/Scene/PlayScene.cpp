@@ -144,11 +144,6 @@ void PlayScene::update(float dt)
 	screen.bottom = 0;
 	screen.top = screen.bottom + background->getWorldSize().y;
 	// getlistobject
-#if _DEBUG
-	// clock_t để test thời gian chạy đoạn code update (milisecond)
-	clock_t t;
-	t = clock();
-#endif
 
 	// [Bước 1]
 	this->destroyobject();
@@ -223,8 +218,6 @@ bool PlayScene::checkGameLife()
 	if (((Bill*)_bill)->getLifeNumber() < 0)
 	{
 		auto gameoverScene = new GameOverScene(20, 1);
-		/*SoundManager::getInstance()->Stop(eSoundId::BACKGROUND_STAGE1);
-		*/
 		SceneManager::getInstance()->replaceScene(gameoverScene);
 		return true;
 	}
@@ -241,9 +234,9 @@ BaseObject* PlayScene::getObject(eID id)
 	}
 	for (BaseObject* object : _active_object)
 	{
-		//objectID = object->getId();
-		/*if (objectID == id)
-			return object;*/
+		objectID = object->getId();
+		if (objectID == id)
+			return object;
 	}
 	return nullptr;
 }
