@@ -69,7 +69,21 @@ enum eID
 	TUT_LAYER		= 37,
 
 	MAP1			=38,
-	LANDWATER = 40
+	LANDWATER = 40,
+	//Item B,F,L,M,R,S của AirCraft
+	AIRCRAFT_B = 41,
+	AIRCRAFT_F = 42,
+	AIRCRAFT_L = 43,
+	AIRCRAFT_M = 44,
+	AIRCRAFT_R = 45,
+	AIRCRAFT_S = 46,
+	//Item B,F,L,M,R,S của AirCraft
+	FALCON_B = 48,
+	FALCON_F = 49,
+	FALCON_L = 50,
+	FALCON_M = 51,
+	FALCON_R = 52,
+	FALCON_S = 53
 };
  
 enum eStatus

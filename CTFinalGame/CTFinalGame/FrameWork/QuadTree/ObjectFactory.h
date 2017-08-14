@@ -18,16 +18,16 @@ public:
 	~ObjectFactory();
 	static map<string, BaseObject*>* getMapObjectFromFile(const string path);
 private:
-	static BaseObject* getObjectById(eID id, int x, int y, int width, int height, int type, int dir);
-	static BaseObject* getLand(eID id, int x, int y, int width, int height, int type, int dir);
+	static BaseObject* getObjectById(eID id, int x, int y, int width, int height, int dir);
+	static BaseObject* getLand(eID id, int x, int y, int width, int height, int dir);
 	static BaseObject* getRifleMan(eID id, int x, int y);
-	static BaseObject* getSoldier(int x, int y, int status, int dir, int canShoot);
+	static BaseObject* getSoldier(int x, int y, int dir, int canShoot);
 	static BaseObject* getRedCannon(int x, int y);
 	static BaseObject* getWallTurret(int x, int y);
-	//static BaseObject* getAirCraft(xml_node node);
+	static BaseObject* getAirCraft(eID id, int x, int y);
 	//static BaseObject* getCreator(xml_node node);
 	static BaseObject* getBridge(int x, int y);
-	//static BaseObject* getFalcon(xml_node node);
+	static BaseObject* getFalcon(eID id, int x, int y);
 	//static BaseObject* getGreatWall(xml_node node);
 	//static BaseObject* getRockFly(xml_node node);
 	//static BaseObject* getRockFall(xml_node node);
