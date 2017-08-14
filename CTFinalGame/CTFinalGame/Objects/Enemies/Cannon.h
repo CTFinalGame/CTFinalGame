@@ -30,10 +30,10 @@ using namespace std;
 class Cannon :public BaseEnemy
 {
 public:
-	Cannon(eStatus status, GVector2 pos, int type);
-	Cannon(eStatus status, float x, float y, int type);
-	Cannon(eWT_Status wtstatus, GVector2 pos, int type);
-	Cannon(eWT_Status wtstatus, float x, float y, int type);
+	Cannon(eStatus status, GVector2 pos);
+	Cannon(eStatus status, float x, float y);
+	Cannon(eWT_Status wtstatus, GVector2 pos);
+	Cannon(eWT_Status wtstatus, float x, float y);
 
 	~Cannon();
 
@@ -60,7 +60,6 @@ public:
 	void checkIfOutofScreen();
 	IComponent* getComponent(string);
 private:
-	eID cID;
 	int type;
 	map < string, IComponent*> _listComponent;
 	map<int, Animation*> _animation;

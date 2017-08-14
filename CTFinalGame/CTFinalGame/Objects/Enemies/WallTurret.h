@@ -5,19 +5,22 @@
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/Scene/PlayScene.h"
-#include "../Bullets/Bullet.h"
-#include "../../FrameWork/Collision/CollisionBody.h"
+//#include "../Bullets/Bullet.h"
+//#include "../CollisionBody.h"
 #include "../../FrameWork/IComponent.h"
-#include "../../Objects/Object/Explosion.h"
-#include "BaseEnemy.h"
+#include "../Object/Explosion.h"
+#include "../Enemies/BaseEnemy.h"
+#include "../Bullets/BulletManager.h"
 
 #define WALL_TURRET_HITPOINT 8
 #define WALL_TURRET_SCORE 1000
 #define WALL_TURRET_SHOOTING_DELAY 3000.0f
 #define WALL_TURRET_ANIMATION_SPEED 0.3f
 #define WALL_TURRET_APPEAR_SPEED 0.1f
-using namespace std;
 
+#define PI 3.14159265
+
+using namespace std;
 class WallTurret :public BaseEnemy
 {
 public:
@@ -33,8 +36,8 @@ public:
 	void draw(LPD3DXSPRITE, Viewport*);
 	void release();
 
-	void onCollisionBegin(CollisionEventArg*);
-	void onCollisionEnd(CollisionEventArg*);
+	//void onCollisionBegin(CollisionEventArg*);
+	//void onCollisionEnd(CollisionEventArg*);
 
 	void setBillAngle(float);
 	float getBillAngle();
@@ -47,7 +50,7 @@ public:
 	void shoot();
 	RECT getBounding();
 
-	float checkCollision(BaseObject*, float);
+	/*float checkCollision(BaseObject*, float);*/
 	void checkIfOutofScreen();
 	IComponent* getComponent(string);
 private:
@@ -57,7 +60,7 @@ private:
 	float _billAngle;
 	eWT_Status _wtstatus;
 	BaseObject* _explosion;
-
+	StopWatch* _loopwatch1;
 	list<Bullet*> _listBullet;
 	StopWatch* _stopwatch;
 

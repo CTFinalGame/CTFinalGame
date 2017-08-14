@@ -37,6 +37,9 @@
     <Filter Include="FrameWork\Collision">
       <UniqueIdentifier>{d0d58692-85e7-4293-9951-e5efc1f3d983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\QuadTree">
+      <UniqueIdentifier>{38de722f-15d4-466a-95fa-56e24d7f4994}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CTFinalGame.cpp">
@@ -189,6 +192,12 @@
     <ClCompile Include="FrameWork\TextSprite.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\QuadTree\ObjectFactory.cpp">
+      <Filter>FrameWork\QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\QuadTree\QNode.cpp">
+      <Filter>FrameWork\QuadTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -340,6 +349,12 @@
     </ClInclude>
     <ClInclude Include="FrameWork\TextSprite.h">
       <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\QuadTree\ObjectFactory.h">
+      <Filter>FrameWork\QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\QuadTree\QNode.h">
+      <Filter>FrameWork\QuadTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

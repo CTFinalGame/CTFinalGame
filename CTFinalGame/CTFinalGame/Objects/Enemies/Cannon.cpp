@@ -1,93 +1,38 @@
 ﻿#include"Cannon.h"
 
-Cannon::Cannon(eStatus status, GVector2 position, int type) :BaseEnemy(eID::WALL_TURRET)
+Cannon::Cannon(eStatus status, GVector2 position) :BaseEnemy(eID::REDCANNON)
 {
-	this->type = type;
-	if (type == 1)
-	{
-		this->cID = eID::WALL_TURRET;
-		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
-		_sprite->setFrameRect(0, 0, 32, 32);
-		this->setPosition(position);
-		this->setStatus(status);
-		this->setWTStatus(eWT_Status::WT_NORMAL);
-	}
-	else
-	{
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
-		this->cID = eID::REDCANNON;
+
 		_sprite->setFrameRect(0, 0, 32, 32);
 		this->setPosition(position);
 		this->setStatus(status);
 		this->setWTStatus(eWT_Status::WT_NORMAL);
-	}	
 }
 
-Cannon::Cannon(eStatus status, float x, float y, int type) :BaseEnemy(eID::WALL_TURRET)
+Cannon::Cannon(eStatus status, float x, float y) :BaseEnemy(eID::REDCANNON)
 {
-	this->type = type;
-	if (type == 1)
-	{
-		this->cID = eID::WALL_TURRET;
-		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
-		_sprite->setFrameRect(0, 0, 32, 32);
-		GVector2 pos(x, y);
-		this->setPosition(pos);
-		this->setStatus(status);
-		this->setWTStatus(eWT_Status::WT_NORMAL);
-	}
-	else
-	{
-		this->cID = eID::REDCANNON;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		GVector2 pos(x, y);
 		this->setPosition(pos);
 		this->setStatus(status);
 		this->setWTStatus(eWT_Status::WT_NORMAL);
-	}
 }
-Cannon::Cannon(eWT_Status wtstatus, GVector2 position, int type) :BaseEnemy(eID::WALL_TURRET)
+Cannon::Cannon(eWT_Status wtstatus, GVector2 position) :BaseEnemy(eID::REDCANNON)
 {
-	this->type = type;
-	if (type == 1)
-	{
-		this->cID = eID::WALL_TURRET;
-		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
-		_sprite->setFrameRect(0, 0, 32, 32);
-		this->setPosition(position);
-		this->setWTStatus(wtstatus);
-	}
-	else
-	{
-		this->cID = eID::REDCANNON;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		this->setPosition(position);
 		this->setWTStatus(wtstatus);
-	}
 }
-Cannon::Cannon(eWT_Status wtstatus, float x, float y, int type) :BaseEnemy(eID::WALL_TURRET)
+Cannon::Cannon(eWT_Status wtstatus, float x, float y) :BaseEnemy(eID::REDCANNON)
 {
-	this->type = type;
-	if (type == 1)
-	{
-		this->cID = eID::WALL_TURRET;
-		_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
-		_sprite->setFrameRect(0, 0, 32, 32);
-		GVector2 pos(x, y);
-		this->setPosition(pos);
-		this->setWTStatus(wtstatus);
-	}
-	else
-	{
-		this->cID = eID::REDCANNON;
 		_sprite = SpriteManager::getInstance()->getSprite(eID::REDCANNON);
 		_sprite->setFrameRect(0, 0, 32, 32);
 		GVector2 pos(x, y);
 		this->setPosition(pos);
 		this->setWTStatus(wtstatus);
-	}
 }
 Cannon::~Cannon()
 {
@@ -103,79 +48,6 @@ void Cannon::init()
 	//__hook(&CollisionBody::onCollisionBegin, collisionBody, &WallTurret::onCollisionBegin);
 	//__hook(&CollisionBody::onCollisionEnd, collisionBody, &WallTurret::onCollisionEnd);
 
-	if (type == 1)
-	{
-		_animation[WT_APPEAR] = new Animation(_sprite, WALL_TURRET_APPEAR_SPEED);
-		_animation[WT_APPEAR]->addFrameRect(eID::WALL_TURRET, "appear_01", "appear_02", "appear_03", "appear_04", "appear_05", "appear_06", NULL);
-		_animation[WT_APPEAR]->setLoop(false);
-
-		_animation[WT_CLOSE] = new Animation(_sprite, WALL_TURRET_APPEAR_SPEED);
-		_animation[WT_CLOSE]->addFrameRect(eID::WALL_TURRET, "appear_06", "appear_05", "appear_04", "appear_03", "appear_02", "appear_01", NULL);
-		_animation[WT_CLOSE]->setLoop(false);
-
-		_animation[WT_NORMAL] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_NORMAL]->addFrameRect(eID::WALL_TURRET, "normal_01", "normal_02", "normal_03", NULL);
-		_animation[WT_NORMAL | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_NORMAL | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "normal_01", NULL);
-
-		_animation[WT_LEFT_60] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_60]->addFrameRect(eID::WALL_TURRET, "left_60_01", "left_60_02", "left_60_03", NULL);
-		_animation[WT_LEFT_60 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_60 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "left_60_01", NULL);
-
-		_animation[WT_LEFT_30] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_30]->addFrameRect(eID::WALL_TURRET, "left_30_01", "left_30_02", "left_30_03", NULL);
-		_animation[WT_LEFT_30 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_30 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "left_30_01", NULL);
-
-		_animation[WT_UP] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_UP]->addFrameRect(eID::WALL_TURRET, "up_01", "up_02", "up_03", NULL);
-		_animation[WT_UP | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_UP | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "up_01", NULL);
-
-		_animation[WT_RIGHT_30] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_30]->addFrameRect(eID::WALL_TURRET, "right_30_01", "right_30_02", "right_30_03", NULL);
-		_animation[WT_RIGHT_30 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_30 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "right_30_01", NULL);
-
-		_animation[WT_RIGHT_60] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_60]->addFrameRect(eID::WALL_TURRET, "right_60_01", "right_60_02", "right_60_03", NULL);
-		_animation[WT_RIGHT_60 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_60 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "right_60_01", NULL);
-
-		_animation[WT_RIGHT] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT]->addFrameRect(eID::WALL_TURRET, "right_90_01", "right_90_02", "right_90_03", NULL);
-		_animation[WT_RIGHT | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "right_90_01", NULL);
-
-		_animation[WT_RIGHT_120] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_120]->addFrameRect(eID::WALL_TURRET, "right_120_01", "right_120_02", "right_120_03", NULL);
-		_animation[WT_RIGHT_120 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_120 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "right_120_01", NULL);
-
-		_animation[WT_RIGHT_150] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_150]->addFrameRect(eID::WALL_TURRET, "right_150_01", "right_150_02", "right_150_03", NULL);
-		_animation[WT_RIGHT_150 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_RIGHT_150 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "right_150_01", NULL);
-
-		_animation[WT_DOWN] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_DOWN]->addFrameRect(eID::WALL_TURRET, "down_01", "down_02", "down_03", NULL);
-		_animation[WT_DOWN | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_DOWN | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "down_01", NULL);
-
-		_animation[WT_LEFT_150] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_150]->addFrameRect(eID::WALL_TURRET, "left_150_01", "left_150_02", "left_150_03", NULL);
-		_animation[WT_LEFT_150 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_150 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "left_150_01", NULL);
-
-		_animation[WT_LEFT_120] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_120]->addFrameRect(eID::WALL_TURRET, "left_120_01", "left_120_02", "left_120_03", NULL);
-		_animation[WT_LEFT_120 | WT_SHOOTING] = new Animation(_sprite, WALL_TURRET_ANIMATION_SPEED);
-		_animation[WT_LEFT_120 | WT_SHOOTING]->addFrameRect(eID::WALL_TURRET, "left_120_01", NULL);
-
-	}
-	else
-	{
 	_animation[WT_APPEAR] = new Animation(_sprite, CANNON_APPEAR_SPEED);
 	_animation[WT_APPEAR]->addFrameRect(eID::REDCANNON, "appear_01", "appear_02", "appear_03", "appear_04", "appear_05", "appear_06", NULL);
 	_animation[WT_APPEAR]->setLoop(false);
@@ -201,12 +73,12 @@ void Cannon::init()
 
 	_animation[WT_LEFT_30 | WT_SHOOTING] = new Animation(_sprite, CANNON_ANIMATION_SPEED);
 	_animation[WT_LEFT_30 | WT_SHOOTING]->addFrameRect(eID::REDCANNON,"run_07", "run_08", "run_09", NULL);
-	}
+
 	_explosion = NULL;
 	_stopwatch = new StopWatch();
 	_loopwatch2 = new StopWatch();
-	this->setHitpoint(WALL_TURRET_HITPOINT);
-	this->setScore(WALL_TURRET_SCORE);
+	this->setHitpoint(CANNON_HITPOINT);
+	this->setScore(CANNON_SCORE);
 }
 void Cannon::update(float deltatime)
 {
@@ -232,99 +104,10 @@ void Cannon::update(float deltatime)
 
 	if (_animation[WT_CLOSE]->isAnimate() == false)
 	{
-		if (type == 1)
-		{
-			this->setStatus(eStatus::HIDDEN);
-		}
-		else
-		{
-			this->setStatus(eStatus::DESTROY);
-		}		
+			this->setStatus(eStatus::DESTROY);	
 	}
 	if (!_animation[WT_APPEAR]->isAnimate() && this->isRange())
 	{	
-		if (type == 1){
-			if (_loopwatch2->isTimeLoop(800.0f))
-			{
-					calculateBillangle();
-			}
-		if (_billAngle >= -105 && _billAngle < -75)
-		{
-			this->setScale(SCALE_FACTOR);
-			this->setWTStatus(WT_NORMAL);
-			_shootingAngle = -90;
-		}
-		else if (_billAngle >= -75 && _billAngle < -45)
-		{
-			this->setScale(SCALE_FACTOR);
-			this->setWTStatus(WT_LEFT_60);
-			_shootingAngle = -60;
-		}
-		else if (_billAngle >= -45 && _billAngle < -15)
-		{
-			this->setScale(SCALE_FACTOR);
-			this->setWTStatus(WT_LEFT_30);
-			_shootingAngle = -30;
-		}
-		else if (_billAngle >= -15 && _billAngle < 15)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_UP);
-				_shootingAngle = 0;
-			}
-			else if (_billAngle >= 15 && _billAngle < 45)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_RIGHT_30);
-				_shootingAngle = 30;
-			}
-			else if (_billAngle >= 45 && _billAngle < 75)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_RIGHT_60);
-				_shootingAngle = 60;
-			}
-			else if (_billAngle >= 75 && _billAngle < 105)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_RIGHT);
-				_shootingAngle = 90;
-			}
-			else if (_billAngle >= 105 && _billAngle < 135)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_RIGHT_120);
-				_shootingAngle = 120;
-			}
-			else if (_billAngle >= 135 && _billAngle < 165)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_RIGHT_150);
-				_shootingAngle = 150;
-			}
-
-			else if (_billAngle >= 165 || _billAngle < -165)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_DOWN);
-				_shootingAngle = 180;
-			}
-			else if (_billAngle >= -165 && _billAngle < -135)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_LEFT_150);
-				_shootingAngle = -150;
-			}
-
-			else if (_billAngle >= -135 && _billAngle < -105)
-			{
-				this->setScale(SCALE_FACTOR);
-				this->setWTStatus(WT_LEFT_120);
-				_shootingAngle = -120;
-			}
-		}
-		else
-		{
 			if (_loopwatch2->isTimeLoop(2000.0f))
 			{
 				calculateBillangle();
@@ -347,7 +130,6 @@ void Cannon::update(float deltatime)
 				this->setWTStatus(WT_LEFT_30);
 				_shootingAngle = -30;
 			}
-		}
 		this->addStatus(eWT_Status::WT_SHOOTING);
 	}
 
@@ -360,19 +142,7 @@ void Cannon::update(float deltatime)
 	{
 		it.second->update(deltatime);
 	}
-	if (type == 1)
-	{
-		if (_stopwatch->isStopWatch(WALL_TURRET_SHOOTING_DELAY))
-		{
-			if (this->isInStatus(WT_SHOOTING))
-			{
-				shoot();
-			}
-			_stopwatch->restart();
-		}
-	}
-	else
-	{
+
 		if (this->getWT_Status() != eWT_Status::WT_APPEAR && this->getWT_Status() != eWT_Status::WT_CLOSE)
 		{
 			if (bullet >= 3)
@@ -389,7 +159,6 @@ void Cannon::update(float deltatime)
 				delay1 = 300.0f;
 			}
 		}
-	}
 	
 
 	_animation[this->getWT_Status()]->update(deltatime);

@@ -1,6 +1,5 @@
 ﻿#include"WallTurret.h"
-StopWatch* _loopwatch1;
-#define PI 3.14159265
+
 
 
 WallTurret::WallTurret(eStatus status, GVector2 position) :BaseEnemy(eID::WALL_TURRET)
@@ -22,7 +21,6 @@ WallTurret::WallTurret(eStatus status, float x, float y) :BaseEnemy(eID::WALL_TU
 	this->setWTStatus(eWT_Status::WT_NORMAL);
 
 }
-
 WallTurret::WallTurret(eWT_Status wtstatus, GVector2 position) :BaseEnemy(eID::WALL_TURRET)
 {
 	_sprite = SpriteManager::getInstance()->getSprite(eID::WALL_TURRET);
@@ -154,6 +152,7 @@ void WallTurret::update(float deltatime)
 	if (_animation[WT_CLOSE]->isAnimate() == false)
 	{
 		this->setStatus(eStatus::HIDDEN);
+		return;
 	}
 
 	if (!_animation[WT_APPEAR]->isAnimate() && this->isRange())
@@ -383,36 +382,36 @@ float WallTurret::getShootingAngle()
 	return _shootingAngle;
 }
 
-void WallTurret::onCollisionBegin(CollisionEventArg* collision_event)
-{
-	eID objectID = collision_event->_otherObject->getId();
-	switch (objectID)
-	{
-	case eID::BILL:
-	{
-		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
-		{
-			collision_event->_otherObject->setStatus(eStatus::DYING);
-			((Bill*)collision_event->_otherObject)->die();
-		}
-		break;
-	}
-	default:
-		break;
-	}
-}
-void WallTurret::onCollisionEnd(CollisionEventArg* collision_event)
-{
-
-}
-float WallTurret::checkCollision(BaseObject* object, float dt)
-{
-	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-	eID objectId = object->getId();
-	if (objectId == eID::BILL)
-		collisionBody->checkCollision(object, dt);
-	return 0.0f;
-}
+//void WallTurret::onCollisionBegin(CollisionEventArg* collision_event)
+//{
+//	eID objectID = collision_event->_otherObject->getId();
+//	switch (objectID)
+//	{
+//	case eID::BILL:
+//	{
+//		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
+//		{
+//			collision_event->_otherObject->setStatus(eStatus::DYING);
+//			((Bill*)collision_event->_otherObject)->die();
+//		}
+//		break;
+//	}
+//	default:
+//		break;
+//	}
+//}
+//void WallTurret::onCollisionEnd(CollisionEventArg* collision_event)
+//{
+//
+//}
+//float WallTurret::checkCollision(BaseObject* object, float dt)
+//{
+//	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
+//	eID objectId = object->getId();
+//	if (objectId == eID::BILL)
+//		collisionBody->checkCollision(object, dt);
+//	return 0.0f;
+//}
 RECT WallTurret::getBounding()
 {
 	auto baseBound = BaseObject::getBounding();
@@ -425,14 +424,68 @@ RECT WallTurret::getBounding()
 void WallTurret::shoot()
 {
 	float angle = this->getShootingAngle();
-	float mx = this->getPosition().x;
-	float my = this->getPosition().y;
+	//float mx = this->getPosition().x;
+	//float my = this->getPosition().y;
 
-	auto pos = this->getPosition() - GVector2(0, this->getSprite()->getFrameHeight());
+	auto pos = this->getPosition();
+
+	//auto pos = this->getPosition() - GVector2(0, this->getSprite()->getFrameHeight()/2);
 
 	if (this->isInStatus(WT_NORMAL))
 	{
-		pos.y += this->getSprite()->getFrameHeight();
+		pos.x -= this->getSprite()->getFrameWidth() / 2;
+	}
+	if (this->isInStatus(WT_UP))
+	{
+		pos.y += this->getSprite()->getFrameHeight() / 2;
+	}
+	if (this->isInStatus(WT_RIGHT))
+	{
+		pos.x += this->getSprite()->getFrameWidth() / 2;
+	}
+	if (this->isInStatus(WT_DOWN))
+	{
+		pos.y -= this->getSprite()->getFrameHeight() / 2;
+	}
+	else if (this->isInStatus(WT_RIGHT_30))
+	{
+		pos.x += 8 * abs(this->getSprite()->getScale().x);
+		pos.y += this->getSprite()->getFrameHeight() / 2;
+	}
+	else if (this->isInStatus(WT_LEFT_30))
+	{
+		pos.x -= 8 * abs(this->getSprite()->getScale().x);
+		pos.y += this->getSprite()->getFrameHeight() / 2;
+	}
+	else if (this->isInStatus(WT_RIGHT_60))
+	{
+		pos.x += 14 * abs(this->getSprite()->getScale().x);
+		pos.y += 9 * abs(this->getSprite()->getScale().x);
+	}
+	else if (this->isInStatus(WT_LEFT_60))
+	{
+		pos.x -= 14 * abs(this->getSprite()->getScale().x);
+		pos.y += 9 * abs(this->getSprite()->getScale().x);
+	}
+	else if (this->isInStatus(WT_RIGHT_120))
+	{
+		pos.x += 14 * abs(this->getSprite()->getScale().x);
+		pos.y -= 9 * abs(this->getSprite()->getScale().x);
+	}
+	else if (this->isInStatus(WT_LEFT_120))
+	{
+		pos.x -= 14 * abs(this->getSprite()->getScale().x);
+		pos.y -= 9 * abs(this->getSprite()->getScale().x);
+	}
+	else if (this->isInStatus(WT_RIGHT_150))
+	{
+		pos.x += 8 * abs(this->getSprite()->getScale().x);
+		pos.y -= this->getSprite()->getFrameHeight() / 2;
+	}
+	else if (this->isInStatus(WT_LEFT_150))
+	{
+		pos.x -= 8 * abs(this->getSprite()->getScale().x);
+		pos.y -= this->getSprite()->getFrameHeight() / 2;
 	}
 	BulletManager::insertBullet(new Bullet(pos, (eBulletType)(ENEMY_BULLET | NORMAL_BULLET), angle));
 	//Bỏ sẵn

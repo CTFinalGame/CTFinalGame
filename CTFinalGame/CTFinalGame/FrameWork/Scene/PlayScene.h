@@ -21,6 +21,8 @@
 #include "../../Objects/Enemies/Cannon.h"
 
 #include "../../Objects/Bullets/AirCraft.h"
+#include "../QuadTree/ObjectFactory.h"
+#include "../QuadTree/QNode.h"
 
 #define BOSS_VIEWPORT_ANCHOR		6112
 
@@ -51,13 +53,13 @@ public:
 	Bill* getBill();
 	BaseObject* _bulletmanager;
 private:
-	//void destroyobject();				// kiển tra nếu object hết hạn sử dụng thì phá huỷ đối tượng
+	void destroyobject();				// kiển tra nếu object hết hạn sử dụng thì phá huỷ đối tượng
 	//Text* _text;
 
 	//Help* _help;
 
 	// Danh sách đối tượng dùng để tạo quadtree.
-	//map <string, BaseObject*> _mapobject;
+	map <string, BaseObject*> _mapobject;
 
 	// Danh sách các đối tượng hoạt động rộng không thể đưa vào quadtree.
 	// (Ví dụ main character)
@@ -71,7 +73,7 @@ private:
 	Map* background;
 
 	// quadtree
-	//QNode* _root;
+	QNode* _root;
 	// Trỏ đến bill, một số đối tượng cần truyền bill vào để xử lý, lấy ở đây.
 	
 	BaseObject* _bill;

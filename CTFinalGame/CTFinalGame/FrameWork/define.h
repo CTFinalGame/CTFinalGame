@@ -68,7 +68,8 @@ enum eID
 	SHADOW_MOUTH	= 36,
 	TUT_LAYER		= 37,
 
-	MAP1			=38
+	MAP1			=38,
+	LANDWATER = 40
 };
  
 enum eStatus

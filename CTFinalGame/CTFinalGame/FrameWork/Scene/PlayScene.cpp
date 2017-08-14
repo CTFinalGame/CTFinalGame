@@ -38,9 +38,9 @@ bool PlayScene::init()
 	 _bulletmanager = new BulletManager();
 	 _bulletmanager->init();
 
-	 auto boss = new Boss(GVector2(400, 140), 100);
-	 boss->init();
-	 _listobject.push_back(boss);
+	 //auto boss = new Boss(GVector2(400, 140), 100);
+	 //boss->init();
+	 //_listobject.push_back(boss);
 
 	/* auto fifleman = new Rifleman(eStatus::NORMAL, 580, 60);
 	fifleman->init();
@@ -54,35 +54,41 @@ bool PlayScene::init()
 	 bire->init();
 	 _listobject.push_back(bire);	*/
 
-	 auto land = new Land(50, 240, 1450, 20, eDirection::ALL, eLandType::GRASS);
-	 land->init();
-	 _listobject.push_back(land);
-	 auto falon = new Falcon(650,140,eAirCraftType::S);
-	 falon->init();
-	 _listobject.push_back(falon);
-	 auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
-	 landbottom->init();
-	 _listobject.push_back(landbottom);
-	 auto water = new Land(0, 40, 1500, 20, eDirection::ALL, eLandType::WATER);
-	 water->init();
-	 _listobject.push_back(water);
-	 auto landwater = new Land(550,60, 200, 20, eDirection::ALL, eLandType::GRASS);
-	 landwater->init();
-	 _listobject.push_back(landwater);
-	 //Tao airCraft
-	 GVector2 pos(50, 300), hVeloc = AIRCRAFT_HORIZONTAL_VELOC, ampl = AIRCRAFT_AMPLITUDE;
-	 float freq = AIRCRAFT_FREQUENCY;
-	 eAirCraftType type = S;
-	 auto airCraft = new AirCraft(pos, hVeloc / 2, ampl, freq, type);
+	 //auto land = new Land(50, 240, 1450, 20, eDirection::ALL, eLandType::GRASS);
+	 //land->init();
+	 //_listobject.push_back(land);
+	 //auto falon = new Falcon(650,140,eAirCraftType::S);
+	 //falon->init();
+	 //_listobject.push_back(falon);
+	 //auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
+	 //landbottom->init();
+	 //_listobject.push_back(landbottom);
+	 //auto water = new Land(0, 40, 1500, 20, eDirection::ALL, eLandType::WATER);
+	 //water->init();
+	 //_listobject.push_back(water);
+	 //auto landwater = new Land(550,60, 200, 20, eDirection::ALL, eLandType::GRASS);
+	 //landwater->init();
+	 //_listobject.push_back(landwater);
+	 ////Tao airCraft
+	 //GVector2 pos(50, 300), hVeloc = AIRCRAFT_HORIZONTAL_VELOC, ampl = AIRCRAFT_AMPLITUDE;
+	 //float freq = AIRCRAFT_FREQUENCY;
+	 //eAirCraftType type = S;
+	 //auto airCraft = new AirCraft(pos, hVeloc / 2, ampl, freq, type);
 
-	 airCraft->init();
-	 _listobject.push_back(airCraft);
+	 //airCraft->init();
+	 //_listobject.push_back(airCraft);
 	 auto bill = new Bill(1);
 	 bill->init();
 	 bill->setPosition(200, 500);
 	 this->_bill = bill;
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);
+
+	 map<string, BaseObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resource//Map//a_ob_qt.txt");
+	 this->_mapobject.insert(maptemp->begin(), maptemp->end());
+
+	 _root = QNode::loadQuadTree("Resource//Map//a_quadtree.txt");
+
 	return true;
 }
 void PlayScene::updateInput(float dt)
@@ -133,8 +139,10 @@ void PlayScene::update(float dt)
 	screen.left = viewport_in_transform.left;
 	screen.right = viewport_in_transform.right;
     //screen.top = viewport_position.y;
-	screen.top = this->background->getWorldSize().y - viewport_position.y;
-	screen.bottom = screen.top + _viewport->getHeight();
+	/*screen.top = this->background->getWorldSize().y - viewport_position.y;
+	screen.bottom = screen.top + _viewport->getHeight();*/
+	screen.bottom = 0;
+	screen.top = screen.bottom + background->getWorldSize().y;
 	// getlistobject
 #if _DEBUG
 	// clock_t để test thời gian chạy đoạn code update (milisecond)
@@ -143,22 +151,22 @@ void PlayScene::update(float dt)
 #endif
 
 	// [Bước 1]
-	//this->destroyobject();
+	this->destroyobject();
 
 	// [Bước 2]
 	_active_object.clear();
 
 	// [Bước 3]
-	//auto listobjectname = _root->GetActiveObject(screen);
+	auto listobjectname = _root->GetActiveObject(screen);
 
 	// [Bước 4]
-	//for (auto name : listobjectname)
-	//{
-	//   /* auto obj = _mapobject.find(name);
-	//	if (obj == _mapobject.end() || obj._Ptr == nullptr)
-	//		continue;*/
-	//	_active_object.push_back(obj->second);
-	//}
+	for (auto name : listobjectname)
+	{
+	    auto obj = _mapobject.find(name);
+		if (obj == _mapobject.end() || obj._Ptr == nullptr)
+			continue;
+		_active_object.push_back(obj->second);
+	}
 
 	// [Bước 5]
 	_active_object.insert(_active_object.end(), _listobject.begin(), _listobject.end());
@@ -239,6 +247,51 @@ BaseObject* PlayScene::getObject(eID id)
 	}
 	return nullptr;
 }
+
+void PlayScene::destroyobject()
+{
+	for (auto object : _listobject)
+	{
+		if (object->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
+		{
+			object->release();
+			// http://www.cplusplus.com/reference/algorithm/remove/
+			auto rs1 = std::remove(_listobject.begin(), _listobject.end(), object);
+			_listobject.pop_back();			// sau khi remove thì còn một phần tử cuối cùng vôi ra. giống như dịch mảng. nên cần bỏ nó đi
+
+			//https://msdn.microsoft.com/en-us/library/cby9kycs.aspx (dynamic_cast) 
+			// loại khỏi list control
+			vector<IControlable*>::iterator icontrol = find(_listControlObject.begin(), _listControlObject.end(), dynamic_cast<IControlable*>(object));
+			if (icontrol != _listControlObject.end())
+			{
+				auto rs2 = std::remove(_listControlObject.begin(), _listControlObject.end(), (*icontrol));
+				_listControlObject.pop_back();
+			}
+
+			delete object;
+			break;		// sau pop_back phần tử đi thì list bị thay đồi, nên vòng for-each không còn nguyên trạng nữa. -> break (mỗi frame chỉ remove được 1 đối tượng)
+		}
+	}
+	for (auto name : QNode::ActiveObject)
+	{
+		auto object = _mapobject.find(name);
+		if (object == _mapobject.end() || object._Ptr == nullptr)
+			continue;
+		if (object->second->getStatus() == eStatus::DESTROY)	// kiểm tra nếu là destroy thì loại khỏi list
+		{
+			//if (dynamic_cast<BaseEnemy*> (object->second) != nullptr)
+			//{
+			//	SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
+			//}
+			object->second->release();
+			delete object->second;
+			object->second = NULL;
+			_mapobject.erase(name);
+
+		}
+	}
+}
+
 void PlayScene::updateViewport(BaseObject* objTracker)
 {
 	//	// Vị trí hiện tại của viewport. 
