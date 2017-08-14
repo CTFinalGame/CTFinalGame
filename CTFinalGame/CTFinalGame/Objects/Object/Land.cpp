@@ -33,10 +33,7 @@ Land::Land(int x, int y, int width, int height, eDirection physicBodyDirection, 
 void Land::init()
 {
 	this->_sprite = nullptr;
-	/*auto collisionBody = new CollisionBody(this);
-	_listComponent["CollisionBody"] = collisionBody;*/
-
-	this->setPhysicsBodySide(eDirection::ALL);
+	//this->setPhysicsBodySide(eDirection::TOP);
 }
 
 void Land::update(float deltatime)

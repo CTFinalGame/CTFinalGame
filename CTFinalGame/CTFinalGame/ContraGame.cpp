@@ -36,9 +36,6 @@ void ContraGame::updateInput(float deltatime)
 
 void ContraGame::update(float deltatime)
 {
-	/*_animations[eStatus::RUNNING]->update(deltatime);
-	_animations[eStatus::SHOOTING]->update(deltatime);*/
-
 	SceneManager::getInstance()->update(deltatime);
 }
 

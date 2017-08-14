@@ -64,7 +64,7 @@ public:
 	void die();
 	void swimming();
 	float getMovingSpeed();
-
+	void unhookinputevent();
 	void shoot();
 	// Đổi kiểu đạn. 
 	void changeBulletType(eAirCraftType);
