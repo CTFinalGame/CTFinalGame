@@ -38,9 +38,9 @@ bool PlayScene::init()
 	 _bulletmanager = new BulletManager();
 	 _bulletmanager->init();
 
-	 //auto boss = new Boss(GVector2(400, 140), 100);
-	 //boss->init();
-	 //_listobject.push_back(boss);
+	/* auto boss = new Boss(GVector2(400, 140), 100);
+	 boss->init();
+	 _listobject.push_back(boss);*/
 
 	/* auto fifleman = new Rifleman(eStatus::NORMAL, 580, 60);
 	fifleman->init();
@@ -84,7 +84,7 @@ bool PlayScene::init()
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);
 
-	 map<string, BaseObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resource//Map//a_ob_qt.txt");
+	 map<string, BaseObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resource//Map//a_ob.txt");
 	 this->_mapobject.insert(maptemp->begin(), maptemp->end());
 
 	 _root = QNode::loadQuadTree("Resource//Map//a_quadtree.txt");

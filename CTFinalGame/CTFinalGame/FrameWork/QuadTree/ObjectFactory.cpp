@@ -127,12 +127,8 @@ BaseObject* ObjectFactory::getLand(eID id, int x, int y, int width, int height, 
 
 BaseObject* ObjectFactory::getRifleMan(eID id, int x, int y)
 {
-	eStatus _status;
-	if (id == RIFLEMAN)
-	{
-		_status = eStatus::NORMAL;
-	}
-	else if (id == RIFLEMANHIDDEN)
+	eStatus _status = eStatus::NORMAL;
+	if (id == RIFLEMANHIDDEN)
 	{
 		_status = eStatus::HIDDEN;
 	}
