@@ -27,6 +27,7 @@ bool BeginPlayScene::init()
 	_texthighscore->setScale(SCALE_FACTOR);
 	_texthighscore->getSprite()->setOpacity(0.7f);
 
+*/
 	_textrest = new TextSprite(eID::FONTFULL, std::to_string(_rest), GVector2(160, 104));
 	_textrest->init();
 	_textrest->setScale(SCALE_FACTOR);
@@ -36,8 +37,7 @@ bool BeginPlayScene::init()
 	_textStage->init();
 	_textStage->setScale(SCALE_FACTOR);
 	_textStage->getSprite()->setOpacity(0.7f);
-	_textStage->setOrigin(VECTOR2ZERO);*/
-
+	_textStage->setOrigin(VECTOR2ZERO);
 	auto name = "JUNGLE";
 
 	switch (_stage)
@@ -56,11 +56,11 @@ bool BeginPlayScene::init()
 		break;
 	}
 
-	//_textStageName = new TextSprite(eID::FONTFULL, name, GVector2(95 * SCALE_FACTOR, _textStage->getPosition().y + 32));
-	//_textStageName->init();
-	//_textStageName->setScale(SCALE_FACTOR);
-	//_textStageName->getSprite()->setOpacity(0.7f);
-	//_textStageName->setOrigin(VECTOR2ZERO);
+	_textStageName = new TextSprite(eID::FONTFULL, name, GVector2(95 * SCALE_FACTOR, _textStage->getPosition().y + 32));
+	_textStageName->init();
+	_textStageName->setScale(SCALE_FACTOR);
+	_textStageName->getSprite()->setOpacity(0.7f);
+	_textStageName->setOrigin(VECTOR2ZERO);
 
 	return true;
 }
@@ -100,18 +100,19 @@ void BeginPlayScene::draw(LPD3DXSPRITE spriteHandle)
 	//_textscore->draw(spriteHandle);
 	//_textrest->draw(spriteHandle);
 	//_texthighscore->draw(spriteHandle);
-	//_textStage->draw(spriteHandle);
-	//_textStageName->draw(spriteHandle);
+	_textStage->draw(spriteHandle);
+	_textStageName->draw(spriteHandle);
 }
 
 void BeginPlayScene::release()
 {
 	SAFE_DELETE(_waitscreen);
 	/*SAFE_DELETE(_texthighscore);
-	SAFE_DELETE(_textrest);
 	SAFE_DELETE(_textscore);
+	*/
+	SAFE_DELETE(_textrest);
 	SAFE_DELETE(_textStage);
-	SAFE_DELETE(_textStageName);*/
+	SAFE_DELETE(_textStageName);
 }
 
 void BeginPlayScene::updateInput(float deltatime)

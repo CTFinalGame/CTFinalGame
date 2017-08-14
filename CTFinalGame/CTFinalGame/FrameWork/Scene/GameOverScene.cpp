@@ -80,15 +80,16 @@ bool GameOverScene::init()
 	//	HighScore::saveHighScore(HighScore::filehighscore, _highscore);
 	//}
 
-	/*_textscore = new TextSprite(eID::FONTFULL, std::to_string(_score), GVector2(160, 68));
+	_textscore = new TextSprite(eID::FONTFULL, std::to_string(20), GVector2(160, 68));
 	_textscore->init();
 	_textscore->setScale(SCALE_FACTOR);
 	_textscore->getSprite()->setOpacity(0.7f);
 
-	_texthighscore = new TextSprite(eID::FONTFULL, std::to_string(_highscore), GVector2(288, 144));
+	_texthighscore = new TextSprite(eID::FONTFULL, std::to_string(200), GVector2(288, 144));
 	_texthighscore->init();
 	_texthighscore->setScale(SCALE_FACTOR);
 	_texthighscore->getSprite()->setOpacity(0.7f);
+	/*
 	SoundManager::getInstance()->Play(eSoundId::GAME_OVER);*/
 	return true;
 }
@@ -112,8 +113,8 @@ void GameOverScene::draw(LPD3DXSPRITE spriteHandle)
 {
 	_background->render(spriteHandle);
 	_yellowfancon->render(spriteHandle);
-	/*_textscore->draw(spriteHandle);
-	_texthighscore->draw(spriteHandle);*/
+	_textscore->draw(spriteHandle);
+	_texthighscore->draw(spriteHandle);
 }
 void GameOverScene::release()
 {
