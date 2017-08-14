@@ -5,7 +5,13 @@ Item
 LAND
 LANDWater
 BRIDGE
+Falcon_M
 RIFLEMAN
 WALL_TURRET
+Falcon_F
+REDCANNON
+Falcon_S
 Camera
 Character
+RIFLEMANHide
+BOSS_STAGE1

@@ -89,7 +89,7 @@ BaseObject* ObjectFactory::getObjectById(eID id, int x, int y, int width, int he
 	case CREATOR:
 		//return getCreator(node);
 	case BOSS_STAGE1:
-		//return getGreatWall(node);
+		return getGreatWall(x, y, height);
 	case ROCKFLY:
 		//return getRockFly(node);
 	case ROCKFALL:
@@ -138,11 +138,8 @@ BaseObject* ObjectFactory::getLand(eID id, int x, int y, int width, int height, 
 
 BaseObject* ObjectFactory::getRifleMan(eID id, int x, int y)
 {
-	eStatus _status;
-	if (id == RIFLEMAN)
-	{
-		_status = eStatus::NORMAL;
-	}
+	eStatus _status = eStatus::NORMAL;
+
 	if (id == RIFLEMANHIDDEN)
 	{
 		_status = eStatus::HIDDEN;
@@ -282,4 +279,11 @@ BaseObject* ObjectFactory::getFalcon(eID id, int x, int y)
 
 	falcon->init();
 	return falcon;
+}
+
+BaseObject* ObjectFactory::getGreatWall(int x, int y, int height)
+{
+	auto greatwall = new Boss(GVector2(x, y-height), height);
+	greatwall->init();
+	return greatwall;
 }

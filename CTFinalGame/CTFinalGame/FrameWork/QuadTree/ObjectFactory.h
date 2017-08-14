@@ -28,7 +28,7 @@ private:
 	//static BaseObject* getCreator(xml_node node);
 	static BaseObject* getBridge(int x, int y);
 	static BaseObject* getFalcon(eID id, int x, int y);
-	//static BaseObject* getGreatWall(xml_node node);
+	static BaseObject* getGreatWall(int x, int y, int height);
 	//static BaseObject* getRockFly(xml_node node);
 	//static BaseObject* getRockFall(xml_node node);
 	//static BaseObject* getScubaSoldier(xml_node node);
