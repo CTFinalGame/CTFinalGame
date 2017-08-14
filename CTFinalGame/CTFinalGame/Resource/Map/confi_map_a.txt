@@ -3,8 +3,7 @@ RunMan
 RunManFire
 Item
 LAND
-BRIDGE
 LANDWater
-WALL_TURRET
+RIFLEMAN
 Camera
 Character

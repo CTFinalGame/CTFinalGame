@@ -889,6 +889,8 @@ float Bill::checkCollision(BaseObject * object, float dt)
 					float moveX, moveY;
 					if (collisionBody->isColliding(object, moveX, moveY, dt))
 					{
+						//this->setPositionY(object->getBounding().top);
+
 						collisionBody->updateTargetPosition(object, direction, false, GVector2(moveX, moveY));
 					}
 
@@ -957,6 +959,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 		}
 	return 0.0f;
 }
+
 void Bill::shoot()
 {
 	if (this->isInStatus(eStatus::DIVING))
