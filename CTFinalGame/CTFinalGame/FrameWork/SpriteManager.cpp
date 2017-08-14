@@ -151,11 +151,11 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	//this->_listSprite[eID::ROCKFALL] = sp;
 	//this->loadSpriteInfo(eID::ROCKFALL, "Resources//Images//rockfall_animation.txt");
 
-	//sp = new Sprite(spriteHandle, L"Resources//Fonts//fontEx.png", 30, 10);
-	//this->_listSprite[eID::FONTEX] = sp;
+	sp = new Sprite(spriteHandle, L"Resource//Images//fontEx.png", 30, 10);
+	this->_listSprite[eID::FONTEX] = sp;
 
-	//sp = new Sprite(spriteHandle, L"Resources//Fonts//fontFull.png", 54, 6);
-	//this->_listSprite[eID::FONTFULL] = sp;
+	sp = new Sprite(spriteHandle, L"Resource//Images//fontFull.png", 54, 6);
+	this->_listSprite[eID::FONTFULL] = sp;
 
 
 

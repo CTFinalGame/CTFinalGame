@@ -40,7 +40,7 @@ bool IntroScene::init()
 	_introtable->setScale(SCALE_FACTOR);
 	_introtable->setOrigin(GVector2(0.0f,1.0f));
 
-	/*_playOption = new TextSprite(eID::FONTFULL, "START", GVector2(80.0f, 320.0f));
+	_playOption = new TextSprite(eID::FONTFULL, "START", GVector2(80.0f, 320.0f));
 	_playOption->init();
 	_playOption->setScale(SCALE_FACTOR);
 	_playOption->setOrigin(VECTOR2ZERO);
@@ -50,7 +50,7 @@ bool IntroScene::init()
 	_chosenOption->init();
 	_chosenOption->setScale(SCALE_FACTOR);
 	_chosenOption->setOrigin(VECTOR2ZERO);
-	_chosenOption->setOpacity(0.8f);*/
+	_chosenOption->setOpacity(0.8f);
 
 	_movement = new Movement(VECTOR2ZERO, GVector2(-200.0f, 0.0f), _introtable);
 
@@ -74,8 +74,8 @@ void IntroScene::update(float dt)
 {
 	_movement->update(dt);
 
-	/*_playOption->setPosition(GVector2(_introtable->getPositionX() + 80.0f, _playOption->getPosition().y));
-	_chosenOption->setPosition(GVector2(_introtable->getPositionX() + 80.0f, _chosenOption->getPosition().y));*/
+	_playOption->setPosition(GVector2(_introtable->getPositionX() + 80.0f, _playOption->getPosition().y));
+	_chosenOption->setPosition(GVector2(_introtable->getPositionX() + 80.0f, _chosenOption->getPosition().y));
 
 	if (_introtable->getPositionX() < 0)
 	{
@@ -119,8 +119,8 @@ void IntroScene::draw(LPD3DXSPRITE spriteHandle)
 
 	if (_ok == 0)
 	{
-		/*_playOption->draw(spriteHandle);
-		_chosenOption->draw(spriteHandle);*/
+		_playOption->draw(spriteHandle);
+		_chosenOption->draw(spriteHandle);
 	}
 	else 
 	{
@@ -128,25 +128,25 @@ void IntroScene::draw(LPD3DXSPRITE spriteHandle)
 		{
 			if (_draw == true)
 			{
-				//_playOption->draw(spriteHandle);
+				_playOption->draw(spriteHandle);
 			}
-			//_chosenOption->draw(spriteHandle);
+			_chosenOption->draw(spriteHandle);
 		}
 		else if (_ok == 2)
 		{
 			if (_draw == true)
 			{
-			//	_chosenOption->draw(spriteHandle);
+				_chosenOption->draw(spriteHandle);
 			}
-			//_playOption->draw(spriteHandle);
+			_playOption->draw(spriteHandle);
 		}
 	}
 }
 
 void IntroScene::release()
 {
-	/*SAFE_DELETE(_playOption);
-	SAFE_DELETE(_chosenOption);*/
+	SAFE_DELETE(_playOption);
+	SAFE_DELETE(_chosenOption);
 	SAFE_DELETE(_yellowfancon);
 	SAFE_DELETE(_introtable);
 	SAFE_DELETE(_movement);

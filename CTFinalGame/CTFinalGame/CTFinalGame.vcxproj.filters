@@ -186,6 +186,9 @@
     <ClCompile Include="FrameWork\Scene\GameOverScene.cpp">
       <Filter>FrameWork\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\TextSprite.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -334,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="FrameWork\Scene\GameOverScene.h">
       <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\TextSprite.h">
+      <Filter>FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

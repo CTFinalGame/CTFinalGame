@@ -10,7 +10,7 @@
 
 #include "../IComponent.h"
 #include "../../Objects/BaseObject.h"
-//#include "../TextSprite.h"
+#include "../TextSprite.h"
 #include "BeginPlayScene.h"
 //#include "SelectionScene.h"
 #include "Scene.h"
@@ -40,7 +40,7 @@ private:
 	int _ok;
 	bool _draw;
 	bool _drawyellowFalcon;
-	//TextSprite* _playOption;
-	//TextSprite* _chosenOption;
+	TextSprite* _playOption;
+	TextSprite* _chosenOption;
 };
 #endif // !__INTRO_SCENE__

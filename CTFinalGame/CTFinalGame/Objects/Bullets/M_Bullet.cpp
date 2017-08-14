@@ -8,7 +8,7 @@ void MBullet::init()
 	_sprite->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BULLET, "m_bullet"));
 
 	this->setPosition(_startPosition);
-	this->setScale(6);
+	this->setScale(SCALE_FACTOR);
 
 	GVector2 veloc = Bullet::initveloc(M_BULLET_SPEED);
 
