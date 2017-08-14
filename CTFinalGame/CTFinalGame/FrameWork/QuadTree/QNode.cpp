@@ -71,16 +71,10 @@ QNode* QNode::loadQuadTree(const string path)
 	myfile >> y;
 	myfile >> width;
 	myfile >> height;
-	if (id == "0")
-	{
-		level = 0;
-	}
-	else{
-		level = checkLevel(id);
-	}
+	level = checkLevel(id);
+
 	node = initNode(id, level, x, y, width, height);
-	getListNode(node);
-	//loadChild(id, level, x, y, width, height, node);
+	getListNode(node, path);
 	return node;
 }
 int QNode::checkLevel(string id)
@@ -121,18 +115,12 @@ QNode* QNode::initNode(string id, int level, int x, int y, int width, int height
 	return qnode;
 }
 
-void QNode::loadChild(string id, int level, int x, int y, int width, int height, QNode* parent)
-{
-	QNode* child[4] = { NULL };
-
-}
-
-void QNode::getListNode(QNode* rootNode)
+void QNode::getListNode(QNode* rootNode, const string path)
 {
 
 	QNode* nodechild[4] = { NULL };
 	vector<QNode*> list;
-	ifstream myfile("Resource//Map//a_quadtree.txt");
+	ifstream myfile(path);
 	int check = 0;
 	string objectId;
 	int count = 0;

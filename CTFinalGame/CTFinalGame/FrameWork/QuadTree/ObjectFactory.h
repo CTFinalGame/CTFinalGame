@@ -20,7 +20,7 @@ public:
 private:
 	static BaseObject* getObjectById(eID id, int x, int y, int width, int height, int type, int dir);
 	static BaseObject* getLand(eID id, int x, int y, int width, int height, int type, int dir);
-	static BaseObject* getRifleMan(int x, int y, int status);
+	static BaseObject* getRifleMan(eID id, int x, int y);
 	static BaseObject* getSoldier(int x, int y, int status, int dir, int canShoot);
 	static BaseObject* getRedCannon(int x, int y);
 	static BaseObject* getWallTurret(int x, int y);
