@@ -88,7 +88,14 @@ bool PlayScene::init()
 	 this->_mapobject.insert(maptemp->begin(), maptemp->end());
 
 	 _root = QNode::loadQuadTree("Resource//Map//a_quadtree.txt");
-
+	 auto scenarioBoss_Viewport = new Scenario("BossViewport");
+	 __hook(&Scenario::update, scenarioBoss_Viewport, &PlayScene::bossScene_Viewport);
+	// auto scenarioBossSound = new Scenario("BossSound");
+	 //__hook(&Scenario::update, scenarioBossSound, &PlayScene::playBossStage1Sound);
+	 _director = new ScenarioManager();
+	// _director->insertScenario(scenarioBossSound);
+	 _director->insertScenario(scenarioBoss_Viewport);
+	 flagbossScenario = false;
 	return true;
 }
 void PlayScene::updateInput(float dt)
@@ -192,6 +199,7 @@ void PlayScene::update(float dt)
 	{
 		obj->update(dt);
 	}
+	this->ScenarioMoveViewport(dt);
 }
 void PlayScene::draw(LPD3DXSPRITE spriteHandle)
 {
@@ -212,6 +220,86 @@ void PlayScene::release()
 	}
 	background->release();
 
+}
+void PlayScene::killbossScene_Bill(float deltatime, bool& isFinish)
+{
+	auto bill = (Bill*)_bill;
+
+
+	if (bill->getBounding().left < _viewport->getBounding().right)
+	{
+		/*if (bill->getPositionX() < 6448)
+		bill->forceMoveRight();
+		else
+		{
+		if (bill->getPositionX() < 6500)
+		bill->forceJump();
+		}*/
+	}
+	else
+	{
+		/*bill->unforceMoveRight();
+		bill->unforceJump();
+		bill->removeGravity();*/
+	}
+}
+void PlayScene::bossScene_Viewport(float dt, bool& finish)
+{
+	GVector2 current_position = _viewport->getPositionWorld();
+	GVector2 worldsize = this->background->getWorldSize();
+
+	current_position.x += BILL_MOVE_SPEED * dt / 1000;
+	if (current_position.x + WINDOW_WIDTH > worldsize.x)
+	{
+		current_position.x = worldsize.x - WINDOW_WIDTH;
+		finish = true;
+		_viewport->setPositionWorld(current_position);
+		return;
+	}
+	_viewport->setPositionWorld(current_position);
+	if (_bill->getBounding().left < current_position.x)
+	{
+		GVector2 curPos = _bill->getPosition();
+		curPos.x = current_position.x + (_bill->getSprite()->getFrameWidth() >> 1);
+		_bill->setPosition(curPos);
+	}
+	finish = false;
+}
+void PlayScene::ScenarioMoveViewport(float deltatime)
+{
+	if (_director == nullptr)
+		return;
+
+	if (((Bill*)_bill)->getPositionX() > 100)
+	{
+		flagbossScenario = true;
+	}
+	if (flagbossScenario == true)
+	{
+		this->_director->update(deltatime);
+		if (this->_director->isFinish() == true)
+		{
+			SAFE_DELETE(_director);
+		}
+	}
+}
+void PlayScene::ScenarioKillBoss(float deltatime)
+{
+	if (_directorKillBoss == nullptr)
+		return;
+	auto boss = getObject(eID::BOSS_STAGE1);
+	//if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
+	if (true)
+	{
+		this->_directorKillBoss->update(deltatime);
+		if (this->_directorKillBoss->isFinish() == true)
+		{
+			SAFE_DELETE(_directorKillBoss);
+			//chuyển scene
+			/*auto play = new BeginPlayScene(Score::getScore(), ((Bill*)_bill)->getLifeNumber(), 3);
+			SceneManager::getInstance()->replaceScene(play);*/
+		}
+	}
 }
 bool PlayScene::checkGameLife()
 {

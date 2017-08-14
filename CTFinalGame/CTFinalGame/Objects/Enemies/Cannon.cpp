@@ -43,10 +43,10 @@ void Cannon::init()
 
 	this->setScale(SCALE_FACTOR);
 
-	//auto collisionBody = new CollisionBody(this);
-	//_listComponent["collisionBody"] = collisionBody;
-	//__hook(&CollisionBody::onCollisionBegin, collisionBody, &WallTurret::onCollisionBegin);
-	//__hook(&CollisionBody::onCollisionEnd, collisionBody, &WallTurret::onCollisionEnd);
+	auto collisionBody = new CollisionBody(this);
+	_listComponent["collisionBody"] = collisionBody;
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &WallTurret::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, collisionBody, &WallTurret::onCollisionEnd);
 
 	_animation[WT_APPEAR] = new Animation(_sprite, CANNON_APPEAR_SPEED);
 	_animation[WT_APPEAR]->addFrameRect(eID::REDCANNON, "appear_01", "appear_02", "appear_03", "appear_04", "appear_05", "appear_06", NULL);
@@ -284,28 +284,28 @@ float Cannon::getShootingAngle()
 	return _shootingAngle;
 }
 
-//void WallTurret::onCollisionBegin(CollisionEventArg* collision_event)
-//{
-//	eID objectID = collision_event->_otherObject->getId();
-//	switch (objectID)
-//	{
-//	case eID::BILL:
-//	{
-//		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
-//		{
-//			collision_event->_otherObject->setStatus(eStatus::DYING);
-//			((Bill*)collision_event->_otherObject)->die();
-//		}
-//		break;
-//	}
-//	default:
-//		break;
-//	}
-//}
-//void WallTurret::onCollisionEnd(CollisionEventArg* collision_event)
-//{
-//
-//}
+void Cannon::onCollisionBegin(CollisionEventArg* collision_event)
+{
+	eID objectID = collision_event->_otherObject->getId();
+	switch (objectID)
+	{
+	case eID::BILL:
+	{
+		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
+		{
+			collision_event->_otherObject->setStatus(eStatus::DYING);
+			((Bill*)collision_event->_otherObject)->die();
+		}
+		break;
+	}
+	default:
+		break;
+	}
+}
+void Cannon::onCollisionEnd(CollisionEventArg* collision_event)
+{
+
+}
 //float WallTurret::checkCollision(BaseObject* object, float dt)
 //{
 //	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
@@ -475,8 +475,12 @@ void Cannon::checkIfOutofScreen()
 void Cannon::checkBill()
 {
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
-	if (bill->getStatus() == eStatus::DYING)
+	if(abs(bill->getPositionX() - this->getPositionX())>50)
+	//if (bill->getStatus() == eStatus::DYING)
 	{
 		this->setWTStatus(eWT_Status::WT_CLOSE);
+	}
+	else{
+		this->setWTStatus(eWT_Status::WT_APPEAR);
 	}
 }

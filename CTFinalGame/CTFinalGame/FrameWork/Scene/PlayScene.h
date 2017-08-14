@@ -19,7 +19,7 @@
 #include "../../Objects/Enemies/WallTurret.h"
 #include "../../Objects/Enemies/Soldier.h"
 #include "../../Objects/Enemies/Cannon.h"
-
+#include "../Scenario.h"
 #include "../../Objects/Bullets/AirCraft.h"
 #include "../QuadTree/ObjectFactory.h"
 #include "../QuadTree/QNode.h"
@@ -80,19 +80,19 @@ private:
 	void updateViewport(BaseObject* objTracker);
 
 
-	//bool flagbossScenario;
-	////ScenarioManager* _director;
-	////ScenarioManager* _directorKillBoss;
+	bool flagbossScenario;
+	ScenarioManager* _director;
+	ScenarioManager* _directorKillBoss;
 
-	//void killbossScene_Bill(float deltatime, bool& isFinish);
-	//void bossScene_Viewport(float dt, bool& finish);
+	void killbossScene_Bill(float deltatime, bool& isFinish);
+	void bossScene_Viewport(float dt, bool& finish);
 	//void playPassBossSound(float dt, bool& finish);
 	//void playBossStage1Sound(float dt, bool& finish);
 	//// Xử lý kéo màn hình khi gặp bốt.
-	//void ScenarioMoveViewport(float deltatime);
+	void ScenarioMoveViewport(float deltatime);
 	//
 	//// Xử lý thằng bill tự đi sau khi giết boss
-	//void ScenarioKillBoss(float deltatime);
+	void ScenarioKillBoss(float deltatime);
 
 	bool checkGameLife();
 

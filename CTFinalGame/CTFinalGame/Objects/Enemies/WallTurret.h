@@ -36,8 +36,8 @@ public:
 	void draw(LPD3DXSPRITE, Viewport*);
 	void release();
 
-	//void onCollisionBegin(CollisionEventArg*);
-	//void onCollisionEnd(CollisionEventArg*);
+	void onCollisionBegin(CollisionEventArg*);
+	void onCollisionEnd(CollisionEventArg*);
 
 	void setBillAngle(float);
 	float getBillAngle();

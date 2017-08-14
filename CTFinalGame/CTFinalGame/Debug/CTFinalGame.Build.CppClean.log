@@ -1,6 +1,5 @@
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\vc120.pdb
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\vc120.idb
-e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\aircraft.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\bullet.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\bulletmanager.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\falcon.obj
@@ -20,7 +19,7 @@ e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\emptyobject.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\explosion.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\land.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\lifeui.obj
-e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\tileset.obj
+e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\soundmanager.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\objectfactory.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\qnode.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\beginplayscene.obj
@@ -40,11 +39,13 @@ e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\utils.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\viewport.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\game.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\baseobject.obj
+e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\aircraft.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\contragame.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\ctfinalgame.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\animation.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\collisionbody.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\devicemanager.obj
+e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\dxaudio.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\event.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\gametime.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\graphics.obj
@@ -52,6 +53,8 @@ e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\icomponent.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\inputcontroller.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\map.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\tile.obj
+e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\tileset.obj
+e:\hk hè\git\ctfinalgame\ctfinalgame\ctfinalgame\debug\scenario.obj
 e:\hk hè\git\ctfinalgame\ctfinalgame\debug\ctfinalgame.ilk
 e:\hk hè\git\ctfinalgame\ctfinalgame\debug\ctfinalgame.exe
 e:\hk hè\git\ctfinalgame\ctfinalgame\debug\ctfinalgame.pdb

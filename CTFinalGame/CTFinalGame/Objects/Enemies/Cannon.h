@@ -6,7 +6,7 @@
 #include "../../FrameWork/StopWatch.h"
 #include "../../FrameWork/Scene/PlayScene.h"
 //#include "../Bullets/Bullet.h"
-//#include "../CollisionBody.h"
+#include "../../FrameWork/Collision/CollisionBody.h"
 #include "../../FrameWork/IComponent.h"
 #include "../Object/Explosion.h"
 #include "../Enemies/BaseEnemy.h"
@@ -42,8 +42,8 @@ public:
 	void draw(LPD3DXSPRITE, Viewport*);
 	void release();
 
-	//void onCollisionBegin(CollisionEventArg*);
-	//void onCollisionEnd(CollisionEventArg*);
+	void onCollisionBegin(CollisionEventArg*);
+	void onCollisionEnd(CollisionEventArg*);
 
 	void setBillAngle(float);
 	float getBillAngle();

@@ -204,6 +204,9 @@
     <ClCompile Include="FrameWork\dxaudio.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\Scenario.cpp">
+      <Filter>FrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -366,6 +369,9 @@
       <Filter>FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\dxaudio.h">
+      <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Scenario.h">
       <Filter>FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
