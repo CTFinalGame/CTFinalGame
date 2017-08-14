@@ -86,6 +86,7 @@
     <ClCompile Include="FrameWork\Animation.cpp" />
     <ClCompile Include="FrameWork\Collision\CollisionBody.cpp" />
     <ClCompile Include="FrameWork\DeviceManager.cpp" />
+    <ClCompile Include="FrameWork\dxaudio.cpp" />
     <ClCompile Include="FrameWork\Event.cpp" />
     <ClCompile Include="FrameWork\GameTime.cpp" />
     <ClCompile Include="FrameWork\Graphics.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="Objects\Object\Explosion.cpp" />
     <ClCompile Include="Objects\Object\Land.cpp" />
     <ClCompile Include="Objects\Object\LifeUI.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContraGame.h" />
@@ -140,6 +142,7 @@
     <ClInclude Include="FrameWork\Collision\CollisionBody.h" />
     <ClInclude Include="FrameWork\define.h" />
     <ClInclude Include="FrameWork\DeviceManager.h" />
+    <ClInclude Include="FrameWork\dxaudio.h" />
     <ClInclude Include="FrameWork\Event.h" />
     <ClInclude Include="FrameWork\GameTime.h" />
     <ClInclude Include="FrameWork\Graphics.h" />
@@ -187,6 +190,7 @@
     <ClInclude Include="Objects\Object\Explosion.h" />
     <ClInclude Include="Objects\Object\Land.h" />
     <ClInclude Include="Objects\Object\LifeUI.h" />
+    <ClInclude Include="SoundManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
