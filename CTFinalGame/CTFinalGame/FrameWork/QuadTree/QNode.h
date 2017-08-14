@@ -46,7 +46,7 @@ public:
 	static void loadChild(string id, int level, int x, int y, int width, int height, QNode* parent);
 	static QNode* loadQuadTree(const string path);
 	static QNode* initNode(string id, int level, int x, int y, int width, int height);
-	static void getListNode(QNode* rootNode);
+	static void getListNode(QNode* rootNode, const string path);
 	/*
 	L?y object mà bound ?è lên
 	@bound: hcn

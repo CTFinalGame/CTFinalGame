@@ -64,7 +64,9 @@ BaseObject* ObjectFactory::getObjectById(eID id, int x, int y, int width, int he
 	case AIRCRAFT:
 		//return getAirCraft(node);
 	case RIFLEMAN:
-		return getRifleMan(x, y, type);
+		return getRifleMan(id, x, y);
+	case RIFLEMANHIDDEN:
+		return getRifleMan(id, x, y);
 	case BRIDGE:
 		return getBridge(x, y);
 	case LAND:
@@ -100,12 +102,17 @@ BaseObject* ObjectFactory::getLand(eID id, int x, int y, int width, int height, 
 	eLandType typeLand;
 	bool canJumpDown=false;
 	typeLand = (eLandType)type;
-	if (id == LANDWATER)
+	if (id == LAND)
 	{
-		typeLand = (eLandType)1;
+		typeLand = eLandType::GRASS;
+	}
+	else	if (id == LANDWATER)
+	{
+		typeLand = eLandType::WATER;
 	}
 
 	direction = (eDirection)dir;
+
 	if (typeLand == GRASS)
 	{
 		canJumpDown = true;
@@ -118,10 +125,18 @@ BaseObject* ObjectFactory::getLand(eID id, int x, int y, int width, int height, 
 	return land;
 }
 
-BaseObject* ObjectFactory::getRifleMan(int x, int y, int status)
+BaseObject* ObjectFactory::getRifleMan(eID id, int x, int y)
 {
 	eStatus _status;
-	_status = (eStatus)status;
+	if (id == RIFLEMAN)
+	{
+		_status = eStatus::NORMAL;
+	}
+	else if (id == RIFLEMANHIDDEN)
+	{
+		_status = eStatus::HIDDEN;
+	}
+	
 	auto rifleMan = new Rifleman(_status, GVector2(x, y));
 	rifleMan->init();
 
