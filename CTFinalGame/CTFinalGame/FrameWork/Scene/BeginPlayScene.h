@@ -49,11 +49,11 @@ private:
 	Sprite* _waitscreen;
 	StopWatch* _access;
 
-	/*TextSprite* _textscore;
+	TextSprite* _textscore;
 	TextSprite* _textrest;
 	TextSprite* _texthighscore;
 	TextSprite* _textStage;
-	TextSprite* _textStageName;*/
+	TextSprite* _textStageName;
 };
 
 
