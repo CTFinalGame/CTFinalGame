@@ -222,6 +222,9 @@
     <ClCompile Include="FrameWork\Scene\Stage3.cpp">
       <Filter>FrameWork\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\ShadowBeast.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -403,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="FrameWork\Scene\Stage3.h">
       <Filter>FrameWork\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\ShadowBeast.h">
+      <Filter>Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

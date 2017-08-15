@@ -132,6 +132,7 @@
     <ClCompile Include="Objects\Enemies\Rifleman.cpp" />
     <ClCompile Include="Objects\Enemies\RockFall.cpp" />
     <ClCompile Include="Objects\Enemies\ScubaSoldier.cpp" />
+    <ClCompile Include="Objects\Enemies\ShadowBeast.cpp" />
     <ClCompile Include="Objects\Enemies\Soldier.cpp" />
     <ClCompile Include="Objects\Enemies\WallTurret.cpp" />
     <ClCompile Include="Objects\Object\Bill.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Objects\Enemies\Rifleman.h" />
     <ClInclude Include="Objects\Enemies\RockFall.h" />
     <ClInclude Include="Objects\Enemies\ScubaSoldier.h" />
+    <ClInclude Include="Objects\Enemies\ShadowBeast.h" />
     <ClInclude Include="Objects\Enemies\Soldier.h" />
     <ClInclude Include="Objects\Enemies\WallTurret.h" />
     <ClInclude Include="Objects\Object\Bill.h" />

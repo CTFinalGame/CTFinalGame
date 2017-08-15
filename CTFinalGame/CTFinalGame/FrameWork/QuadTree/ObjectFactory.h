@@ -25,11 +25,11 @@ private:
 	static BaseObject* getRedCannon(int x, int y);
 	static BaseObject* getWallTurret(int x, int y);
 	static BaseObject* getAirCraft(eID id, int x, int y);
+	static BaseObject* getBossStage1(int x, int y, int height);
 	//static BaseObject* getCreator(xml_node node);
 	static BaseObject* getBridge(int x, int y);
-	static BaseObject* getFalcon(eID id, int x, int y);
-	static BaseObject* getBossStage1(int x, int y, int height);
-	static BaseObject* getRockFly(int x, int y);
+	static BaseObject* getFalcon(eID id, int x, int y);	
+	static BaseObject* getRockFly(int x, int y, int width);
 	static BaseObject* getRockFall(int x, int y);
 	static BaseObject* getScubaSoldier(int x, int y);
 	static BaseObject* getFire(int x, int y);

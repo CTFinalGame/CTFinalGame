@@ -42,9 +42,9 @@ bool Stage3::init()
 	bulletmanager->init();
 	_listobject.push_back(bulletmanager);
 
-	//auto shadow = new ShadowBeast(GVector2(256, 4124));
-	//shadow->init();
-	//_listobject.push_back(shadow);
+	auto shadow = new ShadowBeast(GVector2(256, 300));
+	shadow->init();
+	_listobject.push_back(shadow);
 	//_text = new Text(L"Arial", "", 10, 25);
 
 	map<string, BaseObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resource//Map//b_ob.txt");
@@ -163,7 +163,7 @@ void Stage3::update(float dt)
 	screen.bottom = screen.top + _viewport->getHeight();*/
 	screen.left = viewport_in_transform.left;
 	screen.right = viewport_in_transform.right;
-	screen.bottom = viewport_position.y;
+	screen.bottom = viewport_position.y - _viewport->getHeight();
 	screen.top =  screen.bottom + _viewport->getHeight();
 	
 

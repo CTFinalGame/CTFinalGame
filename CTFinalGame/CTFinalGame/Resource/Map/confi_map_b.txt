@@ -3,5 +3,17 @@ RunMan
 RunManFire
 Item
 LAND
+Falcon_F
+ROCKFALL
+Falcon_L
+RIFLEMAN
+SCUBASOLDIER
+WALL_TURRET
+FIRE
+ROCKFLY
+Falcon_S
+REDCANNON
+Falcon_M
+SHADOW_BEAST
 Camera
 Character

@@ -5,7 +5,7 @@
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
-//#include "../../FrameWork/Managers/SoundManager.h"
+#include "../../FrameWork/SoundManager.h"
 #include "../Bullets/Bullet.h"
 #include "../Bullets/BulletManager.h"
 //#include "../Bullets/Beast_Bullet.h"

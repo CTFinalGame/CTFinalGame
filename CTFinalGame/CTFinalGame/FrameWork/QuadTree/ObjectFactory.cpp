@@ -91,13 +91,13 @@ BaseObject* ObjectFactory::getObjectById(eID id, int x, int y, int width, int he
 	case BOSS_STAGE1:
 		return getBossStage1(x, y, height);
 	case ROCKFLY:
-		//return getRockFly(node);
+		return getRockFly(x, y, width);
 	case ROCKFALL:
-		//return getRockFall(node);
+		return getRockFall(x, y);
 	case SCUBASOLDIER:
-		//return getScubaSoldier(node);
+		return getScubaSoldier(x, y);
 	case FIRE:
-		//return getFire(node);
+		return getFire(x, y);
 	case SHADOW_BEAST:
 		//return getShadowBeast(node);
 	default:
@@ -289,4 +289,37 @@ BaseObject* ObjectFactory::getBossStage1(int x, int y, int height)
 	auto boss = new Boss(GVector2(x, y-height), height);
 	boss->init();
 	return boss;
+}
+
+BaseObject* ObjectFactory::getRockFall(int x, int y)
+{
+	auto rockfall = new RockFall(GVector2(x + 32, y - 32));
+	rockfall->init();
+	return rockfall;
+}
+
+BaseObject* ObjectFactory::getScubaSoldier(int x, int y)
+{
+	auto scubasoldier = new ScubaSoldier(GVector2(x+32, y-8));
+	scubasoldier->init();
+	return scubasoldier;
+}
+
+BaseObject* ObjectFactory::getFire(int x, int y)
+{
+	y -= 8 * SCALE_FACTOR;
+	auto fire = new Fire(GVector2(x, y));
+	fire->init();
+	return fire;
+}
+
+BaseObject* ObjectFactory::getRockFly(int x, int y, int width)
+{
+	x -= 32;
+	width += 64;
+	y -= 32;
+
+	auto rockfly = new RockFly(GVector2(x, y), GVector2(x + width, y));
+	rockfly->init();
+	return rockfly;
 }
