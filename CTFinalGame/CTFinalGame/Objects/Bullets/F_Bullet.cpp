@@ -25,7 +25,10 @@ void FBullet::init()
 
 	auto roundmovement = new RoundMovement(ROUND_RADIUS, ROUND_FREQUENCE, radian, _sprite);
 	_componentList["RoundMovement"] = roundmovement;
-	
+	auto collisionBody = new CollisionBody(this);
+	_componentList.insert(pair<string, IComponent*>("CollisionBody", collisionBody));
+
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bullet::onCollisionBegin);
 }
 
 float FBullet::initRadian()
