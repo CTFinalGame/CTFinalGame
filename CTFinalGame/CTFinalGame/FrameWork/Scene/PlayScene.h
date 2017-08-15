@@ -7,6 +7,7 @@
 #include "../../FrameWork/SpriteManager.h"
 #include "../../FrameWork/Scene/SceneManager.h"
 #include "../../FrameWork/Scene/GameOverScene.h"
+#include "../../FrameWork/Scene/BeginPlayScene.h"
 #include "../../FrameWork/Animation.h"
 #include"../../Objects/Object/Bill.h"
 #include "../../Objects/BaseObject.h"

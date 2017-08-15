@@ -185,6 +185,10 @@ void PlayScene::release()
 		SAFE_DELETE(object);
 	}
 	background->release();
+	SAFE_DELETE(background);
+	SAFE_DELETE(_director);
+	SAFE_DELETE(_directorKillBoss);
+	SAFE_DELETE(_root);
 
 }
 void PlayScene::killbossScene_Bill(float deltatime, bool& isFinish)
@@ -207,7 +211,9 @@ void PlayScene::killbossScene_Bill(float deltatime, bool& isFinish)
 		bill->unforceMoveRight();
 		bill->unforceJump();
 		bill->removeGravity();
+		isFinish = true;
 	}
+
 }
 void Bill::forceMoveRight()
 {
@@ -283,8 +289,8 @@ void PlayScene::ScenarioKillBoss(float deltatime)
 		{
 			SAFE_DELETE(_directorKillBoss);
 			//chuyển scene
-			/*auto play = new BeginPlayScene(Score::getScore(), ((Bill*)_bill)->getLifeNumber(), 3);
-			SceneManager::getInstance()->replaceScene(play);*/
+			auto play = new BeginPlayScene(300, ((Bill*)_bill)->getLifeNumber(), 3);
+			SceneManager::getInstance()->replaceScene(play);
 		}
 	}
 }
