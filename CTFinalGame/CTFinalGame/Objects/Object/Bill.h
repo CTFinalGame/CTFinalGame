@@ -64,6 +64,12 @@ public:
 	void die();
 	void swimming();
 	float getMovingSpeed();
+
+	void removeGravity();
+	void forceMoveRight();
+	void unforceMoveRight();
+	void forceJump();
+	void unforceJump();
 	void unhookinputevent();
 	void shoot();
 	// Đổi kiểu đạn. 

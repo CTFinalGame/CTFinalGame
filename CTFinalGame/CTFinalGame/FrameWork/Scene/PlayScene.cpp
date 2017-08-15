@@ -17,22 +17,6 @@ PlayScene::~PlayScene()
 
 bool PlayScene::init()
 {
-
-	
-	/*auto _soldier = new Soldier(eStatus::RUNNING, GVector2(300, 240), -1);
-	_soldier->init();	
-	_listobject.push_back(_soldier);
-	auto _soldier1 = new Soldier(eStatus::RUNNING, GVector2(800, 240), -1);
-	_soldier1->init();
-	_listobject.push_back(_soldier1);
-	*/
-	//auto wallTurret = new Cannon(eStatus::NORMAL, 300, 300, 1);
-	//wallTurret->init();
-	////_listobject.push_back(wallTurret);
-
-	//auto cannon = new Cannon(eStatus::NORMAL, 400, 200, 2);
-	//cannon->init();
-	////_listobject.push_back(cannon);
 	auto rockfall = new RockFall(GVector2(200, 300));
 	rockfall->init();
 	_listobject.push_back(rockfall);
@@ -48,52 +32,9 @@ bool PlayScene::init()
      background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
 	 _bulletmanager = new BulletManager();
 	 _bulletmanager->init();
-
-	/* auto bossStage3 = new ShadowBeast(GVector2(400, 250));
-	 bossStage3->init();
-	 _listobject.push_back(bossStage3);*/
-	/* auto boss = new Boss(GVector2(400, 140), 100);
-	 boss->init();
-	 _listobject.push_back(boss);*/
-
-	/* auto fifleman = new Rifleman(eStatus::NORMAL, 580, 60);
-	fifleman->init();
-	_listobject.push_back(fifleman);
-	
-	auto fifleman1 = new Rifleman(eStatus::HIDDEN, 700, 300);
-	fifleman1->init();
-	_listobject.push_back(fifleman1);
-	
-	 auto bire = new Bridge(GVector2(1550,230));
-	 bire->init();
-	 _listobject.push_back(bire);	*/
-
-	 //auto land = new Land(50, 240, 1450, 20, eDirection::ALL, eLandType::GRASS);
-	 //land->init();
-	 //_listobject.push_back(land);
-	 //auto falon = new Falcon(650,140,eAirCraftType::S);
-	 //falon->init();
-	 //_listobject.push_back(falon);
-	 //auto landbottom = new Land(320, 170, 200, 20, eDirection::ALL, eLandType::GRASS);
-	 //landbottom->init();
-	 //_listobject.push_back(landbottom);
-	 //auto water = new Land(0, 40, 1500, 20, eDirection::ALL, eLandType::WATER);
-	 //water->init();
-	 //_listobject.push_back(water);
-	 //auto landwater = new Land(550,60, 200, 20, eDirection::ALL, eLandType::GRASS);
-	 //landwater->init();
-	 //_listobject.push_back(landwater);
-	 ////Tao airCraft
-	 //GVector2 pos(50, 300), hVeloc = AIRCRAFT_HORIZONTAL_VELOC, ampl = AIRCRAFT_AMPLITUDE;
-	 //float freq = AIRCRAFT_FREQUENCY;
-	 //eAirCraftType type = S;
-	 //auto airCraft = new AirCraft(pos, hVeloc / 2, ampl, freq, type);
-
-	 //airCraft->init();
-	 //_listobject.push_back(airCraft);
 	 auto bill = new Bill(1);
 	 bill->init();
-	 bill->setPosition(40, 500);
+	 bill->setPosition(6000, 500);
 	 this->_bill = bill;
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);
@@ -109,7 +50,16 @@ bool PlayScene::init()
 	 _director = new ScenarioManager();
 	// _director->insertScenario(scenarioBossSound);
 	 _director->insertScenario(scenarioBoss_Viewport);
+
+	 auto scenarioKillBoss = new Scenario("KillBoss");
+	 __hook(&Scenario::update, scenarioKillBoss, &PlayScene::killbossScene_Bill);
+	// auto playsound = new Scenario("PassBossSound");
+	// __hook(&Scenario::update, playsound, &PlayScene::playPassBossSound);
 	 flagbossScenario = false;
+
+	 _directorKillBoss = new ScenarioManager();
+	 //_directorKillBoss->insertScenario(playsound);
+	 _directorKillBoss->insertScenario(scenarioKillBoss);
 	return true;
 }
 void PlayScene::updateInput(float dt)
@@ -214,6 +164,8 @@ void PlayScene::update(float dt)
 		obj->update(dt);
 	}
 	this->ScenarioMoveViewport(dt);
+	this->ScenarioKillBoss(dt);
+
 }
 void PlayScene::draw(LPD3DXSPRITE spriteHandle)
 {
@@ -242,20 +194,41 @@ void PlayScene::killbossScene_Bill(float deltatime, bool& isFinish)
 
 	if (bill->getBounding().left < _viewport->getBounding().right)
 	{
-		/*if (bill->getPositionX() < 6448)
+		if (bill->getPositionX() < 6448)
 		bill->forceMoveRight();
 		else
 		{
 		if (bill->getPositionX() < 6500)
 		bill->forceJump();
-		}*/
+		}
 	}
 	else
 	{
-		/*bill->unforceMoveRight();
+		bill->unforceMoveRight();
 		bill->unforceJump();
-		bill->removeGravity();*/
+		bill->removeGravity();
 	}
+}
+void Bill::forceMoveRight()
+{
+	onKeyPressed(new KeyEventArg(DIK_RIGHT));
+}
+void Bill::unforceMoveRight()
+{
+	onKeyReleased(new KeyEventArg(DIK_RIGHT));
+}
+void Bill::forceJump()
+{
+	onKeyPressed(new KeyEventArg(DIK_X));
+}
+void Bill::unforceJump()
+{
+	onKeyReleased(new KeyEventArg(DIK_X));
+}
+void Bill::removeGravity()
+{
+	auto graivity = (Gravity*)(this->_componentList.find("Gravity")->second);
+	graivity->setGravity(VECTOR2ZERO);
 }
 void PlayScene::bossScene_Viewport(float dt, bool& finish)
 {
@@ -303,7 +276,7 @@ void PlayScene::ScenarioKillBoss(float deltatime)
 		return;
 	auto boss = getObject(eID::BOSS_STAGE1);
 	//if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
-	if (true)
+	if (boss->isInStatus(eStatus::DYING) == true)
 	{
 		this->_directorKillBoss->update(deltatime);
 		if (this->_directorKillBoss->isFinish() == true)
