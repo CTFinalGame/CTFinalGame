@@ -88,13 +88,13 @@ bool PlayScene::init()
 	 this->_mapobject.insert(maptemp->begin(), maptemp->end());
 
 	 _root = QNode::loadQuadTree("Resource//Map//a_quadtree.txt");
-	 auto scenarioBoss_Viewport = new Scenario("BossViewport");
-	 __hook(&Scenario::update, scenarioBoss_Viewport, &PlayScene::bossScene_Viewport);
+	// auto scenarioBoss_Viewport = new Scenario("BossViewport");
+	// __hook(&Scenario::update, scenarioBoss_Viewport, &PlayScene::bossScene_Viewport);
 	// auto scenarioBossSound = new Scenario("BossSound");
 	 //__hook(&Scenario::update, scenarioBossSound, &PlayScene::playBossStage1Sound);
-	 _director = new ScenarioManager();
+	// _director = new ScenarioManager();
 	// _director->insertScenario(scenarioBossSound);
-	 _director->insertScenario(scenarioBoss_Viewport);
+	// _director->insertScenario(scenarioBoss_Viewport);
 	 flagbossScenario = false;
 	return true;
 }

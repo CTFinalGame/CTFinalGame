@@ -12,15 +12,9 @@
 #include "../Enemies/BaseEnemy.h"
 #include "../Bullets/BulletManager.h"
 
-#define WALL_CANNON_HITPOINT 8
-#define WALL_CANNON_SCORE 1000
-#define WALL_CANNON_SHOOTING_DELAY 3000.0f
-#define WALL_CANNON_ANIMATION_SPEED 0.3f
-#define WALL_CANNON_APPEAR_SPEED 0.1f
-
 #define CANNON_HITPOINT 8
 #define CANNON_SCORE 500
-#define CANNON_SHOOTING_DELAY 1000.0f
+#define CANNON_SHOOTING_DELAY 2000.0f
 #define CANNON_ANIMATION_SPEED 0.33f
 #define CANNON_APPEAR_SPEED 0.08f
 
@@ -54,7 +48,7 @@ public:
 	void setWTStatus(eWT_Status);
 	eWT_Status getWT_Status();
 	void shoot();
-	RECT getBounding();
+	//RECT getBounding();
 
 	/*float checkCollision(BaseObject*, float);*/
 	void checkIfOutofScreen();

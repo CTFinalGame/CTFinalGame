@@ -564,6 +564,6 @@ void WallTurret::checkBill()
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
 	if (bill->getStatus() == eStatus::DYING)
 	{
-	this->setWTStatus(eWT_Status::WT_CLOSE);
+	//this->setWTStatus(eWT_Status::WT_CLOSE);
 	}
 }

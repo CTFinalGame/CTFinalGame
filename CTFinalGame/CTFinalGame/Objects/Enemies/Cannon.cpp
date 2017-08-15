@@ -133,7 +133,7 @@ void Cannon::update(float deltatime)
 		this->addStatus(eWT_Status::WT_SHOOTING);
 	}
 
-	this->checkBill();
+	//this->checkBill();
 	//for (auto it = _listBullet.begin(); it != _listBullet.end(); it++)
 	//{
 	//	(*it)->update(deltatime);
@@ -314,15 +314,15 @@ void Cannon::onCollisionEnd(CollisionEventArg* collision_event)
 //		collisionBody->checkCollision(object, dt);
 //	return 0.0f;
 //}
-RECT Cannon::getBounding()
-{
-	auto baseBound = BaseObject::getBounding();
-	baseBound.left += 7 * this->getScale().x;
-	baseBound.right -= 7 * this->getScale().x;
-	baseBound.top -= 7 * this->getScale().y;
-	baseBound.bottom += 7 * this->getScale().y;
-	return baseBound;
-}
+//RECT Cannon::getBounding()
+//{
+//	auto baseBound = BaseObject::getBounding();
+//	baseBound.left += 7 * this->getScale().x;
+//	baseBound.right -= 7 * this->getScale().x;
+//	baseBound.top -= 7 * this->getScale().y;
+//	baseBound.bottom += 7 * this->getScale().y;
+//	return baseBound;
+//}
 void Cannon::shoot()
 {
 	float angle = this->getShootingAngle();
@@ -475,8 +475,8 @@ void Cannon::checkIfOutofScreen()
 void Cannon::checkBill()
 {
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
-	if(abs(bill->getPositionX() - this->getPositionX())>50)
-	//if (bill->getStatus() == eStatus::DYING)
+	//if(abs(bill->getPositionX() - this->getPositionX())>50)
+	if (bill->getStatus() == eStatus::DYING)
 	{
 		this->setWTStatus(eWT_Status::WT_CLOSE);
 	}
