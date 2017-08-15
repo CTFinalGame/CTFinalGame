@@ -61,7 +61,7 @@ bool IntroScene::init()
 	_draw = true;
 	_drawyellowFalcon = false;
 
-	//SoundManager::getInstance()->Play(eSoundId::INTRO);
+	SoundManager::getInstance()->Play(eSoundId::INTRO);
 
 	return true;
 }

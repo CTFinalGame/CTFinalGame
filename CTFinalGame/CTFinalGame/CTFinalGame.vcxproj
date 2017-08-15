@@ -105,6 +105,7 @@
     <ClCompile Include="FrameWork\Scene\Scene.cpp" />
     <ClCompile Include="FrameWork\Scene\SceneManager.cpp" />
     <ClCompile Include="FrameWork\Scene\Stage3.cpp" />
+    <ClCompile Include="FrameWork\SoundManager.cpp" />
     <ClCompile Include="FrameWork\Sprite.cpp" />
     <ClCompile Include="FrameWork\SpriteManager.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
@@ -141,7 +142,6 @@
     <ClCompile Include="Objects\Object\Land.cpp" />
     <ClCompile Include="Objects\Object\LifeUI.cpp" />
     <ClCompile Include="Objects\Object\RockFly.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContraGame.h" />
@@ -167,6 +167,7 @@
     <ClInclude Include="FrameWork\Scene\Scene.h" />
     <ClInclude Include="FrameWork\Scene\SceneManager.h" />
     <ClInclude Include="FrameWork\Scene\Stage3.h" />
+    <ClInclude Include="FrameWork\SoundManager.h" />
     <ClInclude Include="FrameWork\Sprite.h" />
     <ClInclude Include="FrameWork\SpriteManager.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
@@ -204,7 +205,6 @@
     <ClInclude Include="Objects\Object\Land.h" />
     <ClInclude Include="Objects\Object\LifeUI.h" />
     <ClInclude Include="Objects\Object\RockFly.h" />
-    <ClInclude Include="SoundManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

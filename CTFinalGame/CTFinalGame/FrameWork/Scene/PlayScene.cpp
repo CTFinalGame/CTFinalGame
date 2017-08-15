@@ -93,7 +93,7 @@ bool PlayScene::init()
 	 //_listobject.push_back(airCraft);
 	 auto bill = new Bill(1);
 	 bill->init();
-	 bill->setPosition(200, 500);
+	 bill->setPosition(6630, 500);
 	 this->_bill = bill;
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);

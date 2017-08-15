@@ -7,7 +7,7 @@
 #include "../../FrameWork/SpriteManager.h"
 #include "../../FrameWork/InputController.h"
 #include "../../FrameWork/StopWatch.h"
-
+#include "../SoundManager.h"
 #include "../IComponent.h"
 #include "../../Objects/BaseObject.h"
 #include "../TextSprite.h"

@@ -215,12 +215,12 @@ void Bill::unhookinputevent()
 void Bill::onKeyPressed(KeyEventArg* key_event)
 {
 	if (this->isInStatus(eStatus::DYING))
-		return; 
+		return;
 	switch (key_event->_key)
 	{
 	case DIK_X:
 	{
-			
+
 				  if (!this->isInStatus(eStatus::LAYING_DOWN) || this->isInStatus(eStatus::MOVING_LEFT) || this->isInStatus(eStatus::MOVING_RIGHT))
 				  {
 					  if (!this->isInStatus(eStatus::SWIMING))
@@ -330,19 +330,19 @@ void Bill::onKeyPressed(KeyEventArg* key_event)
 	}
 	case DIK_S:
 	{
-		changeBulletType(eAirCraftType::S);
-		break;
+				  changeBulletType(eAirCraftType::S);
+				  break;
 	}
 	case DIK_F:
 	{
-		changeBulletType(eAirCraftType::F);
-		break;
+				  changeBulletType(eAirCraftType::F);
+				  break;
 	}
 	case DIK_L:
 	{
-		_lifeNum++;
-		_lifeUI->setLifeNumber(_lifeNum);
-		break;
+				  _lifeNum++;
+				  _lifeUI->setLifeNumber(_lifeNum);
+				  break;
 	}
 	default:
 		break;
@@ -453,14 +453,14 @@ void Bill::jump()
 	this->addStatus(eStatus::JUMPING);
 
 	//if (!this->isInStatus(eStatus::LAYING_DOWN))
-	
-		auto move = (Movement*)this->_componentList["Movement"];
-		move->setVelocity(GVector2(move->getVelocity().x, BILL_JUMP_VEL));
-	
 
-		auto g = (Gravity*)this->_componentList["Gravity"];
-		g->setGravity(GVector2(0, -GRAVITY));
-		g->setStatus(eGravityStatus::FALLING__DOWN);
+	auto move = (Movement*)this->_componentList["Movement"];
+	move->setVelocity(GVector2(move->getVelocity().x, BILL_JUMP_VEL));
+
+
+	auto g = (Gravity*)this->_componentList["Gravity"];
+	g->setGravity(GVector2(0, -GRAVITY));
+	g->setStatus(eGravityStatus::FALLING__DOWN);
 }
 
 void Bill::layDown()
@@ -740,7 +740,7 @@ void Bill::updateCurrentAnimateIndex()
 	// chết
 	if (this->isInStatus(eStatus::DYING))
 	{
-			_currentAnimateIndex = eStatus::DYING;
+		_currentAnimateIndex = eStatus::DYING;
 	}
 }
 
@@ -797,7 +797,7 @@ void Bill::onCollisionBegin(CollisionEventArg * collision_arg)
 	case eID::BRIDGE:
 	{
 
-	break;
+						break;
 	}
 	case eID::RIFLEMAN:
 	case eID::SOLDIER:
@@ -842,120 +842,144 @@ float Bill::checkCollision(BaseObject * object, float dt)
 	auto collisionBody = (CollisionBody*)_componentList["CollisionBody"];
 	eID objectId = object->getId();
 	eDirection direction;
-		// nếu ko phải là nhảy xuống, mới dừng gravity
-		if (!this->isInStatus(eStatus(eStatus::JUMPING | eStatus::FALLING)) && collisionBody->checkCollision(object, direction, dt, false))
+	if (objectId == eID::BOSS_STAGE1 &&  collisionBody->checkCollision(object, direction, dt, false))
+	{
+		if (direction == eDirection::LEFT)
 		{
-			// kt coi chổ đứng có cho nhảy xuống ko
-			if (objectId == eID::LAND)
+			float moveX, moveY;
+			if (collisionBody->isColliding(object, moveX, moveY, dt))
+			{
+				collisionBody->updateTargetPosition(object, direction, false, GVector2(moveX, moveY));
+			}
+		}
+		else
+		{
+			return 0.0;
+		}
+	}
+	else
+		// nếu ko phải là nhảy xuống, mới dừng gravity
+	if (!this->isInStatus(eStatus(eStatus::JUMPING | eStatus::FALLING)) && collisionBody->checkCollision(object, direction, dt, false))
+	{
+		// kt coi chổ đứng có cho nhảy xuống ko
+		if (objectId == eID::LAND)
+		{
+
+			auto land = (Land*)object;
+			eLandType preType = land->getType();
+			_canJumpDown = land->canJump();
+			// lấy type của preObject
+			if (_preObject != nullptr && _preObject->getId() == eID::LAND)
+			{
+				preType = ((Land*)_preObject)->getType();
+			}
+
+			if (land->getType() == eLandType::WATER)
+			{
+				// nếu trước đó không phải là nước thì mới cho bơi
+				if (preType == eLandType::BRIDGELAND || preType == eLandType::GRASS || _preObject == nullptr)
+				{
+					// swim
+					this->swimming();
+				}
+
+			}
+
+			else if (this->isInStatus(eStatus::SWIMING))
+			{
+				if (direction == eDirection::TOP)
+				{
+
+					this->removeStatus(eStatus::SWIMING);
+					this->removeStatus(eStatus::DIVING);
+					this->setPositionY(object->getBounding().top);
+				}
+			}
+			// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
+			if (direction == eDirection::TOP && !(this->getVelocity().y > -200 && this->isInStatus(eStatus::JUMPING)))
 			{
 
-				auto land = (Land*)object;
-				eLandType preType = land->getType();
-				_canJumpDown = land->canJump();
-				// lấy type của preObject
-				if (_preObject != nullptr && _preObject->getId() == eID::LAND)
+				// vận tốc lớn hơn 200 hướng xuống => cho trường hợp nhảy từ dưới lên
+				// xử lý đặc biệt, Collision body update position bt ko được
+				// khi vào đây mới update position cho nó
+				float moveX, moveY;
+				if (collisionBody->isColliding(object, moveX, moveY, dt))
 				{
-					preType = ((Land*)_preObject)->getType();
-				}
-
-				if (land->getType() == eLandType::WATER)
-				{
-					// nếu trước đó không phải là nước thì mới cho bơi
-					if (preType == eLandType::BRIDGELAND || preType == eLandType::GRASS || _preObject == nullptr)
-					{
-						// swim
-						this->swimming();
-					}
-
-				}
-
-				else if (this->isInStatus(eStatus::SWIMING))
-				{
-					if (direction == eDirection::TOP)
-					{
-						
-						this->removeStatus(eStatus::SWIMING);
-						this->removeStatus(eStatus::DIVING);
-						this->setPositionY(object->getBounding().top);
-					}
-				}
-				// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
-				if (direction == eDirection::TOP && !(this->getVelocity().y >  -200 && this->isInStatus(eStatus::JUMPING)))
-				{
-					// vận tốc lớn hơn 200 hướng xuống => cho trường hợp nhảy từ dưới lên
-					// xử lý đặc biệt, Collision body update position bt ko được
-					// khi vào đây mới update position cho nó
-					float moveX, moveY;
+						// vận tốc lớn hơn 200 hướng xuống => cho trường hợp nhảy từ dưới lên
+						// xử lý đặc biệt, Collision body update position bt ko được
+						// khi vào đây mới update position cho nó
+						float moveX, moveY;
 					if (collisionBody->isColliding(object, moveX, moveY, dt))
 					{
 						//this->setPositionY(object->getBounding().top);
 
 						collisionBody->updateTargetPosition(object, direction, false, GVector2(moveX, moveY));
 					}
-
-					auto gravity = (Gravity*)this->_componentList["Gravity"];
-					gravity->setStatus(eGravityStatus::SHALLOWED);
-
-					this->standing();
-
-					_preObject = object;
 				}
-			}
-			else{
-				_canJumpDown = false;
-			}
-		}
-			else if (_preObject == object)
-			{
-				// kiểm tra coi nhảy hết qua cái land cũ chưa
-				// để gọi event end.
-				collisionBody->checkCollision(object, dt, false);
 
 				auto gravity = (Gravity*)this->_componentList["Gravity"];
-				gravity->setStatus(eGravityStatus::FALLING__DOWN);
+				gravity->setStatus(eGravityStatus::SHALLOWED);
 
-				if (!this->isInStatus(eStatus::JUMPING) && !this->isInStatus(eStatus::FALLING))
-				{
-					this->addStatus(eStatus::FALLING);
-				}
-			}
-		if (objectId != eID::LAND && objectId)
-		{
-			for (auto it = _listBullets.begin(); it != _listBullets.end(); it++)
-			{
+				this->standing();
 
-				if (objectId == eID::ROCKCREATOR)
-				{
-					//safeCheckCollision((*it), ((RockCreator*)object)->getRock(), dt);
-
-				}
-				if (objectId == eID::SHADOW_BEAST)
-				{
-					/*safeCheckCollision((*it), ((ShadowBeast*)object)->getLeftArm(), dt);
-					safeCheckCollision((*it), ((ShadowBeast*)object)->getRigtArm(), dt);
-					safeCheckCollision((*it), ((ShadowBeast*)object)->getMouth(), dt);*/
-				}
-				else if (objectId == eID::BOSS_STAGE1)
-				{
-					safeCheckCollision((*it), ((Boss*)object)->getGun1(), dt);
-					safeCheckCollision((*it), ((Boss*)object)->getGun2(), dt);
-					safeCheckCollision((*it), ((Boss*)object)->getShield(), dt);
-					safeCheckCollision((*it), ((Boss*)object)->getRifleMan(), dt);
-				}
-				else if (objectId == eID::CREATOR)
-				{
-					//auto children = ((ObjectCreator*)object)->getObjects();
-					/*for (auto child : children)
-					{
-					safeCheckCollision((*it), child, dt);
-					}*/
-				}
-				else
-				{
-					(*it)->checkCollision(object, dt);
-				}
+				_preObject = object;
 			}
 		}
+		else{
+			_canJumpDown = false;
+		}
+	}
+	else if (_preObject == object)
+	{
+		// kiểm tra coi nhảy hết qua cái land cũ chưa
+		// để gọi event end.
+		collisionBody->checkCollision(object, dt, false);
+
+		auto gravity = (Gravity*)this->_componentList["Gravity"];
+		gravity->setStatus(eGravityStatus::FALLING__DOWN);
+
+		if (!this->isInStatus(eStatus::JUMPING) && !this->isInStatus(eStatus::FALLING))
+		{
+			this->addStatus(eStatus::FALLING);
+		}
+	}
+	if (objectId != eID::LAND && objectId)
+	{
+		for (auto it = _listBullets.begin(); it != _listBullets.end(); it++)
+		{
+
+			if (objectId == eID::ROCKCREATOR)
+			{
+				//safeCheckCollision((*it), ((RockCreator*)object)->getRock(), dt);
+
+			}
+			if (objectId == eID::SHADOW_BEAST)
+			{
+				/*safeCheckCollision((*it), ((ShadowBeast*)object)->getLeftArm(), dt);
+				safeCheckCollision((*it), ((ShadowBeast*)object)->getRigtArm(), dt);
+				safeCheckCollision((*it), ((ShadowBeast*)object)->getMouth(), dt);*/
+			}
+			else if (objectId == eID::BOSS_STAGE1)
+			{
+				safeCheckCollision((*it), ((Boss*)object)->getGun1(), dt);
+				safeCheckCollision((*it), ((Boss*)object)->getGun2(), dt);
+				safeCheckCollision((*it), ((Boss*)object)->getShield(), dt);
+				safeCheckCollision((*it), ((Boss*)object)->getRifleMan(), dt);
+			}
+			else if (objectId == eID::CREATOR)
+			{
+				//auto children = ((ObjectCreator*)object)->getObjects();
+				/*for (auto child : children)
+				{
+				safeCheckCollision((*it), child, dt);
+				}*/
+			}
+			else
+			{
+				(*it)->checkCollision(object, dt);
+			}
+		}
+	}
 	return 0.0f;
 }
 
@@ -1065,7 +1089,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new Bullet(position, (eBulletType)(BILL_BULLET | NORMAL_BULLET), angle);
-
+		SoundManager::getInstance()->Play(eSoundId::BASE_BULLET_FIRE);
 	}
 	else if ((_currentGun & M_BULLET) == M_BULLET)
 	{
@@ -1073,6 +1097,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new MBullet(position, angle);
+		SoundManager::getInstance()->Play(eSoundId::MBULLET_FIRE);
 
 	}
 	else if ((_currentGun & S_BULLET) == S_BULLET)
@@ -1081,6 +1106,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new SBullet(position, angle);
+		SoundManager::getInstance()->Play(eSoundId::SBULLET_FIRE);
 	}
 	else if ((_currentGun & F_BULLET) == F_BULLET)
 	{
@@ -1088,6 +1114,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new FBullet(position, angle);
+		SoundManager::getInstance()->Play(eSoundId::FBULLET_FIRE);
 	}
 
 	return bullet;
@@ -1124,6 +1151,7 @@ float Bill::getShootSpeed()
 }
 void Bill::changeBulletType(eAirCraftType type)
 {
+	SoundManager::getInstance()->Play(eSoundId::EAT_ITEM);
 	switch (type)
 	{
 	case L:
