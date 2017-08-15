@@ -59,12 +59,6 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	// sp = new SPRITE(...)
 	// this->_listSprite.insert(pair<eID, Sprite*>(eID::ENUMOBJECT, sp));
 
-	//Sprite* sp = new Sprite(spriteHandle, L"Flower.png", 4, 4);
-	//this->_listSprite.insert(pair<eID, Sprite*>(eID::FLOWER, sp));
-
-	//sp = new Sprite(spriteHandle, L"mario.png", 5, 5);
-	//this->_listSprite.insert(pair<eID, Sprite*>(eID::MARIO, sp));
-
 	Sprite* sp = NULL;
 	sp = new Sprite(spriteHandle, L"Resource//Soldier.png",10,10);
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::SOLDIER, sp));
@@ -117,12 +111,14 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Map//stage1.png", 120, 10);
 	sp->setOrigin(VECTOR2ZERO);
 	this->_listSprite[eID::MAP1] = sp;
+	sp = new Sprite(spriteHandle, L"Resource//Map//stage3.png", 140, 10);
+	sp->setOrigin(VECTOR2ZERO);
+	this->_listSprite[eID::MAP3] = sp;
+
 	sp = new Sprite(spriteHandle, L"Resource//Images//stage3_elements.png", 5, 5);
 	this->_listSprite[eID::ROCKFLY] = sp;
 	this->loadSpriteInfo(eID::ROCKFLY, "Resource//Images//rockfly_animation.txt");
 
-	//this->_listSprite[eID::SHADOW_ARM] = sp;
-	//this->loadSpriteInfo(eID::SHADOW_ARM, "Resources//Images//shadowarm_animation.txt");
 	sp = new Sprite(spriteHandle, L"Resource//Images//ScubaSoldier.png");
 	this->_listSprite[eID::SCUBASOLDIER] = sp;
 	this->loadSpriteInfo(eID::SCUBASOLDIER, "Resource//Images//scubasoldier_animation.txt");
@@ -139,11 +135,12 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eID::BEGIN_STAGE3] = sp;
 	sp = new Sprite(spriteHandle, L"Resource//Images//GameOver.png");
 	this->_listSprite[eID::GAME_OVER_SCENE] = sp;
-	//
-	//sp = new Sprite(spriteHandle, L"Resources//Images//boss_stage3.png");
-	//this->_listSprite[eID::SHADOW_MOUTH] = sp;
-	//this->loadSpriteInfo(eID::SHADOW_MOUTH, "Resources//Images//shadowbeast_animation.txt");
 
+	sp = new Sprite(spriteHandle, L"Resource//Images//boss_stage3.png");
+	this->_listSprite[eID::SHADOW_MOUTH] = sp;
+	this->loadSpriteInfo(eID::SHADOW_MOUTH, "Resource//Images//shadowbeast_animation.txt");
+	this->_listSprite[eID::SHADOW_ARM] = sp;
+	this->loadSpriteInfo(eID::SHADOW_ARM, "Resource//Images//shadowarm_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//fire.png");
 	this->_listSprite[eID::FIRE] = sp;

@@ -7,6 +7,7 @@
 #include "FrameWork/Scene/PlayScene.h"
 #include "FrameWork\SpriteManager.h"
 #include"FrameWork/Scene/IntroScene.h"
+#include "FrameWork/Scene/Stage3.h"
 
 class ContraGame : public Game
 {

@@ -69,6 +69,7 @@ enum eID
 	TUT_LAYER		= 37,
 
 	MAP1			=38,
+	MAP3         =39,
 	LANDWATER = 40,
 	//Item B,F,L,M,R,S của AirCraft
 	AIRCRAFT_B = 41,

@@ -882,7 +882,6 @@ float Bill::checkCollision(BaseObject * object, float dt)
 				// nếu chạm top mà trừ trường hợp nhảy lên vận tốc rớt xuống nhỏ hơn 200
 				if (direction == eDirection::TOP && !(this->getVelocity().y >  -200 && this->isInStatus(eStatus::JUMPING)))
 				{
-					
 					// vận tốc lớn hơn 200 hướng xuống => cho trường hợp nhảy từ dưới lên
 					// xử lý đặc biệt, Collision body update position bt ko được
 					// khi vào đây mới update position cho nó

@@ -104,6 +104,7 @@
     <ClCompile Include="FrameWork\Scene\PlayScene.cpp" />
     <ClCompile Include="FrameWork\Scene\Scene.cpp" />
     <ClCompile Include="FrameWork\Scene\SceneManager.cpp" />
+    <ClCompile Include="FrameWork\Scene\Stage3.cpp" />
     <ClCompile Include="FrameWork\Sprite.cpp" />
     <ClCompile Include="FrameWork\SpriteManager.cpp" />
     <ClCompile Include="FrameWork\StopWatch.cpp" />
@@ -130,6 +131,7 @@
     <ClCompile Include="Objects\Enemies\Rifleman.cpp" />
     <ClCompile Include="Objects\Enemies\RockFall.cpp" />
     <ClCompile Include="Objects\Enemies\ScubaSoldier.cpp" />
+    <ClCompile Include="Objects\Enemies\ShadowBeast.cpp" />
     <ClCompile Include="Objects\Enemies\Soldier.cpp" />
     <ClCompile Include="Objects\Enemies\WallTurret.cpp" />
     <ClCompile Include="Objects\Object\Bill.cpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="FrameWork\Scene\PlayScene.h" />
     <ClInclude Include="FrameWork\Scene\Scene.h" />
     <ClInclude Include="FrameWork\Scene\SceneManager.h" />
+    <ClInclude Include="FrameWork\Scene\Stage3.h" />
     <ClInclude Include="FrameWork\Sprite.h" />
     <ClInclude Include="FrameWork\SpriteManager.h" />
     <ClInclude Include="FrameWork\StopWatch.h" />
@@ -191,6 +194,7 @@
     <ClInclude Include="Objects\Enemies\Rifleman.h" />
     <ClInclude Include="Objects\Enemies\RockFall.h" />
     <ClInclude Include="Objects\Enemies\ScubaSoldier.h" />
+    <ClInclude Include="Objects\Enemies\ShadowBeast.h" />
     <ClInclude Include="Objects\Enemies\Soldier.h" />
     <ClInclude Include="Objects\Enemies\WallTurret.h" />
     <ClInclude Include="Objects\Object\Bill.h" />

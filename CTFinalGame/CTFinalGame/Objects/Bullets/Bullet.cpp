@@ -253,7 +253,7 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			break;
 		}
 	}
-	if (this->isEnemyBullet())
+	/* if(this->isEnemyBullet())
 	{
 		switch (objectID)
 		{
@@ -291,7 +291,7 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			break;
 
 		}
-	}
+	}*/
 }
 
 float Bullet::checkCollision(BaseObject * object, float dt)

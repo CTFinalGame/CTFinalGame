@@ -5,12 +5,12 @@
 
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/StopWatch.h"
-#include "../../FrameWork/Managers/SoundManager.h"
+//#include "../../FrameWork/Managers/SoundManager.h"
 #include "../Bullets/Bullet.h"
 #include "../Bullets/BulletManager.h"
-#include "../Bullets/Beast_Bullet.h"
-#include "BaseEnemy.h"
-
+//#include "../Bullets/Beast_Bullet.h"
+#include "../Enemies/BaseEnemy.h"
+#include "../Object/Explosion.h"
 class ShadowBeast : public BaseEnemy
 {
 public:

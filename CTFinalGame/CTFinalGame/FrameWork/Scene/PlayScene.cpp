@@ -49,6 +49,9 @@ bool PlayScene::init()
 	 _bulletmanager = new BulletManager();
 	 _bulletmanager->init();
 
+	/* auto bossStage3 = new ShadowBeast(GVector2(400, 250));
+	 bossStage3->init();
+	 _listobject.push_back(bossStage3);*/
 	/* auto boss = new Boss(GVector2(400, 140), 100);
 	 boss->init();
 	 _listobject.push_back(boss);*/
