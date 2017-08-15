@@ -862,7 +862,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 	if (!this->isInStatus(eStatus(eStatus::JUMPING | eStatus::FALLING)) && collisionBody->checkCollision(object, direction, dt, false))
 	{
 		// kt coi chổ đứng có cho nhảy xuống ko
-		if (objectId == eID::LAND)
+		if (objectId == eID::LAND || objectId ==eID::ROCKFLY)
 		{
 
 			auto land = (Land*)object;
