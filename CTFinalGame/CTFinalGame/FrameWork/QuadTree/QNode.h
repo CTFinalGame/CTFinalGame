@@ -16,15 +16,12 @@ private:
 	int _level;
 	QNode* _parent;
 	QNode* _childs[4];
-
-	//vector<BaseObject*>  _listOject;
 	vector <string> _listObject;
 
 
 public:
 	QNode();
 	QNode(string id, int level, RECT bound, QNode* parent);
-	void insertObject(BaseObject* baseobject);
 	void insertObject(string name);
 	RECT getBound();
 	string getId();
@@ -37,9 +34,6 @@ public:
 	static int checkLevel(string id);
 
 	vector<string> getAllObject();
-
-	// Hàm này gây delay. Không dùng hàm này.
-	vector<string> getlistObject(RECT bound);
 
 	static string substringID(string id, int index, int length);
 

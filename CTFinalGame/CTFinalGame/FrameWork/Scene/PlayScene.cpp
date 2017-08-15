@@ -33,7 +33,18 @@ bool PlayScene::init()
 	//auto cannon = new Cannon(eStatus::NORMAL, 400, 200, 2);
 	//cannon->init();
 	////_listobject.push_back(cannon);
-
+	auto rockfall = new RockFall(GVector2(200, 300));
+	rockfall->init();
+	_listobject.push_back(rockfall);
+	auto scuba = new ScubaSoldier(GVector2(100, 50));
+	scuba->init();
+	_listobject.push_back(scuba);
+	auto rockfly = new RockFly(GVector2(50, 250), GVector2(200, 250));
+	rockfly->init();
+	_listobject.push_back(rockfly);
+	auto fire = new Fire(GVector2(50, 150));
+	fire->init();
+	_listobject.push_back(fire);
      background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
 	 _bulletmanager = new BulletManager();
 	 _bulletmanager->init();

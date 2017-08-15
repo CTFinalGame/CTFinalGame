@@ -126,7 +126,10 @@
     <ClCompile Include="Objects\Enemies\BaseEnemy.cpp" />
     <ClCompile Include="Objects\Enemies\Boss.cpp" />
     <ClCompile Include="Objects\Enemies\Cannon.cpp" />
+    <ClCompile Include="Objects\Enemies\Fire.cpp" />
     <ClCompile Include="Objects\Enemies\Rifleman.cpp" />
+    <ClCompile Include="Objects\Enemies\RockFall.cpp" />
+    <ClCompile Include="Objects\Enemies\ScubaSoldier.cpp" />
     <ClCompile Include="Objects\Enemies\Soldier.cpp" />
     <ClCompile Include="Objects\Enemies\WallTurret.cpp" />
     <ClCompile Include="Objects\Object\Bill.cpp" />
@@ -135,6 +138,7 @@
     <ClCompile Include="Objects\Object\Explosion.cpp" />
     <ClCompile Include="Objects\Object\Land.cpp" />
     <ClCompile Include="Objects\Object\LifeUI.cpp" />
+    <ClCompile Include="Objects\Object\RockFly.cpp" />
     <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +187,10 @@
     <ClInclude Include="Objects\Enemies\BaseEnemy.h" />
     <ClInclude Include="Objects\Enemies\Boss.h" />
     <ClInclude Include="Objects\Enemies\Cannon.h" />
+    <ClInclude Include="Objects\Enemies\Fire.h" />
     <ClInclude Include="Objects\Enemies\Rifleman.h" />
+    <ClInclude Include="Objects\Enemies\RockFall.h" />
+    <ClInclude Include="Objects\Enemies\ScubaSoldier.h" />
     <ClInclude Include="Objects\Enemies\Soldier.h" />
     <ClInclude Include="Objects\Enemies\WallTurret.h" />
     <ClInclude Include="Objects\Object\Bill.h" />
@@ -192,6 +199,7 @@
     <ClInclude Include="Objects\Object\Explosion.h" />
     <ClInclude Include="Objects\Object\Land.h" />
     <ClInclude Include="Objects\Object\LifeUI.h" />
+    <ClInclude Include="Objects\Object\RockFly.h" />
     <ClInclude Include="SoundManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

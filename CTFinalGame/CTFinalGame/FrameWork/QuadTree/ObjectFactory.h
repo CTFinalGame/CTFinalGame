@@ -29,14 +29,11 @@ private:
 	static BaseObject* getBridge(int x, int y);
 	static BaseObject* getFalcon(eID id, int x, int y);
 	static BaseObject* getBossStage1(int x, int y, int height);
-	//static BaseObject* getRockFly(xml_node node);
-	//static BaseObject* getRockFall(xml_node node);
-	//static BaseObject* getScubaSoldier(xml_node node);
-	//static BaseObject* getFire(xml_node node);
+	static BaseObject* getRockFly(int x, int y);
+	static BaseObject* getRockFall(int x, int y);
+	static BaseObject* getScubaSoldier(int x, int y);
+	static BaseObject* getFire(int x, int y);
 	//static BaseObject* getShadowBeast(xml_node node);
-
-
-	static map<string, string> getObjectProperties(eID id, int x, int y, int width, int height, int type, int dir);
 };
 
 #endif // !__OBJECT_READER__

@@ -75,12 +75,12 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	Sprite* bill = new Sprite(spriteHandle, L"Resource//bill_animation.png");
 	this->_listSprite[eID::BILL] = bill;
 	this->loadSpriteInfo(eID::BILL, "Resource//bill_animation.txt");
+	
 	sp = new Sprite(spriteHandle, L"Resource//Images//Falcon.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::FALCON, sp));
 	this->loadSpriteInfo(eID::FALCON, "Resource//Images//falcon_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//Cannon_all.png", 15, 5);
-	//this->_listSprite.insert(pair<eID, Sprite*>(eID::REDCANON, sp));
 	this->_listSprite[eID::REDCANNON] = sp;
 	this->loadSpriteInfo(eID::REDCANNON, "Resource//Images//cannon_animation.txt");
 
@@ -117,13 +117,15 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Map//stage1.png", 120, 10);
 	sp->setOrigin(VECTOR2ZERO);
 	this->_listSprite[eID::MAP1] = sp;
-	//sp = new Sprite(spriteHandle, L"Resources//Images//stage3_elements.png", 5, 5);
-	//this->_listSprite[eID::ROCKFLY] = sp;
-	//this->loadSpriteInfo(eID::ROCKFLY, "Resources//Images//rockfly_animation.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//stage3_elements.png", 5, 5);
+	this->_listSprite[eID::ROCKFLY] = sp;
+	this->loadSpriteInfo(eID::ROCKFLY, "Resource//Images//rockfly_animation.txt");
 
 	//this->_listSprite[eID::SHADOW_ARM] = sp;
 	//this->loadSpriteInfo(eID::SHADOW_ARM, "Resources//Images//shadowarm_animation.txt");
-
+	sp = new Sprite(spriteHandle, L"Resource//Images//ScubaSoldier.png");
+	this->_listSprite[eID::SCUBASOLDIER] = sp;
+	this->loadSpriteInfo(eID::SCUBASOLDIER, "Resource//Images//scubasoldier_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//Life.png");
 	this->_listSprite[eID::LIFE_ICON] = sp;
@@ -143,13 +145,13 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	//this->loadSpriteInfo(eID::SHADOW_MOUTH, "Resources//Images//shadowbeast_animation.txt");
 
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//fire.png");
-	//this->_listSprite[eID::FIRE] = sp;
-	//this->loadSpriteInfo(eID::FIRE, "Resources//Images//fire_animation.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//fire.png");
+	this->_listSprite[eID::FIRE] = sp;
+	this->loadSpriteInfo(eID::FIRE, "Resource//Images//fire_animation.txt");
 
-	//sp = new Sprite(spriteHandle, L"Resources//Images//rockfall.png", 4, 4);
-	//this->_listSprite[eID::ROCKFALL] = sp;
-	//this->loadSpriteInfo(eID::ROCKFALL, "Resources//Images//rockfall_animation.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//rockfall.png", 4, 4);
+	this->_listSprite[eID::ROCKFALL] = sp;
+	this->loadSpriteInfo(eID::ROCKFALL, "Resource//Images//rockfall_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//fontEx.png", 30, 10);
 	this->_listSprite[eID::FONTEX] = sp;

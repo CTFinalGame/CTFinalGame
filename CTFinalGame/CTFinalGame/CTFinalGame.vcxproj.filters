@@ -207,6 +207,18 @@
     <ClCompile Include="FrameWork\Scenario.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Enemies\RockFall.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\ScubaSoldier.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\RockFly.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Enemies\Fire.cpp">
+      <Filter>Object\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -373,6 +385,18 @@
     </ClInclude>
     <ClInclude Include="FrameWork\Scenario.h">
       <Filter>FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\RockFall.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\ScubaSoldier.h">
+      <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\RockFly.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Enemies\Fire.h">
+      <Filter>Object\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

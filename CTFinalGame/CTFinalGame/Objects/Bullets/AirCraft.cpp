@@ -150,8 +150,6 @@ void AirCraft::update(float deltatime)
 			this->setStatus(eStatus::DESTROY);
 		}
 	}
-
-
 }
 
 eAirCraftType AirCraft::getType()

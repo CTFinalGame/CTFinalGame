@@ -17,10 +17,6 @@ QNode::QNode(string id, int level, RECT bound, QNode* parent)
 	}
 }
 
-void QNode::insertObject(BaseObject* baseobject)
-{
-	//this->_listOject.push_back(baseobject);
-}
 
 void QNode::insertObject(string objectname)
 {
@@ -140,10 +136,6 @@ void QNode::getListNode(QNode* rootNode, const string path)
 		}
 		float x, y, width, height;
 		temp->_level = checkLevel(temp->_id);
-		/*myfile >> temp->_bound.left;
-		myfile >> temp->_bound.bottom;
-		myfile >> temp->_bound.right;
-		myfile >> temp->_bound.top;*/
 		myfile >> x;
 		myfile >> y;
 		myfile >> width;
@@ -173,12 +165,7 @@ void QNode::getListNode(QNode* rootNode, const string path)
 		{
 			check = 1;
 		}
-		list.push_back(temp);
-		//if (count != 1)
-		//{
-		//	
-		//}
-		
+		list.push_back(temp);	
 	}
 	if (rootNode->_id == "0")
 	{
