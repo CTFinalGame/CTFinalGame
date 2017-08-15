@@ -93,7 +93,7 @@ bool PlayScene::init()
 	 //_listobject.push_back(airCraft);
 	 auto bill = new Bill(1);
 	 bill->init();
-	 bill->setPosition(6200, 500);
+	 bill->setPosition(40, 500);
 	 this->_bill = bill;
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);
@@ -284,7 +284,7 @@ void PlayScene::ScenarioMoveViewport(float deltatime)
 	if (_director == nullptr)
 		return;
 
-	if (((Bill*)_bill)->getPositionX() > 100)
+	if (((Bill*)_bill)->getPositionX() > BOSS_VIEWPORT_ANCHOR)
 	{
 		flagbossScenario = true;
 	}
