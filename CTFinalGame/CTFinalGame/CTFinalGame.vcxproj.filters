@@ -216,13 +216,11 @@
     <ClCompile Include="Objects\Enemies\Fire.cpp">
       <Filter>Object\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Enemies\ShadowBeast.cpp">
-      <Filter>Object\Enemies</Filter>
+    <ClCompile Include="FrameWork\SoundManager.cpp">
+      <Filter>FrameWork</Filter>
     </ClCompile>
     <ClCompile Include="FrameWork\Scene\Stage3.cpp">
       <Filter>FrameWork\Scene</Filter>
-    <ClCompile Include="FrameWork\SoundManager.cpp">
-      <Filter>FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,13 +398,11 @@
     <ClInclude Include="Objects\Enemies\Fire.h">
       <Filter>Object\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Enemies\ShadowBeast.h">
-      <Filter>Object\Enemies</Filter>
+    <ClInclude Include="FrameWork\SoundManager.h">
+      <Filter>FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\Scene\Stage3.h">
       <Filter>FrameWork\Scene</Filter>
-    <ClInclude Include="FrameWork\SoundManager.h">
-      <Filter>FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
