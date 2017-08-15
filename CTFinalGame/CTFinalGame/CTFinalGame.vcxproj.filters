@@ -198,9 +198,6 @@
     <ClCompile Include="FrameWork\QuadTree\QNode.cpp">
       <Filter>FrameWork\QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>FrameWork</Filter>
-    </ClCompile>
     <ClCompile Include="FrameWork\dxaudio.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
@@ -218,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="Objects\Enemies\Fire.cpp">
       <Filter>Object\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\SoundManager.cpp">
+      <Filter>FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -377,9 +377,6 @@
     <ClInclude Include="FrameWork\QuadTree\QNode.h">
       <Filter>FrameWork\QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="FrameWork\dxaudio.h">
       <Filter>FrameWork</Filter>
     </ClInclude>
@@ -397,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="Objects\Enemies\Fire.h">
       <Filter>Object\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\SoundManager.h">
+      <Filter>FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

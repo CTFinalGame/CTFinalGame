@@ -6,7 +6,7 @@
 #include "../../FrameWork/Animation.h"
 #include "../../FrameWork/InputController.h"
 #include "../../FrameWork/Scene/SceneManager.h"
-
+#include "../../FrameWork/SoundManager.h"
 #include "../BaseObject.h"
 #include "../../FrameWork/IComponent.h"
 #include <algorithm>

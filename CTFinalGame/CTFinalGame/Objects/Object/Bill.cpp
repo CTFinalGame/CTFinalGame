@@ -1079,7 +1079,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new Bullet(position, (eBulletType)(BILL_BULLET | NORMAL_BULLET), angle);
-
+		SoundManager::getInstance()->Play(eSoundId::BASE_BULLET_FIRE);
 	}
 	else if ((_currentGun & M_BULLET) == M_BULLET)
 	{
@@ -1087,6 +1087,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new MBullet(position, angle);
+		SoundManager::getInstance()->Play(eSoundId::MBULLET_FIRE);
 
 	}
 	else if ((_currentGun & S_BULLET) == S_BULLET)
@@ -1095,6 +1096,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new SBullet(position, angle);
+		SoundManager::getInstance()->Play(eSoundId::SBULLET_FIRE);
 	}
 	else if ((_currentGun & F_BULLET) == F_BULLET)
 	{
@@ -1102,6 +1104,7 @@ Bullet* Bill::getBulletFromGun(GVector2 position, float angle)
 			return nullptr;
 
 		bullet = new FBullet(position, angle);
+		SoundManager::getInstance()->Play(eSoundId::FBULLET_FIRE);
 	}
 
 	return bullet;
@@ -1138,6 +1141,7 @@ float Bill::getShootSpeed()
 }
 void Bill::changeBulletType(eAirCraftType type)
 {
+	SoundManager::getInstance()->Play(eSoundId::EAT_ITEM);
 	switch (type)
 	{
 	case L:
