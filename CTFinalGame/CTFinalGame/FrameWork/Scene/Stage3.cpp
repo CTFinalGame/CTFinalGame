@@ -52,7 +52,7 @@ bool Stage3::init()
 	background = Map::LoadMapFromFile("Resource//Map//map3.txt",eID::MAP3);
 	OutputDebugString(L"background Success\n");
 
-	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE2);
+	SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE2);
 
 	auto scenarioBoss_Viewport = new Scenario("BossViewport");
 	__hook(&Scenario::update, scenarioBoss_Viewport, &Stage3::bossScene_Viewport);
@@ -106,7 +106,7 @@ void Stage3::playBossStage1Sound(float dt, bool& finish)
 }
 void Stage3::playPassBossSound(float dt, bool& finish)
 {
-	//SoundManager::getInstance()->Play(eSoundId::WINGAME);
+	SoundManager::getInstance()->Play(eSoundId::WINGAME);
 	_flagCredit = true;
 
 	((Bill*)_bill)->unhookinputevent();
@@ -115,10 +115,10 @@ void Stage3::playPassBossSound(float dt, bool& finish)
 
 void Stage3::killbossScene_Bill(float deltatime, bool& isFinish)
 {
-	/*if (SoundManager::getInstance()->IsPlaying(eSoundId::WINGAME) == false)
+	if (SoundManager::getInstance()->IsPlaying(eSoundId::WINGAME) == false)
 	{
 		isFinish = true;
-	}*/
+	}
 }
 
 void Stage3::updateInput(float dt)
@@ -248,7 +248,7 @@ void Stage3::destroyobject()
 		{
 			if (dynamic_cast<BaseEnemy*> (object->second) != nullptr)
 			{
-				//SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
+				SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
 			}
 			object->second->release();
 			delete object->second;
@@ -371,7 +371,7 @@ bool Stage3::checkGameLife()
 	if (((Bill*)_bill)->getLifeNumber() < 0)
 	{
 		auto gameoverScene = new GameOverScene(300	, 3);		// hardcode test: 1000 = số điểm
-		//SoundManager::getInstance()->Stop(eSoundId::BACKGROUND_STAGE2);
+		SoundManager::getInstance()->Stop(eSoundId::BACKGROUND_STAGE2);
 		SceneManager::getInstance()->replaceScene(gameoverScene);
 		return true;
 	}

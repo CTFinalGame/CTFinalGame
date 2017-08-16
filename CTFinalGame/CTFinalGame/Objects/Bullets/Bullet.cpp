@@ -220,7 +220,7 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 		case BOSS_GUN:
 		case REDCANNON:
 			if (((Cannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((Cannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
-			if (true){
+			{
 				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
 				this->setStatus(eStatus::DESTROY);
 				if (this->isContainType(eBulletType::L_BULLET) == true && ((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
@@ -238,7 +238,6 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			break;
 		case WALL_TURRET:
 			if (((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((WallTurret*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
-			if (true)
 			{
 				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
 				this->setStatus(eStatus::DESTROY);
@@ -254,6 +253,13 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 					((Movement*)movement)->setVelocity(VECTOR2ZERO);
 				}
 			}
+			break;
+		case ROCKFALL:
+			((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
+			this->setStatus(eStatus::DESTROY);
+			SoundManager::getInstance()->Play(eSoundId::ATTACK_CANNON);
+			if (((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
+				this->setStatus(eStatus::NORMAL);
 			break;
 		}
 	}
