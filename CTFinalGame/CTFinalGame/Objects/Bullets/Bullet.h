@@ -7,6 +7,7 @@
 #include "../BaseObject.h"
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Collision/CollisionBody.h"
+#include "../../FrameWork/StopWatch.h"
 #define NORMAL_BULLET_SPEED 300
 
 #define TOP_SHOOT_ANGLE					0.0f
@@ -69,7 +70,7 @@ protected:
 	eDirection _direction;
 	eBulletType _type;
 	GVector2 initveloc(float bullet_speed);
-
+	StopWatch* _bursttime;
 	map<string, IComponent*> _componentList;
 
 

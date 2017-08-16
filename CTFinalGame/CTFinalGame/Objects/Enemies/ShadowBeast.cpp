@@ -408,7 +408,7 @@ void ShadowBeast::ShadowArm::shoot()
 	auto billposition = ((Stage3*)SceneManager::getInstance()->getCurrentScene())->getBill()->getPosition();
 	auto thisPosition = _arm._sprite->getPosition();
 	auto angle_tracked = atan((billposition.x - thisPosition.x) / (thisPosition.y - billposition.y ));
-	//BulletManager::insertBullet(new BeastBullet(_arm._sprite->getPosition(), D3DXToDegree(- angle_tracked - M_PI)));
+	BulletManager::insertBullet(new BeastBullet(_arm._sprite->getPosition(), D3DXToDegree(- angle_tracked - M_PI)));
 }
 void ShadowBeast::ShadowArm::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
@@ -711,9 +711,9 @@ RECT ShadowBeast::ShadowMouth::getBounding()
 }
 void ShadowBeast::ShadowMouth::shoot()
 {
-	//BulletManager::insertBullet(new BeastBullet(this->getPosition() + GVector2(- 32, -32), D3DXToDegree( M_PI + M_PI_2 / 3)));
-	//BulletManager::insertBullet(new BeastBullet(this->getPosition() + GVector2(0, -32), D3DXToDegree(M_PI + 0)));
-	//BulletManager::insertBullet(new BeastBullet(this->getPosition() + GVector2(+ 32, -32), D3DXToDegree(M_PI - M_PI_2 / 3)));
+	BulletManager::insertBullet(new BeastBullet(this->getPosition() + GVector2(- 32, -32), D3DXToDegree( M_PI + M_PI_2 / 3)));
+	BulletManager::insertBullet(new BeastBullet(this->getPosition() + GVector2(0, -32), D3DXToDegree(M_PI + 0)));
+	BulletManager::insertBullet(new BeastBullet(this->getPosition() + GVector2(+ 32, -32), D3DXToDegree(M_PI - M_PI_2 / 3)));
 	_flagCanShoot = false;
 }
 ShadowBeast::ShadowMouth::ShadowMouth(GVector2 startposition) : BaseEnemy(eID::SHADOW_MOUTH)

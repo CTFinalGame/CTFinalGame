@@ -32,7 +32,7 @@ bool Stage3::init()
 {
 	auto bill = new Bill(_restBill);
 	bill->init();
-	bill->setPosition(200, 2000);
+	bill->setPosition(200, 3000);
 	
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
@@ -42,9 +42,9 @@ bool Stage3::init()
 	bulletmanager->init();
 	_listobject.push_back(bulletmanager);
 
-	auto shadow = new ShadowBeast(GVector2(256, 300));
-	shadow->init();
-	_listobject.push_back(shadow);
+	//auto shadow = new ShadowBeast(GVector2(256, 300));
+	//shadow->init();
+	//_listobject.push_back(shadow);
 	//_text = new Text(L"Arial", "", 10, 25);
 
 	map<string, BaseObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resource//Map//b_ob.txt");
