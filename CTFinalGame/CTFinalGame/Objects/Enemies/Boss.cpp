@@ -29,7 +29,7 @@ void Boss::init()
 	_bigmoudler->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BOSS_STAGE1, "big_moulder"));
 	_bigmoudler->setScale(SCALE_FACTOR);
 	_bigmoudler->setOrigin(_shield->getOrigin());
-	_bigmoudler->setPosition(_shield->getPosition());
+	_bigmoudler->setPosition(GVector2(_shield->getPosition().x-10,_shield->getPositionY()));
 
 	// Thanh niên núp lùm
 	_rifleman = new Rifleman(eStatus::HIDDEN, _startposition.x + 32.0f, _startposition.y + 282.0f);
