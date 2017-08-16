@@ -461,6 +461,7 @@ void Bill::jump()
 	auto g = (Gravity*)this->_componentList["Gravity"];
 	g->setGravity(GVector2(0, -GRAVITY));
 	g->setStatus(eGravityStatus::FALLING__DOWN);
+	SoundManager::getInstance()->Play(eSoundId::JUMP_SOUND);
 }
 
 void Bill::layDown()
@@ -520,6 +521,7 @@ void Bill::die()
 
 	auto g = (Gravity*)this->_componentList["Gravity"];
 	g->setStatus(eGravityStatus::FALLING__DOWN);
+	SoundManager::getInstance()->Play(eSoundId::DEAD);
 }
 
 void Bill::swimming()

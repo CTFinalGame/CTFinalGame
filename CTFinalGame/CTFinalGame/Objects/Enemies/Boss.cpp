@@ -84,6 +84,8 @@ void Boss::update(float deltatime)
 		{
 			_octexplose = new OctExplose(GVector2(_shield->getPositionX(), _shield->getPositionY()));
 			_octexplose->init();
+			SoundManager::getInstance()->Stop(eSoundId::BACKGROUND_STAGE1);
+			SoundManager::getInstance()->Play(eSoundId::DESTROY_BOSS);
 		}
 	}
 	if (_rifleman != nullptr)

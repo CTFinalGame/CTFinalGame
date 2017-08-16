@@ -1,4 +1,5 @@
 #include "BaseEnemy.h"
+#include "../../FrameWork/SoundManager.h"
 BaseEnemy::BaseEnemy(eID id) : BaseObject(id) {}
 BaseEnemy::~BaseEnemy() {}
 int BaseEnemy::getHitpoint() 
@@ -42,5 +43,9 @@ void BaseEnemy::dropHitpoint(int damage)
 
 void BaseEnemy::setStatus(eStatus status)
 {
+	if (status == eStatus::DESTROY)
+	{
+		SoundManager::getInstance()->Play(eSoundId::DESTROY_ENEMY);
+	}
 	BaseObject::setStatus(status);
 }

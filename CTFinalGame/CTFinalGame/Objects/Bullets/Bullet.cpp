@@ -1,5 +1,6 @@
 ﻿#include "Bullet.h"
 #include "Falcon.h"
+#include "../Enemies/Cannon.h"
 
 Bullet::Bullet(GVector2 startPosition, eBulletType type, eDirection dir) : BaseObject(eID::BULLET)
 {
@@ -218,12 +219,13 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 		case BOSS_SHIELD:
 		case BOSS_GUN:
 		case REDCANNON:
-			//if (((RedCannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((RedCannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
+			if (((Cannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_APPEAR && ((Cannon*)collision_arg->_otherObject)->getWT_Status() != eWT_Status::WT_CLOSE)
 			if (true){
 				((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
 				this->setStatus(eStatus::DESTROY);
 				if (this->isContainType(eBulletType::L_BULLET) == true && ((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
 					this->setStatus(eStatus::NORMAL);
+				SoundManager::getInstance()->Play(eSoundId::ATTACK_CANNON);
 				if (this->isContainType(eBulletType::NORMAL_BULLET))
 				{
 					this->setStatus(eStatus::BURST);
@@ -242,7 +244,7 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 				this->setStatus(eStatus::DESTROY);
 				if (this->isContainType(eBulletType::L_BULLET) == true && ((BaseEnemy*)collision_arg->_otherObject)->getHitpoint() <= 0)
 					this->setStatus(eStatus::NORMAL);
-				//SoundManager::getInstance()->Play(eSoundId::ATTACK_CANNON);
+				SoundManager::getInstance()->Play(eSoundId::ATTACK_CANNON);
 				if (this->isContainType(eBulletType::NORMAL_BULLET))
 				{
 					this->setStatus(eStatus::BURST);

@@ -32,12 +32,12 @@ void GameOverScene::updateInput(float deltatime)
 			case 1:
 				scene = new PlayScene();
 				SceneManager::getInstance()->replaceScene(scene);
-				//SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
+				SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
 				return;
 			case 3:
 				scene = new Stage3(3);
 				SceneManager::getInstance()->replaceScene(scene);
-				//SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
+				SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
 				return;
 			default:
 				break;
@@ -48,7 +48,7 @@ void GameOverScene::updateInput(float deltatime)
 			// Vô scene menu
 			auto menu = new IntroScene();
 			SceneManager::getInstance()->replaceScene(menu);
-			//SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
+			SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
 			return;
 		}
 	}

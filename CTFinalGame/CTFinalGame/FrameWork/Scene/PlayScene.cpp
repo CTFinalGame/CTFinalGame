@@ -30,6 +30,7 @@ bool PlayScene::init()
 	fire->init();
 	_listobject.push_back(fire);
      background =  Map::LoadMapFromFile("Resource//Map//map1.txt", eID::MAP1);
+	 SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE1);
 	 _bulletmanager = new BulletManager();
 	 _bulletmanager->init();
 	 auto bill = new Bill(1);
@@ -51,15 +52,15 @@ bool PlayScene::init()
 	// _director->insertScenario(scenarioBossSound);
 	 _director->insertScenario(scenarioBoss_Viewport);
 
-	 auto scenarioKillBoss = new Scenario("KillBoss");
-	 __hook(&Scenario::update, scenarioKillBoss, &PlayScene::killbossScene_Bill);
-	// auto playsound = new Scenario("PassBossSound");
-	// __hook(&Scenario::update, playsound, &PlayScene::playPassBossSound);
-	 flagbossScenario = false;
+	// auto scenarioKillBoss = new Scenario("KillBoss");
+	// __hook(&Scenario::update, scenarioKillBoss, &PlayScene::killbossScene_Bill);
+	//// auto playsound = new Scenario("PassBossSound");
+	//// __hook(&Scenario::update, playsound, &PlayScene::playPassBossSound);
+	// flagbossScenario = false;
 
-	 _directorKillBoss = new ScenarioManager();
+	// _directorKillBoss = new ScenarioManager();
 	 //_directorKillBoss->insertScenario(playsound);
-	 _directorKillBoss->insertScenario(scenarioKillBoss);
+	// _directorKillBoss->insertScenario(scenarioKillBoss);
 	return true;
 }
 void PlayScene::updateInput(float dt)

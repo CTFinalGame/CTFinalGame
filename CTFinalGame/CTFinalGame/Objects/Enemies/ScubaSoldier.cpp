@@ -238,7 +238,7 @@ void ScubaSoldier::ScubaBullet::fireBurst(float deltatime)
 		_explosionburst->init();
 		_explosionburst->setScale(SCALE_FACTOR);
 		_explosionburst->setPosition(this->getPosition());
-//		SoundManager::getInstance()->Play(eSoundId::MBULLET_FIRE);
+		SoundManager::getInstance()->Play(eSoundId::MBULLET_FIRE);
 
 	}
 	else

@@ -87,7 +87,7 @@ void Bridge::burst(float deltatime)
 			}
 			else
 			{
-				//SoundManager::getInstance()->Play(eSoundId::DESTROY_BRIDGE);
+				SoundManager::getInstance()->Play(eSoundId::DESTROY_BRIDGE);
 			}
 		}
 	}
