@@ -42,11 +42,6 @@ bool Stage3::init()
 	bulletmanager->init();
 	_listobject.push_back(bulletmanager);
 
-	//auto shadow = new ShadowBeast(GVector2(256, 300));
-	//shadow->init();
-	//_listobject.push_back(shadow);
-	//_text = new Text(L"Arial", "", 10, 25);
-
 	map<string, BaseObject*>* maptemp = ObjectFactory::getMapObjectFromFile("Resource//Map//b_ob.txt");
 
 	this->_mapobject.insert(maptemp->begin(), maptemp->end());
@@ -59,13 +54,13 @@ bool Stage3::init()
 
 	//SoundManager::getInstance()->PlayLoop(eSoundId::BACKGROUND_STAGE2);
 
-	//auto scenarioBoss_Viewport = new Scenario("BossViewport");
-	//__hook(&Scenario::update, scenarioBoss_Viewport, &Stage3::bossScene_Viewport);
+	auto scenarioBoss_Viewport = new Scenario("BossViewport");
+	__hook(&Scenario::update, scenarioBoss_Viewport, &Stage3::bossScene_Viewport);
 	//auto scenarioBossSound = new Scenario("BossSound");
 	//__hook(&Scenario::update, scenarioBossSound, &Stage3::playBossStage1Sound);
-	//_director = new ScenarioManager();
+	_director = new ScenarioManager();
 	//_director->insertScenario(scenarioBossSound);
-	//_director->insertScenario(scenarioBoss_Viewport);
+	_director->insertScenario(scenarioBoss_Viewport);
 
 	//auto scenarioKillBoss = new Scenario("KillBoss");
 	//__hook(&Scenario::update, scenarioKillBoss, &Stage3::killbossScene_Bill);
@@ -207,7 +202,6 @@ void Stage3::update(float dt)
 		{
 			if (passiveobj == nullptr || passiveobj == obj || passiveobj->isInStatus(eStatus::DESTROY))
 				continue;
-
 			obj->checkCollision(passiveobj, dt);
 		}
 	}
@@ -217,13 +211,6 @@ void Stage3::update(float dt)
 	{
 		obj->update(dt);
 	}
-
-#if _DEBUG
-	t = clock() - t;
-	//__debugoutput((float)t / CLOCKS_PER_SEC);
-#endif
-
-
 	this->ScenarioMoveViewport(dt);
 	this->ScenarioKillBoss(dt);
 }
@@ -383,9 +370,9 @@ bool Stage3::checkGameLife()
 {
 	if (((Bill*)_bill)->getLifeNumber() < 0)
 	{
-		//auto gameoverScene = new GameOverScene(Score::getScore(), 3);		// hardcode test: 1000 = số điểm
+		auto gameoverScene = new GameOverScene(300	, 3);		// hardcode test: 1000 = số điểm
 		//SoundManager::getInstance()->Stop(eSoundId::BACKGROUND_STAGE2);
-		//SceneManager::getInstance()->replaceScene(gameoverScene);
+		SceneManager::getInstance()->replaceScene(gameoverScene);
 		return true;
 	}
 	return false;

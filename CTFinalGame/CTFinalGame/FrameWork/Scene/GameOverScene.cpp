@@ -35,7 +35,7 @@ void GameOverScene::updateInput(float deltatime)
 				//SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
 				return;
 			case 3:
-				//scene = new Stage3(3);
+				scene = new Stage3(3);
 				SceneManager::getInstance()->replaceScene(scene);
 				//SoundManager::getInstance()->Stop(eSoundId::GAME_OVER);
 				return;

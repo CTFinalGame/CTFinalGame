@@ -34,7 +34,7 @@ bool PlayScene::init()
 	 _bulletmanager->init();
 	 auto bill = new Bill(1);
 	 bill->init();
-	 bill->setPosition(6000, 500);
+	 bill->setPosition(250, 500);
 	 this->_bill = bill;
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);
@@ -281,9 +281,11 @@ void PlayScene::ScenarioKillBoss(float deltatime)
 	if (_directorKillBoss == nullptr)
 		return;
 	auto boss = getObject(eID::BOSS_STAGE1);
+	if (boss !=nullptr)
 	//if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
 	if (boss->isInStatus(eStatus::DYING) == true)
 	{
+		((Bill*)_bill)->unhookinputevent();
 		this->_directorKillBoss->update(deltatime);
 		if (this->_directorKillBoss->isFinish() == true)
 		{
@@ -292,6 +294,7 @@ void PlayScene::ScenarioKillBoss(float deltatime)
 			auto play = new BeginPlayScene(300, ((Bill*)_bill)->getLifeNumber(), 3);
 			SceneManager::getInstance()->replaceScene(play);
 		}
+
 	}
 }
 bool PlayScene::checkGameLife()

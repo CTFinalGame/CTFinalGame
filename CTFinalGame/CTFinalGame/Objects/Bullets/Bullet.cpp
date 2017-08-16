@@ -213,6 +213,8 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			if (this->_type != eBulletType::L_BULLET)
 				this->setStatus(eStatus::DESTROY);
 			break;
+		case SHADOW_BEAST:
+		case SHADOW_MOUTH :
 		case BOSS_SHIELD:
 		case BOSS_GUN:
 		case REDCANNON:

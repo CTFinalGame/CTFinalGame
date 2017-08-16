@@ -882,9 +882,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 					// swim
 					this->swimming();
 				}
-
 			}
-
 			else if (this->isInStatus(eStatus::SWIMING))
 			{
 				if (direction == eDirection::TOP)
