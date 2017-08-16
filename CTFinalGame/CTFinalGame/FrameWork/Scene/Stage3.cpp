@@ -32,7 +32,7 @@ bool Stage3::init()
 {
 	auto bill = new Bill(_restBill);
 	bill->init();
-	bill->setPosition(200, 3000);
+	bill->setPosition(200, 4000);
 	
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
@@ -62,15 +62,15 @@ bool Stage3::init()
 	//_director->insertScenario(scenarioBossSound);
 	_director->insertScenario(scenarioBoss_Viewport);
 
-	//auto scenarioKillBoss = new Scenario("KillBoss");
-	//__hook(&Scenario::update, scenarioKillBoss, &Stage3::killbossScene_Bill);
-	//auto playsound = new Scenario("PassBossSound");
+	auto scenarioKillBoss = new Scenario("KillBoss");
+	__hook(&Scenario::update, scenarioKillBoss, &Stage3::killbossScene_Bill);
+//	auto playsound = new Scenario("PassBossSound");
 	//__hook(&Scenario::update, playsound, &Stage3::playPassBossSound);
 
-	//flagbossScenario = false;
-	//_directorKillBoss = new ScenarioManager();
+	flagbossScenario = false;
+	_directorKillBoss = new ScenarioManager();
 	//_directorKillBoss->insertScenario(playsound);
-	//_directorKillBoss->insertScenario(scenarioKillBoss);
+	_directorKillBoss->insertScenario(scenarioKillBoss);
 
 	//_flagCredit = false;
 	//_credit = new Credit();
@@ -91,12 +91,6 @@ void Stage3::bossScene_Viewport(float dt, bool& finish)
 		return;
 	}
 	_viewport->setPositionWorld(current_position);
-	//if (_bill->getBounding().left < current_position.x)
-	//{
-	//	GVector2 curPos = _bill->getPosition();
-	//	curPos.x = current_position.x + (_bill->getSprite()->getFrameWidth() >> 1);
-	//	_bill->setPosition(curPos);
-	//}
 	finish = false;
 }
 void Stage3::playBossStage1Sound(float dt, bool& finish)
@@ -114,10 +108,27 @@ void Stage3::playPassBossSound(float dt, bool& finish)
 }
 
 void Stage3::killbossScene_Bill(float deltatime, bool& isFinish)
+
 {
-	if (SoundManager::getInstance()->IsPlaying(eSoundId::WINGAME) == false)
+	/*if (SoundManager::getInstance()->IsPlaying(eSoundId::WINGAME) == false)
 	{
 		isFinish = true;
+	}*/
+	auto bill = (Bill*)_bill;
+	bill->forceShoot();
+	if (bill->getBounding().right >= _viewport->getWidth()-100)
+	{
+
+		    bill->unforceMoveRight();
+			bill->forceMoveLeft();
+			
+
+	}
+	else 	
+	if (bill->getBounding().right <=  100)
+	{
+		bill->unforceMoveLeft();
+		bill->forceMoveRight();
 	}
 }
 
@@ -211,6 +222,7 @@ void Stage3::update(float dt)
 	{
 		obj->update(dt);
 	}
+
 	this->ScenarioMoveViewport(dt);
 	this->ScenarioKillBoss(dt);
 }
@@ -344,27 +356,18 @@ void Stage3::ScenarioKillBoss(float deltatime)
 		return;
 	auto boss = getObject(eID::SHADOW_BEAST);
 	//if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
-	//{
-	//	_credit->update(deltatime);
-	//	this->_directorKillBoss->update(deltatime);
-	//	if (this->_directorKillBoss->isFinish() == true)
-	//	{
-	//		SAFE_DELETE(_directorKillBoss);
-	//		//chuyển scene
-	//		// test
-	//		auto intro = new IntroScene();
-	//		SceneManager::getInstance()->replaceScene(intro);
-	//	}
-	//	if (InputController::getInstance()->isKeyDown(DIK_Q))
-	//	{
-	//		auto intro = new IntroScene();
-	//		if (SoundManager::getInstance()->IsPlaying(eSoundId::WINGAME))
-	//		{
-	//			SoundManager::getInstance()->Stop(eSoundId::WINGAME);
-	//		}
-	//		SceneManager::getInstance()->replaceScene(intro);
-	//	}
-	//}
+	if (boss->isInStatus(eStatus::DYING) == true){
+		//_credit->update(deltatime);
+		this->_directorKillBoss->update(deltatime);
+		if (this->_directorKillBoss->isFinish() == true)
+		{
+			SAFE_DELETE(_directorKillBoss);
+			//chuyển scene
+			// test
+			auto intro = new IntroScene();
+			SceneManager::getInstance()->replaceScene(intro);
+		}
+	}
 }
 bool Stage3::checkGameLife()
 {

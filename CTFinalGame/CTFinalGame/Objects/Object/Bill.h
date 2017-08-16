@@ -68,6 +68,9 @@ public:
 	void removeGravity();
 	void forceMoveRight();
 	void unforceMoveRight();
+	void forceMoveLeft();
+	void forceShoot();
+	void unforceMoveLeft();
 	void forceJump();
 	void unforceJump();
 	void unhookinputevent();

@@ -224,6 +224,18 @@ void Bill::unforceMoveRight()
 {
 	onKeyReleased(new KeyEventArg(DIK_RIGHT));
 }
+void Bill::forceMoveLeft()
+{
+	onKeyPressed(new KeyEventArg(DIK_LEFT));
+}
+void Bill::forceShoot()
+{
+	onKeyPressed(new KeyEventArg(DIK_Z));
+}
+void Bill::unforceMoveLeft()
+{
+	onKeyReleased(new KeyEventArg(DIK_LEFT));
+}
 void Bill::forceJump()
 {
 	onKeyPressed(new KeyEventArg(DIK_X));
