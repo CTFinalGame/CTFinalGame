@@ -254,6 +254,7 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 				}
 			}
 			break;
+		case ROCKCREATOR:
 		case ROCKFALL:
 			((BaseEnemy*)collision_arg->_otherObject)->dropHitpoint(_damage);
 			this->setStatus(eStatus::DESTROY);
