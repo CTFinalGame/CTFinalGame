@@ -8,7 +8,7 @@
 #include "../../FrameWork/SoundManager.h"
 #include "../Bullets/Bullet.h"
 #include "../Bullets/BulletManager.h"
-//#include "../Bullets/Beast_Bullet.h"
+#include "../Bullets/Beast_Bullet.h"
 #include "../Enemies/BaseEnemy.h"
 #include "../Object/Explosion.h"
 class ShadowBeast : public BaseEnemy

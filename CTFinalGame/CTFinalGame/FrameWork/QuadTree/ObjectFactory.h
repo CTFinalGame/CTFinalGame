@@ -5,6 +5,7 @@
 #include "../../Objects/Enemies/Rifleman.h"
 //#include "../objects/Enemies/ObjectCreator.h"
 #include "../../Objects/BaseObject.h"
+#include "../../Objects/Enemies/RockCreator.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -33,7 +34,7 @@ private:
 	static BaseObject* getRockFall(int x, int y);
 	static BaseObject* getScubaSoldier(int x, int y);
 	static BaseObject* getFire(int x, int y);
-	//static BaseObject* getShadowBeast(xml_node node);
+	static BaseObject* getBossStage3(int x, int y);
 };
 
 #endif // !__OBJECT_READER__
