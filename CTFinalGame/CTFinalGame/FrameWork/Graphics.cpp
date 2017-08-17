@@ -22,7 +22,7 @@ Graphics::Graphics(HINSTANCE hInstance, LPWSTR wcName, int width, int height, in
 
 	this->_width = width;
 	this->_height = height;
-	this->_fps = fps;
+	this->_fps = 60;//fps;
 }
 
 void Graphics::initWindow()
