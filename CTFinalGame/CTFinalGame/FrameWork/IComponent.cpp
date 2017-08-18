@@ -145,8 +145,8 @@ void RoundMovement::update(float deltatime)
 	và		y = R * sin(φ)
 	*/
 	GVector2 veloc;
-	veloc.x = _radius * sin(_radian);
-	veloc.y =  - _radius *cos  (_radian);
+	veloc.x = _radius * cos(_radian);
+	veloc.y = -_radius *sin(_radian);
 
 	auto pos = this->_refSprite->getPosition();
 	pos += veloc * deltatime / 1000;
