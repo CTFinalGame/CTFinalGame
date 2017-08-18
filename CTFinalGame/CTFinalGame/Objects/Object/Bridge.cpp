@@ -72,7 +72,7 @@ void Bridge::burst(float deltatime)
 	if (_explode->getStatus() == DESTROY)
 	{
 		_explode->release();
-		if (_stopwatch->isStopWatch(40))
+		if (_stopwatch->isStopWatch(300))
 		{
 			_wave++;
 			GVector2 pos = this->getPosition();
@@ -118,24 +118,6 @@ void Bridge::draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 	{
 		_explode->draw(spritehandle, viewport);
 	}
-
-	//RECT r;
-	//auto pos = viewport->getPositionInViewport(new GVector3(getPositionX(), getPositionY(), 0));
-	//r.top = max(pos.y, 1);
-	//r.left = max(pos.x, 1);
-	//r.bottom = min(pos.y + this->getBounding().top - this->getBounding().bottom, WINDOW_HEIGHT - 1);
-	//r.right = min(pos.x + this->getBounding().right - this->getBounding().left, WINDOW_WIDTH - 1);
-
-	//DeviceManager::getInstance()->getDevice()->ColorFill(_surface, NULL, D3DXCOLOR(1.0f, 0.0f, 1.0f, 1.0f));
-
-	//DeviceManager::getInstance()->getDevice()->StretchRect(
-	//	_surface,
-	//	NULL,
-	//	DeviceManager::getInstance()->getSurface(),
-	//	&r,
-	//	D3DTEXF_NONE
-	//	);
-	//
 }
 
 void Bridge::release()
@@ -164,17 +146,17 @@ RECT Bridge::getBounding()
 	{
 		return rect;
 	}
-
+	int x = this->getPosition().x;
+	
 	int framewidth = this->_sprite->getFrameWidth(); // 32
 	int frameheight = this->_sprite->getFrameHeight(); // 32
-	rect.left = this->getPosition().x - (framewidth >> 2);					// framewidth /2 là origin(Anchor).
-	rect.bottom = this->getPosition().y - frameheight - (frameheight >> 1);
-	rect.right = rect.left + ((framewidth * MAX_WAVE) << 1);					// Nhân 2 vì cách 2 hình có 1 vụ nổ.
-	rect.top = rect.bottom + frameheight + (frameheight >> 1) + 2;				// < 1 là nhân 2; > 1 là chia 2. Trừ đi frameheight / 2 đẻ bằng với land
-
+	rect.left = this->getPosition().x - ((framewidth / 2) / _sprite->getScale().x);
+	rect.bottom = this->getPosition().y - frameheight - (frameheight /2);
+	rect.right = rect.left + (framewidth * 8);
+	rect.top = rect.bottom + frameheight * 2;
 	if (this->getStatus() == eStatus::BURST)
 	{
-		rect.left += (_wave + 1) * (framewidth << 1);
+		rect.left += (_wave + 1) * (framewidth *2);
 	}
 	return rect;
 }
@@ -185,7 +167,7 @@ void Bridge::trackBill(BaseObject* bill)
 	RECT billBound = bill->getBounding();
 	RECT bridgeBound = this->getBounding();
 
-	if (billBound.right >= bridgeBound.left+25)
+	if (billBound.right >= bridgeBound.left)
 		this->setStatus(eStatus::BURST);
 }
 

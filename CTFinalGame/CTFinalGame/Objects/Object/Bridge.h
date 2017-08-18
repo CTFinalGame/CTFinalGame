@@ -51,7 +51,6 @@ public:
 	void init();
 	void update(float deltatime);
 	void draw(LPD3DXSPRITE, Viewport*);
-	void draw(LPD3DXSPRITE);
 	void release();
 
 	// Theo dỗi bill. Nếu hắn đến gần cầu thì cho nổ cầu.
@@ -81,7 +80,6 @@ private:
 		void init();
 		void update(float deltatime);
 		void draw(LPD3DXSPRITE, Viewport*);
-		void draw(LPD3DXSPRITE);
 		void release();
 		void setPosition(GVector2 position);
 		GVector2 getPosition();

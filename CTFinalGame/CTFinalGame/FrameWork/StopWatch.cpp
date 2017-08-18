@@ -62,11 +62,3 @@ void StopWatch::restart()
 	_isStart = false;
 	_isFinish = false;
 }
-
-void StopWatch::timeLoopAction(float milisecond, pFunction action)
-{
-	if (isTimeLoop(milisecond))
-	{
-		(*action) ();
-	}
-}

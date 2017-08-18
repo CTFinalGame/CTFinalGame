@@ -27,7 +27,6 @@ private:
 	static BaseObject* getWallTurret(int x, int y);
 	static BaseObject* getAirCraft(eID id, int x, int y);
 	static BaseObject* getBossStage1(int x, int y, int height);
-	//static BaseObject* getCreator(xml_node node);
 	static BaseObject* getBridge(int x, int y);
 	static BaseObject* getFalcon(eID id, int x, int y);	
 	static BaseObject* getRockFly(int x, int y, int width);
