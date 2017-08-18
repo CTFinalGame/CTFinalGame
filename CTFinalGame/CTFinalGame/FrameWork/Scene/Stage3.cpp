@@ -1,5 +1,4 @@
 ﻿#include "../../FrameWork/QuadTree/ObjectFactory.h"
-#include "../../Objects/Enemies/ShadowBeast.h"
 #include "BeginPlayScene.h"
 #include "GameOverScene.h"
 #include "Stage3.h"

@@ -119,7 +119,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Objects\BaseObject.cpp" />
     <ClCompile Include="Objects\Bullets\AirCraft.cpp" />
-    <ClCompile Include="Objects\Bullets\Beast_Bullet.cpp" />
     <ClCompile Include="Objects\Bullets\Bullet.cpp" />
     <ClCompile Include="Objects\Bullets\BulletManager.cpp" />
     <ClCompile Include="Objects\Bullets\Falcon.cpp" />
@@ -135,7 +134,6 @@
     <ClCompile Include="Objects\Enemies\RockCreator.cpp" />
     <ClCompile Include="Objects\Enemies\RockFall.cpp" />
     <ClCompile Include="Objects\Enemies\ScubaSoldier.cpp" />
-    <ClCompile Include="Objects\Enemies\ShadowBeast.cpp" />
     <ClCompile Include="Objects\Enemies\Soldier.cpp" />
     <ClCompile Include="Objects\Enemies\WallTurret.cpp" />
     <ClCompile Include="Objects\Object\Bill.cpp" />
@@ -184,7 +182,6 @@
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="Objects\BaseObject.h" />
     <ClInclude Include="Objects\Bullets\AirCraft.h" />
-    <ClInclude Include="Objects\Bullets\Beast_Bullet.h" />
     <ClInclude Include="Objects\Bullets\Bullet.h" />
     <ClInclude Include="Objects\Bullets\BulletManager.h" />
     <ClInclude Include="Objects\Bullets\Falcon.h" />
@@ -200,7 +197,6 @@
     <ClInclude Include="Objects\Enemies\RockCreator.h" />
     <ClInclude Include="Objects\Enemies\RockFall.h" />
     <ClInclude Include="Objects\Enemies\ScubaSoldier.h" />
-    <ClInclude Include="Objects\Enemies\ShadowBeast.h" />
     <ClInclude Include="Objects\Enemies\Soldier.h" />
     <ClInclude Include="Objects\Enemies\WallTurret.h" />
     <ClInclude Include="Objects\Object\Bill.h" />

@@ -98,8 +98,6 @@ BaseObject* ObjectFactory::getObjectById(eID id, int x, int y, int width, int he
 		return getScubaSoldier(x, y);
 	case FIRE:
 		return getFire(x, y);
-	case SHADOW_BEAST:
-		return getBossStage3(x, y);
 	default:
 		return nullptr;
 		break;
@@ -323,11 +321,4 @@ BaseObject* ObjectFactory::getRockFly(int x, int y, int width)
 	auto rockfly = new RockFly(GVector2(x, y), GVector2(x + width, y));
 	rockfly->init();
 	return rockfly;
-}
-
-BaseObject* ObjectFactory::getBossStage3(int x, int y)
-{
-	auto shadowbeast = new ShadowBeast(GVector2(x, y));
-	shadowbeast->init();
-	return shadowbeast;
 }

@@ -953,13 +953,7 @@ float Bill::checkCollision(BaseObject * object, float dt)
 				safeCheckCollision((*it), ((RockCreator*)object)->getRock(), dt);
 
 			}
-			if (objectId == eID::SHADOW_BEAST)
-			{
-				safeCheckCollision((*it), ((ShadowBeast*)object)->getLeftArm(), dt);
-				safeCheckCollision((*it), ((ShadowBeast*)object)->getRigtArm(), dt);
-				safeCheckCollision((*it), ((ShadowBeast*)object)->getMouth(), dt);
-			}
-			else if (objectId == eID::BOSS_STAGE1)
+			if (objectId == eID::BOSS_STAGE1)
 			{
 				safeCheckCollision((*it), ((Boss*)object)->getGun1(), dt);
 				safeCheckCollision((*it), ((Boss*)object)->getGun2(), dt);

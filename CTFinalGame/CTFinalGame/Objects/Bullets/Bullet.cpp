@@ -46,7 +46,7 @@ void Bullet::init()
 	this->setScale(SCALE_FACTOR);
 	GVector2 veloc;
 	if (_type == (eBulletType::ENEMY_BULLET | eBulletType::NORMAL_BULLET))
-		veloc = this->initveloc(BEAST_BULLET_SPEED-40);
+		veloc = this->initveloc(200);
 	else
 		veloc = this->initveloc(NORMAL_BULLET_SPEED);
 

@@ -28,7 +28,6 @@
 #include "../Scenario.h"
 #include "../QuadTree/ObjectFactory.h"
 #include "../QuadTree/QNode.h"
-#include "../../Objects/Enemies/ShadowBeast.h"
 
 #define BOSS_VIEWPORT_ANCHOR		6112
 
