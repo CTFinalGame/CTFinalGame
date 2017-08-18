@@ -355,8 +355,8 @@ void Stage3::ScenarioKillBoss(float deltatime)
 	if (_directorKillBoss == nullptr)
 		return;
 	auto boss = getObject(eID::SHADOW_BEAST);
-	//if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
-	if (boss->isInStatus(eStatus::DYING) == true){
+	if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
+	{//if (boss->isInStatus(eStatus::DYING) == true)
 		//_credit->update(deltatime);
 		this->_directorKillBoss->update(deltatime);
 		if (this->_directorKillBoss->isFinish() == true)
