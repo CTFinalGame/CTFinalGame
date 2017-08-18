@@ -44,8 +44,11 @@ void Bullet::init()
 
 	this->setPosition(_startPosition);
 	this->setScale(SCALE_FACTOR);
-
-	GVector2 veloc = this->initveloc(NORMAL_BULLET_SPEED);
+	GVector2 veloc;
+	if (_type == (eBulletType::ENEMY_BULLET | eBulletType::NORMAL_BULLET))
+		veloc = this->initveloc(BEAST_BULLET_SPEED-40);
+	else
+		veloc = this->initveloc(NORMAL_BULLET_SPEED);
 
 	
 	auto movement = new Movement(GVector2(0, 0), veloc, _sprite);
@@ -264,7 +267,7 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 			break;
 		}
 	}
-	/* if(this->isEnemyBullet())
+	 if(this->isEnemyBullet())
 	{
 		switch (objectID)
 		{
@@ -300,9 +303,8 @@ void Bullet::onCollisionBegin(CollisionEventArg* collision_arg)
 					 }
 		}
 			break;
-
 		}
-	}*/
+	}
 }
 
 float Bullet::checkCollision(BaseObject * object, float dt)

@@ -46,7 +46,7 @@ void Game::init()
 	//_devicemanager->Init(*wnd_Instance);
 	_input->init(hWindow->getWnd(), hWindow->gethInstance());
 	//_input->init(wnd_Instance->getWnd(), wnd_Instance->gethInstance());
-	this->_frameRate = 1000.0f / hWindow->getFrameRate();	 //1000/30 = 33 milisecond
+	this->_frameRate = 1000.0f / hWindow->getFrameRate();	 //1000/30 = 33 milisecond// Đổi sang 60 thì còn 16.66
 
 	D3DXCreateSprite(_devicemanager->getDevice(), &this->_spriteHandle);
 	this->loadResource();

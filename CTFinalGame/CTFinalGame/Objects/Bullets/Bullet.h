@@ -8,7 +8,7 @@
 #include "../../FrameWork/IComponent.h"
 #include "../../FrameWork/Collision/CollisionBody.h"
 #include "../../FrameWork/StopWatch.h"
-#define NORMAL_BULLET_SPEED 300
+#define NORMAL_BULLET_SPEED 400
 
 #define TOP_SHOOT_ANGLE					0.0f
 #define RIGHT_SHOOT_ANGLE				90.0f
