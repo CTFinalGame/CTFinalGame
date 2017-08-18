@@ -334,10 +334,20 @@ RECT CollisionBody::getSweptBroadphaseRect(BaseObject* object, float dt)
 	auto myRect = object->getBounding();
 
 	RECT rect;
-	rect.top = velocity.y > 0 ? myRect.top + velocity.y : myRect.top;
-	rect.bottom = velocity.y > 0 ? myRect.bottom : myRect.bottom + velocity.y;
-	rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;
-	rect.right = velocity.y > 0 ? myRect.right + velocity.x : myRect.right;
+
+	//rect.top = velocity.y > 0 ? myRect.top + velocity.y : myRect.top;//y
+	//rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;//x=
+
+	//rect.bottom = velocity.y > 0 ? myRect.bottom : myRect.bottom + velocity.y;
+	//
+	//rect.right = velocity.x > 0 ? myRect.right + velocity.x : myRect.right;
+
+	rect.top = velocity.y > 0 ? myRect.top : myRect.top + velocity.y;//y
+	rect.left = velocity.x > 0 ? myRect.left : myRect.left + velocity.x;//x=
+
+	rect.bottom = velocity.y > 0 ? myRect.bottom + velocity.y :myRect.bottom;
+	
+	rect.right = velocity.x > 0 ? myRect.right + velocity.x : myRect.right;
 
 	return rect;
 }
