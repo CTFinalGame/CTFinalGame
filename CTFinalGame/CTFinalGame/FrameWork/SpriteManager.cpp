@@ -119,6 +119,8 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Images//stage3_elements.png", 5, 5);
 	this->_listSprite[eID::ROCKFLY] = sp;
 	this->loadSpriteInfo(eID::ROCKFLY, "Resource//Images//rockfly_animation.txt");
+	this->_listSprite[eID::SHADOW_ARM] = sp;
+	this->loadSpriteInfo(eID::SHADOW_ARM, "Resource//Images//shadowarm_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//ScubaSoldier.png");
 	this->_listSprite[eID::SCUBASOLDIER] = sp;
@@ -139,6 +141,9 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Images//GameOver.png");
 	this->_listSprite[eID::GAME_OVER_SCENE] = sp;
 	
+	sp = new Sprite(spriteHandle, L"Resource//Images//boss_stage3.png");
+	this->_listSprite[eID::SHADOW_MOUTH] = sp;
+	this->loadSpriteInfo(eID::SHADOW_MOUTH, "Resource//Images//shadowbeast_animation.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//fire.png");
 	this->_listSprite[eID::FIRE] = sp;

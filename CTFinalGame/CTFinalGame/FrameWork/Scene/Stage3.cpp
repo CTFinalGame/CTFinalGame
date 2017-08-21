@@ -1,4 +1,5 @@
 ﻿#include "../../FrameWork/QuadTree/ObjectFactory.h"
+#include "../../Objects/Enemies/ShadowBeast.h"
 #include "BeginPlayScene.h"
 #include "GameOverScene.h"
 #include "Stage3.h"
@@ -31,7 +32,7 @@ bool Stage3::init()
 {
 	auto bill = new Bill(_restBill);
 	bill->init();
-	bill->setPosition(200, 200);
+	bill->setPosition(200, 3000);
 	
 	this->_bill = bill;
 	_listControlObject.push_back(bill);

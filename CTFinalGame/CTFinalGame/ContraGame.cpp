@@ -16,7 +16,7 @@ void ContraGame::init()
 	SceneManager::getInstance()->addScene(new Stage3(30));
 	//SceneManager::getInstance()->addScene(new PlayScene());
 	//SceneManager::getInstance()->addScene(new Stage3(30));
-	SceneManager::getInstance()->addScene(new PlayScene());
+	//SceneManager::getInstance()->addScene(new PlayScene());
 	//SceneManager::getInstance()->addScene(new IntroScene());
 #else
 	SceneManager::getInstance()->addScene(new IntroScene());

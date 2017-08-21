@@ -68,10 +68,8 @@ private:
 	list<Bullet*> _listBullets;
 	bool _shot;
 	bool _awake;
-	float _bounce;
 	float _animationTime;
 
 	StopWatch *_stopwatch;
-	StopWatch *_movingWatch;
 };
 #endif

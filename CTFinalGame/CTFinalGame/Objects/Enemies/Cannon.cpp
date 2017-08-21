@@ -400,25 +400,12 @@ void Cannon::calculateBillangle()
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
 	float dx = this->getPosition().x - bill->getPosition().x;
 	float dy = this->getPosition().y - (bill->getPosition().y + bill->getSprite()->getFrameHeight() / 2);
-	if (type == 1)
-	{
-		if (dx > 0 && dy < 0)
-			_billAngle = -atan(dx / (abs(dy))) * 180 / PI;
-		else if (dx < 0 && dy < 0)
-			_billAngle = atan(abs(dx) / abs(dy)) * 180 / PI;
-		else if (dx>0 && dy>0)
-			_billAngle = atan(dx / dy) * 180 / PI - 180;
-		else if (dx<0 && dy>0)
-			_billAngle = -atan(abs(dx) / dy) * 180 / PI + 180;
-	}
-	else
-	{
+
 		if (dx > 0 && dy < 0)
 			_billAngle = -atan(dx / abs(dy)) * 180 / PI;
 		else if (dx<0 && dy<0)
 			_billAngle = -30;
 		else _billAngle = -90;
-	}
 }
 void Cannon::rangeAttack()
 {
