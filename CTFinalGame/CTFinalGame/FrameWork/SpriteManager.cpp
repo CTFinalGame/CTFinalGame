@@ -83,6 +83,14 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	this->_listSprite[eID::WALL_TURRET] = sp;
 	this->loadSpriteInfo(eID::WALL_TURRET, "Resource//Images//Wall_turret_animation.txt");
 
+	sp = new Sprite(spriteHandle, L"Resource//Images//effect_waterfall.png", 2, 2);
+	this->_listSprite[eID::WATERFALLEFFECT] = sp;
+	this->loadSpriteInfo(eID::WATERFALLEFFECT, "Resource//Images//effect_waterfall.txt");
+
+	sp = new Sprite(spriteHandle, L"Resource//Images//effect_water.png", 2, 2);
+	this->_listSprite[eID::WATEREFFECT] = sp;
+	this->loadSpriteInfo(eID::WATEREFFECT, "Resource//Images//effect_water.txt");
+
 	//
 
 	sp = new Sprite(spriteHandle, L"Resource//Images//aircraft.png", 10, 10);
