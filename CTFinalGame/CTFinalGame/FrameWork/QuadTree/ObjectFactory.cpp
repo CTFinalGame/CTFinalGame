@@ -100,6 +100,10 @@ BaseObject* ObjectFactory::getObjectById(eID id, int x, int y, int width, int he
 		return getFire(x, y);
 	case SHADOW_BEAST:
 		return getBossStage3(x, y);
+	case WATEREFFECT:
+		return getWaterEffect(x, y);
+	case WATERFALLEFFECT:
+		return getWaterFallEffect(x, y);
 	default:
 		return nullptr;
 		break;
@@ -330,4 +334,16 @@ BaseObject* ObjectFactory::getBossStage3(int x, int y)
 	auto shadowbeast = new ShadowBeast(GVector2(x, y));
 	shadowbeast->init();
 	return shadowbeast;
+}
+BaseObject* ObjectFactory::getWaterEffect(int x, int y)
+{
+	auto waterEffect = new WaterEffect(GVector2(x+25, y-10));
+	waterEffect->init();
+	return waterEffect;
+}
+BaseObject* ObjectFactory::getWaterFallEffect(int x, int y)
+{
+	auto waterFallEffect = new WaterFallEffect(GVector2(x, y));
+	waterFallEffect->init();
+	return waterFallEffect;
 }

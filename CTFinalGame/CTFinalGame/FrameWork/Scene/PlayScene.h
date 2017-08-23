@@ -23,6 +23,8 @@
 #include "../../Objects/Enemies/Cannon.h"
 #include "../../Objects/Enemies/RockFall.h"
 #include "../../Objects/Enemies/ScubaSoldier.h"
+#include "../../Objects/Object/WaterEffect.h"
+#include "../../Objects/Object/WaterFallEffect.h"
 #include "../../Objects//Object/RockFly.h"
 #include "../../Objects/Enemies/Fire.h"
 #include "../Scenario.h"

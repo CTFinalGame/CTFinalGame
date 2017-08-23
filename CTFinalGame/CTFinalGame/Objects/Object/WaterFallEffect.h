@@ -1,13 +1,6 @@
-﻿#ifndef _WATERFALL_EFFECT_H
-#define _WATERFALL_EFFECT_H_H
+﻿#ifndef __WATERFALL_EFFECT_H__
+#define __WATERFALL_EFFECT_H__
 
-#include "../../FrameWork/Animation.h"
-#include "../../FrameWork/StopWatch.h"
-
-#include "../BaseObject.h"
-#include "../../FrameWork/IComponent.h"
-#include "../../Objects/Object/Explosion.h"
-#include "../Bullets/Item.h"
 #include "../../FrameWork/Scene/PlayScene.h"
 
 using namespace std;

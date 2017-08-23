@@ -34,6 +34,8 @@ private:
 	static BaseObject* getScubaSoldier(int x, int y);
 	static BaseObject* getFire(int x, int y);
 	static BaseObject* getBossStage3(int x, int y);
+	static BaseObject* getWaterEffect(int x, int y);
+	static BaseObject* getWaterFallEffect(int x, int y);
 };
 
 #endif // !__OBJECT_READER__
