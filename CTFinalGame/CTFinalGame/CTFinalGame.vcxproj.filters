@@ -231,6 +231,12 @@
     <ClCompile Include="Objects\Bullets\Beast_Bullet.cpp">
       <Filter>Object\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Object\WaterEffect.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Object\WaterFallEffect.cpp">
+      <Filter>Object\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -421,6 +427,12 @@
     </ClInclude>
     <ClInclude Include="Objects\Bullets\Beast_Bullet.h">
       <Filter>Object\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\WaterEffect.h">
+      <Filter>Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Object\WaterFallEffect.h">
+      <Filter>Object\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

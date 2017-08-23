@@ -145,6 +145,8 @@
     <ClCompile Include="Objects\Object\Land.cpp" />
     <ClCompile Include="Objects\Object\LifeUI.cpp" />
     <ClCompile Include="Objects\Object\RockFly.cpp" />
+    <ClCompile Include="Objects\Object\WaterEffect.cpp" />
+    <ClCompile Include="Objects\Object\WaterFallEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContraGame.h" />
@@ -210,6 +212,8 @@
     <ClInclude Include="Objects\Object\Land.h" />
     <ClInclude Include="Objects\Object\LifeUI.h" />
     <ClInclude Include="Objects\Object\RockFly.h" />
+    <ClInclude Include="Objects\Object\WaterEffect.h" />
+    <ClInclude Include="Objects\Object\WaterFallEffect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

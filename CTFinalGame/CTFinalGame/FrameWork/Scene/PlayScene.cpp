@@ -1,4 +1,6 @@
 ﻿#include "PlayScene.h"
+#include "../../Objects/Object/WaterEffect.h"
+#include "../../Objects/Object/WaterFallEffect.h"
 #if _DEBUG
 #include <time.h>
 #endif
@@ -24,6 +26,23 @@ bool PlayScene::init()
 	 auto bill = new Bill(1);
 	 bill->init();
 	 bill->setPosition(100, 500);
+
+	 auto watereffect2 = new WaterFallEffect(GVector2(200 + 60, 80));
+	 watereffect2->init();
+	 _listobject.push_back(watereffect2);
+	
+	 auto watereffect3 = new WaterEffect(GVector2(200,80));
+	 watereffect3->init();
+	 _listobject.push_back(watereffect3);
+	 auto watereffect = new WaterEffect(GVector2(200+20, 80));
+	 watereffect->init();
+	 _listobject.push_back(watereffect);
+	 auto watereffect1 = new WaterEffect(GVector2(200+40, 80));
+	 watereffect1->init();
+	 _listobject.push_back(watereffect1);
+
+
+
 	 this->_bill = bill;
 	 _listControlObject.push_back(bill);
 	 _listobject.push_back(bill);

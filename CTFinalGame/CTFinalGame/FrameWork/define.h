@@ -84,7 +84,9 @@ enum eID
 	FALCON_L = 50,
 	FALCON_M = 51,
 	FALCON_R = 52,
-	FALCON_S = 53
+	FALCON_S = 53,
+	WATEREFFECT = 54,
+	WATERFALLEFFECT = 55
 };
  
 enum eStatus

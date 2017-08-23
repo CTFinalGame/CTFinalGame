@@ -1,0 +1,4 @@
+frame_name	left	top		right	bottom
+water_01		2		2		12		10
+water_02		16		2		30		10
+
