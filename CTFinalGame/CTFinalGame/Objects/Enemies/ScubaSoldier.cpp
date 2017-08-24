@@ -23,8 +23,8 @@ void ScubaSoldier::init()
 	auto collisionBody = new CollisionBody(this);
 	_listComponent["CollisionBody"] = collisionBody;
 
-	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Rifleman::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, collisionBody, &Rifleman::onCollisionEnd);
+	__hook(&CollisionBody::onCollisionBegin, collisionBody, &ScubaSoldier::onCollisionBegin);
+	__hook(&CollisionBody::onCollisionEnd, collisionBody, &ScubaSoldier::onCollisionEnd);
 
 	_animations[HIDDEN] = new Animation(_sprite, SCUBASOLDIER_ANIMATION_SPEED);
 	_animations[HIDDEN]->addFrameRect(eID::SCUBASOLDIER, "hidden", NULL);
