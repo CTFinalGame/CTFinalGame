@@ -63,9 +63,9 @@ void AirCraft::checkifOutofScreen()
 		return;
 	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
 	RECT screenBound = viewport->getBounding();
-	GVector2 position = this->getPosition();
+	RECT thisBound = BaseObject::getBounding();
 
-	if (position.x > screenBound.right)
+	if (thisBound.left > screenBound.right)
 	{
 		this->setStatus(eStatus::DESTROY);
 	}

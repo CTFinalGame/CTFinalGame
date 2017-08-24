@@ -33,6 +33,7 @@ public:
 	void onCollisionBegin(CollisionEventArg*);
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
+	void checkifOutofScreen();
 
 	void die();
 	void shoot();

@@ -50,13 +50,11 @@ void Falcon::initExplosion()
 }
 void Falcon::checkifOutofScreen()
 {
-	if (this->getStatus() != eStatus::NORMAL)
-		return;
 	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
 	RECT screenBound = viewport->getBounding();
 	RECT thisBound = this->getBounding();
 	GVector2 position = this->getPosition();
-	if (thisBound.right < screenBound.left)
+	if (thisBound.right < screenBound.left || thisBound.top < screenBound.bottom)
 	{
 		this->setStatus(eStatus::DESTROY);
 	}

@@ -119,8 +119,10 @@ void Item::checkifOutofScreen()
 		return;
 	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
 	RECT screenBound = viewport->getBounding();
+	RECT thisBound = BaseObject::getBounding();
 	GVector2 position = this->getPosition();
-	if (position.y < screenBound.bottom)
+
+	if (thisBound.right < screenBound.left || thisBound.top < screenBound.bottom)
 	{
 		this->setStatus(eStatus::DESTROY);
 	}

@@ -110,6 +110,7 @@ void Rifleman::setShootingAngle(double angle)
 }
 void Rifleman::update(float deltatime)
 {
+	checkifOutofScreen();
 	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
 	float dx = (this->getPosition().x) - (bill->getPosition().x);
 
@@ -381,5 +382,17 @@ void Rifleman::changeShootingStance()
 	{
 		this->setScaleX(-SCALE_FACTOR);
 		this->setStatus(AIMING_DOWN);
+	}
+}
+
+void Rifleman::checkifOutofScreen()
+{
+	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
+	RECT screenBound = viewport->getBounding();
+	RECT thisBound = this->getBounding();
+
+	if (thisBound.right < screenBound.left || thisBound.top < screenBound.bottom)
+	{
+		this->setStatus(eStatus::DESTROY);
 	}
 }

@@ -31,7 +31,7 @@ public:
 
 	void enableJump(bool enable);
 	bool canJump();
-
+	void checkifOutofScreen();
 protected:
 
 
@@ -59,7 +59,7 @@ protected:
 	float getRotate() override;
 	void setRotate(float degree) override;
 	GVector2 getAnchorPoint() override;
-
+	
 	void setZIndex(float z) override;
 	float getZIndex() override;
 #pragma endregion

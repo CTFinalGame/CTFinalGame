@@ -42,6 +42,7 @@ public:
 	void onCollisionEnd(CollisionEventArg*);
 	float checkCollision(BaseObject*, float);
 	IComponent* getComponent(string);
+	void checkifOutofScreen();
 
 private:
 	map<string, IComponent*> _listComponent;

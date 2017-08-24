@@ -60,15 +60,15 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	// this->_listSprite.insert(pair<eID, Sprite*>(eID::ENUMOBJECT, sp));
 
 	Sprite* sp = NULL;
-	sp = new Sprite(spriteHandle, L"Resource//Soldier.png",10,10);
+	sp = new Sprite(spriteHandle, L"Resource//Images//Soldier.png",10,10);
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::SOLDIER, sp));
-	this->loadSpriteInfo(eID::SOLDIER, "Resource//soldier_animation.txt");
-	sp = new Sprite(spriteHandle, L"Resource//rifleman.png", 10, 10);
+	this->loadSpriteInfo(eID::SOLDIER, "Resource//Images//soldier_animation.txt");
+	sp = new Sprite(spriteHandle, L"Resource//Images//rifleman.png", 10, 10);
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::RIFLEMAN, sp));
-	this->loadSpriteInfo(eID::RIFLEMAN, "Resource//rifleman_animation.txt");
-	Sprite* bill = new Sprite(spriteHandle, L"Resource//bill_animation.png");
+	this->loadSpriteInfo(eID::RIFLEMAN, "Resource//Images//rifleman_animation.txt");
+	Sprite* bill = new Sprite(spriteHandle, L"Resource//Images//bill_animation.png");
 	this->_listSprite[eID::BILL] = bill;
-	this->loadSpriteInfo(eID::BILL, "Resource//bill_animation.txt");
+	this->loadSpriteInfo(eID::BILL, "Resource//Images//bill_animation.txt");
 	
 	sp = new Sprite(spriteHandle, L"Resource//Images//Falcon.png");
 	this->_listSprite.insert(pair<eID, Sprite*>(eID::FALCON, sp));
@@ -112,9 +112,9 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Images//bridge.png", 6, 3);
 	this->_listSprite[eID::BRIDGE] = sp;
 
-	auto bl = new Sprite(spriteHandle, L"Resource//Bullets.png");
+	auto bl = new Sprite(spriteHandle, L"Resource//Images//Bullets.png");
 	this->_listSprite[eID::BULLET] = bl;
-	this->loadSpriteInfo(eID::BULLET, "Resource//bullets_type.txt");
+	this->loadSpriteInfo(eID::BULLET, "Resource//Images//bullets_type.txt");
 
 	sp = new Sprite(spriteHandle, L"Resource//Map//stage1.png", 120, 10);
 	sp->setOrigin(VECTOR2ZERO);

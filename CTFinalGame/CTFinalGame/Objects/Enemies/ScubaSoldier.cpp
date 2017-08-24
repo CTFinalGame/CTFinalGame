@@ -287,3 +287,15 @@ void ScubaSoldier::ScubaBullet::release()
 ScubaSoldier::ScubaBullet::~ScubaBullet()
 {
 }
+
+void ScubaSoldier::checkifOutofScreen()
+{
+	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
+	RECT screenBound = viewport->getBounding();
+	RECT thisBound = this->getBounding();
+
+	if (thisBound.top < screenBound.bottom)
+	{
+		this->setStatus(eStatus::DESTROY);
+	}
+}

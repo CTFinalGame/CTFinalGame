@@ -154,12 +154,10 @@ void RockFly::checkPosition()
 }
 void RockFly::checkifOutofScreen()
 {
-	if (this->getStatus() != eStatus::NORMAL)
-		return;
 	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
 	RECT screenBound = viewport->getBounding();
 	RECT thisBound = this->getBounding();
-	GVector2 position = this->getPosition();
+
 	if (thisBound.top < screenBound.bottom)
 	{
 		this->setStatus(eStatus::DESTROY);

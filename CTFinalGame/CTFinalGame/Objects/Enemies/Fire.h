@@ -8,8 +8,8 @@
 #include "../../FrameWork/Scene/PlayScene.h"
 using namespace std;
 
-#define HORIZONTAL_VELOC		GVector2(100.0f, 0.0f)		// vận tốc ngang
-#define HORIZONTAL_VELOC_PRE	GVector2(-100.0f, 0.0f)		// vận tốc ngang
+#define HORIZONTAL_VELOC		GVector2(75.0f, 0.0f)		// vận tốc ngang
+#define HORIZONTAL_VELOC_PRE	GVector2(-75.0f, 0.0f)		// vận tốc ngang
 #define RANGEMOVE_FIRE			200
 class Fire:public BaseObject
 {

@@ -1,5 +1,7 @@
 
 #include "Land.h"
+#include "../../FrameWork/Scene/PlayScene.h"
+#include "../../FrameWork/Scene/Stage3.h"
 
 
 Land::Land(int x, int y, int width, int height, eDirection physicBodyDirection, eLandType type) : BaseObject(eID::LAND)
@@ -38,6 +40,7 @@ void Land::init()
 
 void Land::update(float deltatime)
 {
+	checkifOutofScreen();
 	for (auto it : _listComponent)
 	{
 		it.second->update(deltatime);
@@ -207,4 +210,16 @@ bool Land::canJump()
 
 Land::~Land()
 {
+}
+
+void Land::checkifOutofScreen()
+{
+	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
+	RECT screenBound = viewport->getBounding();
+	RECT thisBound = this->_bound;
+
+	if (thisBound.top < screenBound.bottom || thisBound.right<screenBound.left)
+	{
+		this->setStatus(eStatus::DESTROY);
+	}
 }
