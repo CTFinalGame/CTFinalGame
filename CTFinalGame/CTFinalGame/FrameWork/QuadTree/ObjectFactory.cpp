@@ -343,7 +343,7 @@ BaseObject* ObjectFactory::getWaterEffect(int x, int y)
 }
 BaseObject* ObjectFactory::getWaterFallEffect(int x, int y)
 {
-	auto waterFallEffect = new WaterFallEffect(GVector2(x, y));
+	auto waterFallEffect = new WaterFallEffect(GVector2(x+30, y-15));
 	waterFallEffect->init();
 	return waterFallEffect;
 }

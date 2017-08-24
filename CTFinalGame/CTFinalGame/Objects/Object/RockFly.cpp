@@ -36,6 +36,7 @@ void RockFly::init()
 // update
 void RockFly::update(float deltatime)
 {
+	checkifOutofScreen();
 	if (this->getStatus() == eStatus::DESTROY)
 		return;
 
@@ -151,7 +152,19 @@ void RockFly::checkPosition()
 
 	
 }
-
+void RockFly::checkifOutofScreen()
+{
+	if (this->getStatus() != eStatus::NORMAL)
+		return;
+	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
+	RECT screenBound = viewport->getBounding();
+	RECT thisBound = this->getBounding();
+	GVector2 position = this->getPosition();
+	if (thisBound.top < screenBound.bottom)
+	{
+		this->setStatus(eStatus::DESTROY);
+	}
+}
 RECT RockFly::getBounding()
 {
 	RECT basebound = BaseObject::getBounding();

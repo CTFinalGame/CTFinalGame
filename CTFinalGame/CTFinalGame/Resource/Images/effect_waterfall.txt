@@ -1,4 +1,4 @@
 frame_name	left	top		right	bottom
-waterfall_01		0		0		31		15
-waterfall_02		32		0		63		15
+waterfall_01		0		0		32		16
+waterfall_02		32		0		64		16
 

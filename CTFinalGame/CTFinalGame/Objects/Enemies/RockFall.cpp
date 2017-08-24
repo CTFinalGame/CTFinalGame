@@ -46,7 +46,7 @@ void RockFall::init()
 // update
 void RockFall::update(float deltatime)
 {
-
+	checkifOutofScreen();
 	if (this->getStatus() == eStatus::DESTROY)
 		return;
 	// if - return thì không cần else
@@ -133,7 +133,17 @@ void RockFall::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 			_sprite->render(spriteHandle, viewport);
 	}
 }
-
+void RockFall::checkifOutofScreen()
+{
+	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
+	RECT screenBound = viewport->getBounding();
+	RECT thisBound = this->getBounding();
+	GVector2 position = this->getPosition();
+	if (thisBound.top < screenBound.bottom)
+	{
+		this->setStatus(eStatus::DESTROY);
+	}
+}
 // release
 void RockFall::release()
 {

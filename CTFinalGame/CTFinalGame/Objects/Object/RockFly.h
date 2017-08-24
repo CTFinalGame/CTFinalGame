@@ -25,10 +25,10 @@ public:
 	void draw(LPD3DXSPRITE, Viewport*) override;
 	void release() override;
 	GVector2 getVelocity() override;
-
+	void checkifOutofScreen();
 	IComponent* getComponent(string componentName);
 	RECT getBounding() override;
-
+	
 private:
 	map<string, IComponent*> _listComponent;
 

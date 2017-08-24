@@ -42,7 +42,8 @@ public:
 
 	void dropHitpoint();
 	void dropHitpoint(int damage);
-
+	void checkifOutofScreen();
+	
 private:
 	map<string, IComponent*> _listComponent;
 	vector<BaseObject*> _passedLand;
