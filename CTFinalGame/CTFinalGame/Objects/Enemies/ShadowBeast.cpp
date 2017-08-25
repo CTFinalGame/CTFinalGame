@@ -62,8 +62,6 @@ void ShadowBeast::update(float deltatime)
 		if (SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false)
 		{
 			this->setStatus(eStatus::DYING);
-			//SoundManager::getInstance()->Play(eSoundId::WINGAME);
-			//_flagPlayedDestroyBoss = false;
 		}
 	}
 }
@@ -161,10 +159,6 @@ void ShadowBeast::ShadowArm::init()
 	_sprite->setPosition(_rootOfArm + GVector2(0, 80));
 
 	roundCircletime = 0.0f;
-	CollisionBody* collisionBody = new CollisionBody(this);
-	this->_componentList["CollisionBody"] = collisionBody;
-	__hook(&CollisionBody::onCollisionBegin, collisionBody, &Bullet::onCollisionBegin); //dư?
-
 	_stopWatch = new StopWatch();
 	_aimtime = new StopWatch();
 	_trackBillTime = new StopWatch();
@@ -189,18 +183,8 @@ void ShadowBeast::ShadowArm::init()
 	_memStatus = normal;
 }
 
-void ShadowBeast::ShadowArm::initComponent(Sprite* sprite)
-{
-	auto roundmovement = new RoundMovement(0.0f, 0.0f, 0.0f, sprite);
-	Movement* movement = new Movement(VECTOR2ZERO, VECTOR2ZERO, sprite);
-	_componentList["Movement"] = movement;
-	_componentList["RoundMovement"] = roundmovement;
-}
-
 ShadowBeast::ShadowArm::ShadowArm(GVector2 root) : BaseEnemy(eID::SHADOW_ARM)
 {
-	//for (int i = 0; i < 4; i++)
-
 	_rootOfArm = root;
 }
 
@@ -356,8 +340,6 @@ void ShadowBeast::ShadowArm::aimAttack(float deltatime)
 			}
 		}
 		flagforTrackBill = true;
-
-		//_handelem2._angle = -M_PI_2;
 		_handelem3._angle -= 5.0 * deltatime / 1000;
 		_handelem4._angle -= 5.0 * deltatime / 1000;
 		_arm._angle -= 5.0 * deltatime / 1000;
@@ -383,9 +365,6 @@ void ShadowBeast::ShadowArm::aimAttack(float deltatime)
 			auto billposition = ((Stage3*)SceneManager::getInstance()->getCurrentScene())->getBill()->getPosition();
 			auto thisPosition = _rootOfArm;
 			auto angle_tracked = atan((billposition.x - thisPosition.x) / (billposition.y - thisPosition.y));
-			//if (_isClockWise)
-			//	_handelem2._angle = M_PI_2 + angle_tracked;
-			//else
 				_handelem2._angle = -M_PI_2 - angle_tracked;
 			
 			_trackBillTime->restart();
@@ -412,7 +391,6 @@ void ShadowBeast::ShadowArm::shoot()
 }
 void ShadowBeast::ShadowArm::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 {
-	//_sprite->render(spriteHandle, viewport);
 	if (this->getStatus() == eStatus::NORMAL)
 	{
 		_handelem1._sprite->render(spriteHandle, viewport);

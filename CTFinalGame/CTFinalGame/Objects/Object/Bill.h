@@ -32,7 +32,6 @@ class Bill : public BaseObject, public IControlable
 {
 
 public:
-	//Bill();
 	Bill(int life = 3);
 	~Bill();
 	void init();

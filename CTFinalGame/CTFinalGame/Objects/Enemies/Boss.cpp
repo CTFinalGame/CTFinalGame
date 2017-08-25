@@ -8,21 +8,9 @@ void Boss::init()
 	// Cục súng bên phải
 	_gun1 = new BossGun(GVector2(_startposition.x + 74.0f, _startposition.y + 154.0f), 0);
 	_gun1->init();
-	/*_moulder1 = SpriteManager::getInstance()->getSprite(eID::BOSS_STAGE1);
-	_moulder1->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BOSS_STAGE1, "moulder_1"));
-	_moulder1->setScale(SCALE_FACTOR);
-	_moulder1->setOrigin(_gun1->getOrigin());
-	_moulder1->setPosition(_gun1->getPosition());
-*/
 	// Cục súng bên trái
 	_gun2 = new BossGun(GVector2(_startposition.x + 30.0f, _startposition.y + 154.0f), 1);
 	_gun2->init();
-	/*_moulder2 = SpriteManager::getInstance()->getSprite(eID::BOSS_STAGE1);
-	_moulder2->setFrameRect(SpriteManager::getInstance()->getSourceRect(eID::BOSS_STAGE1, "moulder_2"));
-	_moulder2->setScale(SCALE_FACTOR);
-	_moulder2->setOrigin(_gun2->getOrigin());
-	_moulder2->setPosition(_gun2->getPosition());*/
-
 	_shield = new BossShield(GVector2(_startposition.x + 14.0f, _startposition.y + 65.0f));
 	_shield->init();
 	_bigmoudler = SpriteManager::getInstance()->getSprite(eID::BOSS_STAGE1);
@@ -114,7 +102,6 @@ void Boss::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 	{
 		if (_gun1->getStatus() == eStatus::DESTROY)
 		{
-			//_moulder1->render(spriteHandle, viewport);
 		}
 		else
 		{
@@ -125,7 +112,6 @@ void Boss::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 	{
 		if (_gun2->getStatus() == eStatus::DESTROY)
 		{
-			//_moulder2->render(spriteHandle, viewport);
 		}
 		else
 		{
@@ -220,7 +206,7 @@ RECT Boss::getBounding()
 	rect.left = this->_startposition.x;
 	rect.bottom = this->_startposition.y;
 	rect.top = rect.bottom + _height;
-	rect.right = rect.left + 200.0f; // hard code
+	rect.right = rect.left + 200.0f;
 	return rect;
 }
 
@@ -369,8 +355,6 @@ void Boss::BossGun::init()
 	this->setScore(GUN_SCORE);
 	_sprite = SpriteManager::getInstance()->getSprite(eID::BOSS_STAGE1);
 	this->setPosition(_startposition);
-	//_animation = new Animation(_sprite, 0.5f);
-
 	this->initFrameRect();
 
 	auto collisionBody = new CollisionBody(this);

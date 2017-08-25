@@ -32,7 +32,7 @@ bool Stage3::init()
 {
 	auto bill = new Bill(_restBill);
 	bill->init();
-	bill->setPosition(200, 200);
+	bill->setPosition(200, 5000);
 	
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
@@ -56,25 +56,15 @@ bool Stage3::init()
 
 	auto scenarioBoss_Viewport = new Scenario("BossViewport");
 	__hook(&Scenario::update, scenarioBoss_Viewport, &Stage3::bossScene_Viewport);
-	//auto scenarioBossSound = new Scenario("BossSound");
-	//__hook(&Scenario::update, scenarioBossSound, &Stage3::playBossStage1Sound);
 	_director = new ScenarioManager();
-	//_director->insertScenario(scenarioBossSound);
 	_director->insertScenario(scenarioBoss_Viewport);
 
 	auto scenarioKillBoss = new Scenario("KillBoss");
 	__hook(&Scenario::update, scenarioKillBoss, &Stage3::killbossScene_Bill);
-//	auto playsound = new Scenario("PassBossSound");
-	//__hook(&Scenario::update, playsound, &Stage3::playPassBossSound);
 
 	flagbossScenario = false;
 	_directorKillBoss = new ScenarioManager();
-	//_directorKillBoss->insertScenario(playsound);
 	_directorKillBoss->insertScenario(scenarioKillBoss);
-
-	//_flagCredit = false;
-	//_credit = new Credit();
-	//_credit->init();
 	return true;
 }
 void Stage3::bossScene_Viewport(float dt, bool& finish)
@@ -93,27 +83,8 @@ void Stage3::bossScene_Viewport(float dt, bool& finish)
 	_viewport->setPositionWorld(current_position);
 	finish = false;
 }
-void Stage3::playBossStage1Sound(float dt, bool& finish)
-{
-	//SoundManager::getInstance()->Play(eSoundId::BOSS_SOUNG1);
-	finish = true;
-}
-void Stage3::playPassBossSound(float dt, bool& finish)
-{
-	SoundManager::getInstance()->Play(eSoundId::WINGAME);
-	_flagCredit = true;
-
-	((Bill*)_bill)->unhookinputevent();
-	finish = true;
-}
-
 void Stage3::killbossScene_Bill(float deltatime, bool& isFinish)
-
 {
-	/*if (SoundManager::getInstance()->IsPlaying(eSoundId::WINGAME) == false)
-	{
-		isFinish = true;
-	}*/
 	auto bill = (Bill*)_bill;
 	bill->forceShoot();
 	if (bill->getBounding().right >= _viewport->getWidth()-100)
@@ -162,11 +133,6 @@ void Stage3::update(float dt)
 	auto mapsize = this->background->getWorldSize();
 	// Hàm getlistobject của quadtree yêu cầu truyền vào một hình chữ nhật theo hệ top left, nên cần tính lại khung màn hình
 	RECT screen;
-	// left right không đổi dù hệ top-left hay hệ bot-left
-	/*screen.left = viewport_in_transform.left;
-	screen.right = viewport_in_transform.right;
-	screen.top = mapsize.y - viewport_position.y;
-	screen.bottom = screen.top + _viewport->getHeight();*/
 	screen.left = viewport_in_transform.left;
 	screen.right = viewport_in_transform.right;
 	screen.bottom = viewport_position.y - _viewport->getHeight();
@@ -300,7 +266,6 @@ void Stage3::updateViewport(BaseObject* objTracker)
 
 void Stage3::draw(LPD3DXSPRITE spriteHandle)
 {
-	//sprite->render(spriteHandle, _viewport);
 	background->draw(spriteHandle, _viewport);
 
 	for (BaseObject* object : _active_object)
@@ -309,12 +274,7 @@ void Stage3::draw(LPD3DXSPRITE spriteHandle)
 	}
 	if (_flagCredit == true)
 	{
-		//_credit->draw(spriteHandle);
 	}
-
-#if _DEBUG
-	//_text->draw();
-#endif
 }
 
 void Stage3::release()
@@ -355,18 +315,14 @@ void Stage3::ScenarioKillBoss(float deltatime)
 	if (_directorKillBoss == nullptr)
 		return;
 	auto boss = getObject(eID::SHADOW_BEAST);
-	if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
-	{//if (boss->isInStatus(eStatus::DYING) == true)
-		//_credit->update(deltatime);
+	if (boss->isInStatus(eStatus::DYING) == true){
 		this->_directorKillBoss->update(deltatime);
 		if (this->_directorKillBoss->isFinish() == true)
-		{
+			 {
 			SAFE_DELETE(_directorKillBoss);
-			//chuyển scene
-			// test
-			auto intro = new IntroScene();
+				auto intro = new IntroScene();
 			SceneManager::getInstance()->replaceScene(intro);
-		}
+			}
 	}
 }
 bool Stage3::checkGameLife()
