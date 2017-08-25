@@ -32,7 +32,7 @@ bool Stage3::init()
 {
 	auto bill = new Bill(_restBill);
 	bill->init();
-	bill->setPosition(200, 5000);
+	bill->setPosition(200, 200);
 	
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
@@ -315,7 +315,9 @@ void Stage3::ScenarioKillBoss(float deltatime)
 	if (_directorKillBoss == nullptr)
 		return;
 	auto boss = getObject(eID::SHADOW_BEAST);
-	if (boss->isInStatus(eStatus::DYING) == true){
+	//if (boss->isInStatus(eStatus::DYING) == true){
+	if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
+	{
 		this->_directorKillBoss->update(deltatime);
 		if (this->_directorKillBoss->isFinish() == true)
 			 {
