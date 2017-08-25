@@ -30,15 +30,11 @@ public:
 	void draw(LPD3DXSPRITE, Viewport*);
 	void release();
 
-	void onCollisionBegin(CollisionEventArg*);
-	void onCollisionEnd(CollisionEventArg*);
-	float checkCollision(BaseObject*, float);
 	void checkifOutofScreen();
 
 	void die();
 	void shoot();
 
-	IComponent* getComponent(string);
 	RECT getBounding() override;
 
 	class ScubaBullet : public Bullet
@@ -63,7 +59,6 @@ public:
 	};
 
 private:
-	map<string, IComponent*> _listComponent;
 	map<int, Animation*> _animations;
 	Explosion *_explosion;
 	list<Bullet*> _listBullets;
