@@ -141,11 +141,11 @@ bool Animation::isAnimate()
 	// 7ung => use in AirCraft::draw
 	return _canAnimate;
 }
-bool Animation::isLastAnimation()
-{
-	//
-	return false;
-}
+//bool Animation::isLastAnimation()
+//{
+//	//
+//	return false;
+//}
 
 void Animation::addFrameRect(RECT rect)
 {
@@ -154,12 +154,6 @@ void Animation::addFrameRect(RECT rect)
 	{
 		_currentRect = rect;
 
-		// trường hợp kiểm tra _bounding trước khi vẽ lần đầu tiên, nếu ko có setFrameRect thì nó sẽ lấy nguyên spriteSheet
-		// sẽ làm sai kích thước của frame hiện tại
-		// vậy lần đầu gán cho frame đầu. (nhưng bị lỗi ở AirCraft) // THANG
-		// cách khác là setframeRect ở object cho sprite.
-
-		// _spriteSheet->setFrameRect(_currentRect);
 	}
 		
 
@@ -180,16 +174,7 @@ void Animation::addFrameRect(float left, float top, int width, int height)
 	this->addFrameRect(rect);
 }
 
-void Animation::addFrameRect(float left, float top, float right, float bottom)
-{
-	RECT rect;
-	rect.left = left;
-	rect.top = top;
-	rect.right = right;
-	rect.bottom = bottom;
 
-	this->addFrameRect(rect);
-}
 
 void Animation::addFrameRect(eID id, char* firstRectName, ...)
 {

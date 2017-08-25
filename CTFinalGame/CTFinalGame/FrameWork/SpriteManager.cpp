@@ -167,27 +167,6 @@ void SpriteManager::loadResource(LPD3DXSPRITE spriteHandle)
 	sp = new Sprite(spriteHandle, L"Resource//Images//fontFull.png", 54, 6);
 	this->_listSprite[eID::FONTFULL] = sp;
 
-
-
-
-
-	//sp = new Sprite(spriteHandle, L"Resources//Images//blank.png");
-	//this->_listSprite[eID::BLANK] = sp;
-
-	
-
-
-	//sp = new Sprite(spriteHandle, L"Resources//Images//tuts_layer.png");
-	//this->_listSprite[eID::TUT_LAYER] = sp;
-
-	//// Đọc file xml để tạo đối tượng sprite
-	//sp = loadXMLDoc(spriteHandle, L"Resources//Map//stage1.xml");
-	//sp->setOrigin(VECTOR2ZERO);
-	//this->_listSprite[eID::MAPSTAGE1] = sp;
-
-	//sp = loadXMLDoc(spriteHandle, L"Resources//Map//stage3.xml");
-	//sp->setOrigin(VECTOR2ZERO);
-	//this->_listSprite[eID::MAPSTAGE3] = sp;
 }
 
 Sprite* SpriteManager::getSprite(eID id)

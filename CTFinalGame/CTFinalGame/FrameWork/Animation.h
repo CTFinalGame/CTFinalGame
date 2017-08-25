@@ -87,8 +87,7 @@ public:
 	bool isAnimate();
 	void addFrameRect(RECT rect);
 	void addFrameRect(float left, float top, int width, int height);
-	void addFrameRect(float left, float top, float right, float bottom);
-
+	
 	/*
 	Tạo nhiều framerect liên tiếp nhau, không giới hạn tham số
 		@id: ID của sprite
@@ -134,9 +133,9 @@ public:
 
 	void setColorFlash(D3DXCOLOR color);
 	D3DXCOLOR getColorFlash();
-	bool isLastAnimation();
+	//bool isLastAnimation();
 private:
-	bool					_isAll;
+	
 	int						_startFrame;
 	int						_endFrame;
 	int						_index;									// số thứ tự frame

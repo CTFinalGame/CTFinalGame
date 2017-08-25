@@ -49,12 +49,12 @@ private:
 	StopWatch *_stopwatch;
 	StopWatch *_shoot;
 	StopWatch *_loopwatch;
-	StopWatch *_checkShoot;
+	//StopWatch *_checkShoot;
 	BaseObject *_explosion;
 	BaseObject* prevObject;	Sprite *_divingSprite;
 	bool _canShoot;
 
-	void shoot();
+	//void shoot();
 	void changeDirection();
 };
 #endif

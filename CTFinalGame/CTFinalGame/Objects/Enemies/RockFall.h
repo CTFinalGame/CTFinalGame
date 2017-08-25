@@ -56,8 +56,4 @@ private:
 
 };
 
-
-
-
-
 #endif // !__ROCKFALL_H__

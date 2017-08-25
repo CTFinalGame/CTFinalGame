@@ -99,7 +99,7 @@ void Soldier::init()
 	_stopwatch = new StopWatch();
 	_loopwatch = new StopWatch();
 	_shoot = new StopWatch();
-	_checkShoot = new StopWatch();
+	//_checkShoot = new StopWatch();
 }
 
 void Soldier::draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
@@ -255,7 +255,7 @@ float Soldier::checkCollision(BaseObject * object, float dt)
 		{
 			if (land == eLandType::GRASS || land == eLandType::BRIDGELAND)
 			{
-				bool flagend = false;
+				//bool flagend = false;
 				if (direction == eDirection::TOP && this->getVelocity().y < 0)
 				{
 					auto gravity = (Gravity*)this->_listComponent["Gravity"];
@@ -343,18 +343,18 @@ void Soldier::die() {
 	movement->setVelocity(GVector2(0, 200));
 }
 
-void Soldier::shoot()
-{
-	float angle = -90 * this->getScale().x / 2;
-	auto pos = this->getPosition();
-	if (this->isInStatus(SHOOTING))
-	{
-		pos.x += this->getScale().x < 0 ? this->getSprite()->getFrameWidth() / 2 : -this->getSprite()->getFrameWidth() / 2;
-		pos.y += this->getSprite()->getFrameHeight() / 4.5;
-	}
-	else if (this->isInStatus(LAYING_DOWN))
-	{
-		pos.x += this->getScale().x < 0 ? this->getSprite()->getFrameWidth() / 2 : -this->getSprite()->getFrameWidth() / 2;
-		pos.y -= this->getSprite()->getFrameHeight() / 4.5;
-	}
-}
+//void Soldier::shoot()
+//{
+//	float angle = -90 * this->getScale().x / 2;
+//	auto pos = this->getPosition();
+//	if (this->isInStatus(SHOOTING))
+//	{
+//		pos.x += this->getScale().x < 0 ? this->getSprite()->getFrameWidth() / 2 : -this->getSprite()->getFrameWidth() / 2;
+//		pos.y += this->getSprite()->getFrameHeight() / 4.5;
+//	}
+//	else if (this->isInStatus(LAYING_DOWN))
+//	{
+//		pos.x += this->getScale().x < 0 ? this->getSprite()->getFrameWidth() / 2 : -this->getSprite()->getFrameWidth() / 2;
+//		pos.y -= this->getSprite()->getFrameHeight() / 4.5;
+//	}
+//}

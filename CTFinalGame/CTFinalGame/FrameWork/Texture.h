@@ -42,7 +42,7 @@ public:
 	- if you chose x,y of frame, topleft of image will be drawn at @position - (x ,y)
 	@postion: position to draw
 	*/
-	void render(LPD3DXSPRITE spriteHandle, const RECT* rect, const GVector3* center, const GVector3* position);
+//	void render(LPD3DXSPRITE spriteHandle, const RECT* rect, const GVector3* center, const GVector3* position);
 
 	/*
 	render texture với các tham số tranform, gốc tọa độ top-left
