@@ -36,9 +36,6 @@ public:
 	void draw(LPD3DXSPRITE, Viewport*);
 	void release();
 
-	void onCollisionBegin(CollisionEventArg*);
-	void onCollisionEnd(CollisionEventArg*);
-
 	void setBillAngle(float);
 	float getBillAngle();
 	void setShootingAngle(float);
@@ -48,20 +45,13 @@ public:
 	void setWTStatus(eWT_Status);
 	eWT_Status getWT_Status();
 	void shoot();
-	//RECT getBounding();
-
-	/*float checkCollision(BaseObject*, float);*/
 	void checkIfOutofScreen();
-	IComponent* getComponent(string);
 private:
-	int type;
-	map < string, IComponent*> _listComponent;
 	map<int, Animation*> _animation;
 	float _shootingAngle;
 	float _billAngle;
 	eWT_Status _wtstatus;
 	BaseObject* _explosion;
-
 	list<Bullet*> _listBullet;
 	StopWatch* _stopwatch;
 
@@ -75,8 +65,6 @@ private:
 	bool isInStatus(eStatus);
 	bool isInStatus(eWT_Status);
 	void calculateBillangle();
-
-	void checkBill();
 	void rangeAttack();
 	bool isRange();
 

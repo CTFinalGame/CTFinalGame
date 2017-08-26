@@ -20,12 +20,6 @@ void ScubaSoldier::init()
 {
 	this->setScale(SCALE_FACTOR);
 
-	auto collisionBody = new CollisionBody(this);
-	_listComponent["CollisionBody"] = collisionBody;
-
-	__hook(&CollisionBody::onCollisionBegin, collisionBody, &ScubaSoldier::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, collisionBody, &ScubaSoldier::onCollisionEnd);
-
 	_animations[HIDDEN] = new Animation(_sprite, SCUBASOLDIER_ANIMATION_SPEED);
 	_animations[HIDDEN]->addFrameRect(eID::SCUBASOLDIER, "hidden", NULL);
 
@@ -54,11 +48,6 @@ void ScubaSoldier::draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 
 void ScubaSoldier::release()
 {
-	for (auto component : _listComponent)
-	{
-		delete component.second;
-	}
-	_listComponent.clear();
 	if (this->_explosion != NULL)
 		this->_explosion->release();
 	SAFE_DELETE(this->_explosion);
@@ -111,17 +100,6 @@ void ScubaSoldier::update(float deltatime)
 		_animationTime = GameTime::getInstance()->getTotalGameTime();
 		_shot = true;		
 	}
-}
-
-
-void ScubaSoldier::onCollisionBegin(CollisionEventArg* collision_event) {}
-void ScubaSoldier::onCollisionEnd(CollisionEventArg* collision_vent) {}
-
-float ScubaSoldier::checkCollision(BaseObject *object, float dt)
-{
-	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-	collisionBody->checkCollision(object, dt);
-	return 0.0f;
 }
 
 RECT ScubaSoldier::getBounding()

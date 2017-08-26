@@ -43,11 +43,6 @@ void Cannon::init()
 
 	this->setScale(SCALE_FACTOR);
 
-	auto collisionBody = new CollisionBody(this);
-	_listComponent["collisionBody"] = collisionBody;
-	__hook(&CollisionBody::onCollisionBegin, collisionBody, &WallTurret::onCollisionBegin);
-	__hook(&CollisionBody::onCollisionEnd, collisionBody, &WallTurret::onCollisionEnd);
-
 	_animation[WT_APPEAR] = new Animation(_sprite, CANNON_APPEAR_SPEED);
 	_animation[WT_APPEAR]->addFrameRect(eID::REDCANNON, "appear_01", "appear_02", "appear_03", "appear_04", "appear_05", "appear_06", NULL);
 	_animation[WT_APPEAR]->setLoop(false);
@@ -132,17 +127,6 @@ void Cannon::update(float deltatime)
 			}
 		this->addStatus(eWT_Status::WT_SHOOTING);
 	}
-
-	//this->checkBill();
-	//for (auto it = _listBullet.begin(); it != _listBullet.end(); it++)
-	//{
-	//	(*it)->update(deltatime);
-	//}
-	for (auto it : _listComponent)
-	{
-		it.second->update(deltatime);
-	}
-
 		if (this->getWT_Status() != eWT_Status::WT_APPEAR && this->getWT_Status() != eWT_Status::WT_CLOSE)
 		{
 			if (bullet >= 3)
@@ -175,12 +159,6 @@ void Cannon::draw(LPD3DXSPRITE spritehandle, Viewport* viewport)
 
 		this->_sprite->render(spritehandle, viewport);
 		_animation[this->getWT_Status()]->draw(spritehandle, viewport);
-		//}
-		//for (auto it = _listBullet.begin(); it != _listBullet.end(); it++)
-		//{
-		//	(*it)->draw(spritehandle, viewport);
-		//}
-
 	}
 }
 void Cannon::release()
@@ -190,15 +168,6 @@ void Cannon::release()
 		delete ani.second;
 	}
 	_animation.clear();
-	for (auto component : _listComponent)
-	{
-		delete component.second;
-	}
-	//for (auto item : _listBullet)
-	//{
-	//	delete item;
-	//}
-	//_listBullet.clear();
 
 	if (_explosion != NULL)
 		this->_explosion->release();
@@ -206,10 +175,6 @@ void Cannon::release()
 	SAFE_DELETE(this->_sprite);
 }
 
-IComponent* Cannon::getComponent(string componentname)
-{
-	return _listComponent.find(componentname)->second;
-}
 
 void Cannon::setStatus(eStatus status)
 {
@@ -284,116 +249,31 @@ float Cannon::getShootingAngle()
 	return _shootingAngle;
 }
 
-void Cannon::onCollisionBegin(CollisionEventArg* collision_event)
-{
-	eID objectID = collision_event->_otherObject->getId();
-	switch (objectID)
-	{
-	case eID::BILL:
-	{
-		if (collision_event->_otherObject->isInStatus(eStatus::DYING) == false)
-		{
-			collision_event->_otherObject->setStatus(eStatus::DYING);
-			((Bill*)collision_event->_otherObject)->die();
-		}
-		break;
-	}
-	default:
-		break;
-	}
-}
-void Cannon::onCollisionEnd(CollisionEventArg* collision_event)
-{
 
-}
-//float WallTurret::checkCollision(BaseObject* object, float dt)
-//{
-//	auto collisionBody = (CollisionBody*)_listComponent["CollisionBody"];
-//	eID objectId = object->getId();
-//	if (objectId == eID::BILL)
-//		collisionBody->checkCollision(object, dt);
-//	return 0.0f;
-//}
-//RECT Cannon::getBounding()
-//{
-//	auto baseBound = BaseObject::getBounding();
-//	baseBound.left += 7 * this->getScale().x;
-//	baseBound.right -= 7 * this->getScale().x;
-//	baseBound.top -= 7 * this->getScale().y;
-//	baseBound.bottom += 7 * this->getScale().y;
-//	return baseBound;
-//}
 void Cannon::shoot()
 {
 	float angle = this->getShootingAngle();
-	//float mx = this->getPosition().x;
-	//float my = this->getPosition().y;
 
 	auto pos = this->getPosition();
 
-	//auto pos = this->getPosition() - GVector2(0, this->getSprite()->getFrameHeight()/2);
 
 	if (this->isInStatus(WT_NORMAL))
 	{
 		pos.x -= this->getSprite()->getFrameWidth()/2;
-	}
-	if (this->isInStatus(WT_UP))
-	{
-		pos.y += this->getSprite()->getFrameHeight()/2;
-	}
-	if (this->isInStatus(WT_RIGHT))
-	{
-		pos.x += this->getSprite()->getFrameWidth() / 2;
-	}
-	if (this->isInStatus(WT_DOWN))
-	{
-		pos.y -= this->getSprite()->getFrameHeight() / 2;
-	}
-	else if (this->isInStatus(WT_RIGHT_30))
-	{
-		pos.x += 8 * abs(this->getSprite()->getScale().x);
-		pos.y += this->getSprite()->getFrameHeight() / 2;
 	}
 	else if (this->isInStatus(WT_LEFT_30))
 	{
 		pos.x -= 8 * abs(this->getSprite()->getScale().x);
 		pos.y += this->getSprite()->getFrameHeight() / 2;
 	}
-	else if (this->isInStatus(WT_RIGHT_60))
-	{
-		pos.x += 14 * abs(this->getSprite()->getScale().x);
-		pos.y += 9 * abs(this->getSprite()->getScale().x);
-	}
 	else if (this->isInStatus(WT_LEFT_60))
 	{
 		pos.x -= 14 * abs(this->getSprite()->getScale().x);
 		pos.y += 9 * abs(this->getSprite()->getScale().x);
 	}
-	else if (this->isInStatus(WT_RIGHT_120))
-	{
-		pos.x += 14 * abs(this->getSprite()->getScale().x);
-		pos.y -= 9 * abs(this->getSprite()->getScale().x);
-	}
-	else if (this->isInStatus(WT_LEFT_120))
-	{
-		pos.x -= 14 * abs(this->getSprite()->getScale().x);
-		pos.y -= 9 * abs(this->getSprite()->getScale().x);
-	}
-	else if (this->isInStatus(WT_RIGHT_150))
-	{
-		pos.x += 8 * abs(this->getSprite()->getScale().x);
-		pos.y -= this->getSprite()->getFrameHeight() / 2;
-	}
-	else if (this->isInStatus(WT_LEFT_150))
-	{
-		pos.x -= 8 * abs(this->getSprite()->getScale().x);
-		pos.y -= this->getSprite()->getFrameHeight() / 2;
-	}
+
 	
 	BulletManager::insertBullet(new Bullet(pos, (eBulletType)(ENEMY_BULLET | NORMAL_BULLET), angle));
-	//Bỏ sẵn
-	//_listBullet.push_back(new Bullet( pos, (eBulletType)(ENEMY_BULLET|NORMAL_BULLET), angle));
-	//_listBullet.back()->init();
 }
 void Cannon::calculateBillangle()
 {
@@ -428,20 +308,12 @@ bool Cannon::isRange()
 	auto viewport = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getViewport();
 	RECT screenBound = viewport->getBounding();
 	RECT thisBound = BaseObject::getBounding();
-	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
-	float dx = this->getPosition().x - bill->getPosition().x;
-	float dy = this->getPosition().y - (bill->getPosition().y + bill->getSprite()->getFrameHeight() / 2);
-	float r = sqrt(dx*dx + dy*dy);
+
 	if (screenBound.left > thisBound.left || screenBound.bottom > thisBound.bottom)
 	{
-
-		if (r < (WINDOW_WIDTH / 2 - 10))
-			return true;
-
 		return false;
 	}
-	else return true;
-	//return true;
+	return true;
 }
 void Cannon::checkIfOutofScreen()
 {
@@ -452,17 +324,5 @@ void Cannon::checkIfOutofScreen()
 	if (thisBound.right < screenBound.left || thisBound.top < screenBound.bottom)
 	{
 		this->setStatus(eStatus::DESTROY);
-	}
-}
-void Cannon::checkBill()
-{
-	auto bill = ((PlayScene*)SceneManager::getInstance()->getCurrentScene())->getBill();
-	//if(abs(bill->getPositionX() - this->getPositionX())>50)
-	if (bill->getStatus() == eStatus::DYING)
-	{
-		this->setWTStatus(eWT_Status::WT_CLOSE);
-	}
-	else{
-		this->setWTStatus(eWT_Status::WT_APPEAR);
 	}
 }

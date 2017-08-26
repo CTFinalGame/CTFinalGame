@@ -328,7 +328,10 @@ void Stage3::ScenarioKillBoss(float deltatime)
 			SAFE_DELETE(_directorKillBoss);
 				auto intro = new IntroScene();
 			SceneManager::getInstance()->replaceScene(intro);
+					SceneManager::getInstance()->replaceScene(intro);
+				}
 			}
+		}
 	}
 }
 bool Stage3::checkGameLife()

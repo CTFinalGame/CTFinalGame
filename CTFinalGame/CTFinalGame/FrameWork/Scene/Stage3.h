@@ -89,8 +89,6 @@ private:
 	bool _flagCredit;
 	void killbossScene_Bill(float deltatime, bool& isFinish);
 	void bossScene_Viewport(float dt, bool& finish);
-	void playPassBossSound(float dt, bool& finish);
-	void playBossStage1Sound(float dt, bool& finish);
 	// Xử lý kéo màn hình khi gặp bốt.
 	void ScenarioMoveViewport(float deltatime);
 	
