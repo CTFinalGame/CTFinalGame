@@ -7,6 +7,7 @@
 class Scene
 {
 public:
+	 int _scene;
 	Scene();
 	virtual ~Scene();
 
@@ -18,6 +19,7 @@ public:
 
 	Viewport*  getViewport();
 protected:
+	
 	Viewport* _viewport;
 private:
 

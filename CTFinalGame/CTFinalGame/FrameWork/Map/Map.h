@@ -14,7 +14,7 @@ private:
 
 						// Kích thước map tính theo số ô Tile.
 	GVector2 _mapSize;
-
+	int mapID;
 	Sprite* _testSp;
 	Animation* _animationTests;
 	// Ma trận Tile id.
@@ -43,7 +43,7 @@ public:
 	Lấy kich thước map.
 	*/
 	GVector2 getWorldSize();
-	Map();
+	Map(int mapID);
 	~Map();
 };
 

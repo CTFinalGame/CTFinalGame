@@ -13,6 +13,7 @@
  
 Stage3::Stage3(int billlife)
 {
+	_scene = 3;
 	_restBill = billlife;
 	_viewport = new Viewport(0, WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT);
 } 
@@ -320,14 +321,17 @@ void Stage3::ScenarioKillBoss(float deltatime)
 	if (_directorKillBoss == nullptr)
 		return;
 	auto boss = getObject(eID::SHADOW_BEAST);
-	if(boss !=nullptr)
-	if (boss->isInStatus(eStatus::DYING) == true){
-		this->_directorKillBoss->update(deltatime);
-		if (this->_directorKillBoss->isFinish() == true)
-			 {
-			SAFE_DELETE(_directorKillBoss);
-				auto intro = new IntroScene();
-			SceneManager::getInstance()->replaceScene(intro);
+	if (boss != nullptr)
+	{
+		if (boss->isInStatus(eStatus::DYING) == true) {
+			//if (boss->isInStatus(eStatus::DYING) == true){
+			if ((SoundManager::getInstance()->IsPlaying(eSoundId::DESTROY_BOSS) == false) && boss != nullptr && boss->isInStatus(eStatus::DYING) == true)
+			{
+				this->_directorKillBoss->update(deltatime);
+				if (this->_directorKillBoss->isFinish() == true)
+				{
+					SAFE_DELETE(_directorKillBoss);
+					auto intro = new IntroScene();
 					SceneManager::getInstance()->replaceScene(intro);
 				}
 			}

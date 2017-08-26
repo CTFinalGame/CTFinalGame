@@ -1,18 +1,18 @@
 ﻿//#include "stdafx.h"
 #include "Map.h"
-
+#include "../Scene/Scene.h"
 
 void Map::release()
 {
 }
 
-Map::Map()
+Map::Map(int mapid)
 {
+	mapID = mapid;
 	_mapIndex = NULL;
 	_testSp = SpriteManager::getInstance()->getSprite(eID::WATERFALLEFFECT);
 	_testSp->setScale(2.0f);
 	_animationTests = new Animation(_testSp, 0.12f);
-
 	_animationTests->addFrameRect(eID::WATERFALLEFFECT, "waterfall_01", "waterfall_02", NULL);
 }
 
@@ -48,12 +48,20 @@ void Map::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 	{
 		for (int j = jBegin; j < jEnd; j++)
 		{
+			if(mapID==39){
 			if (this->_mapIndex[j][i] == 8 || this->_mapIndex[j][i] == 13 || this->_mapIndex[j][i] == 28 || this->_mapIndex[j][i] == 61 || this->_mapIndex[j][i] == 62 || this->_mapIndex[j][i] == 75 || this->_mapIndex[j][i] == 76)
 			{
 
 				GVector2 position = GVector2(i * _framewidth, (_mapSize.y - j - 1) * _frameheight + 16);
 				_testSp->setPosition(position);
 				_animationTests->draw(spriteHandle, viewport);
+			}
+			else
+			{
+				pos.x = i * _framewidth;
+				pos.y = (_mapSize.y - j - 1) * _frameheight;				// nếu có viewport 
+				this->_tileSet->draw(spriteHandle, this->_mapIndex[j][i], pos, viewport);
+			}
 			}
 			else
 			{
@@ -84,7 +92,7 @@ GVector2 Map::getWorldSize()
 */
 Map* Map::LoadMapFromFile(const string path, eID spriteId)
 {
-	Map* map = new Map();
+	Map* map = new Map((int)spriteId);
 	getMapData(path, map->_mapIndex, map->_mapSize);
 	map->_tileSet = new TileSet(spriteId);
 	map->_tileSet->loadListTiles();
