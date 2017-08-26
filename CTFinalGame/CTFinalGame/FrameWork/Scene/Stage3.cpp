@@ -32,7 +32,7 @@ bool Stage3::init()
 {
 	auto bill = new Bill(_restBill);
 	bill->init();
-	bill->setPosition(200, 5000);
+	bill->setPosition(200,200);
 	
 	this->_bill = bill;
 	_listControlObject.push_back(bill);
@@ -114,7 +114,9 @@ void Stage3::updateInput(float dt)
 
 void Stage3::update(float dt)
 {
-	
+	if (background->co) {
+	background->updateTest(dt);
+	}
 	char str[100];
 	sprintf(str, "delta time: %f", dt);
 	//_text->setText(str);
@@ -266,6 +268,9 @@ void Stage3::updateViewport(BaseObject* objTracker)
 
 void Stage3::draw(LPD3DXSPRITE spriteHandle)
 {
+	if (background->co) {
+	background->drawTest(spriteHandle, _viewport);
+	}
 	background->draw(spriteHandle, _viewport);
 
 	for (BaseObject* object : _active_object)
@@ -315,6 +320,7 @@ void Stage3::ScenarioKillBoss(float deltatime)
 	if (_directorKillBoss == nullptr)
 		return;
 	auto boss = getObject(eID::SHADOW_BEAST);
+	if(boss !=nullptr)
 	if (boss->isInStatus(eStatus::DYING) == true){
 		this->_directorKillBoss->update(deltatime);
 		if (this->_directorKillBoss->isFinish() == true)

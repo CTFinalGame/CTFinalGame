@@ -9,6 +9,11 @@ void Map::release()
 Map::Map()
 {
 	_mapIndex = NULL;
+	_testSp = SpriteManager::getInstance()->getSprite(eID::WATERFALLEFFECT);
+	_testSp->setScale(2.0f);
+	_animationTests = new Animation(_testSp, 0.12f);
+
+	_animationTests->addFrameRect(eID::WATERFALLEFFECT, "waterfall_01", "waterfall_02", NULL);
 }
 
 
@@ -43,11 +48,23 @@ void Map::draw(LPD3DXSPRITE spriteHandle, Viewport* viewport)
 	{
 		for (int j = jBegin; j < jEnd; j++)
 		{
-			pos.x = i * _framewidth;
-			pos.y = (_mapSize.y - j - 1) * _frameheight;				// nếu có viewport 
-			this->_tileSet->draw(spriteHandle, this->_mapIndex[j][i], pos, viewport);
+			if (this->_mapIndex[j][i] == 8 || this->_mapIndex[j][i] == 13 || this->_mapIndex[j][i] == 28 || this->_mapIndex[j][i] == 61 || this->_mapIndex[j][i] == 62 || this->_mapIndex[j][i] == 75 || this->_mapIndex[j][i] == 76)
+			{
+
+				GVector2 position = GVector2(i * _framewidth, (_mapSize.y - j - 1) * _frameheight + 16);
+				_testSp->setPosition(position);
+				_animationTests->draw(spriteHandle, viewport);
+			}
+			else
+			{
+				pos.x = i * _framewidth;
+				pos.y = (_mapSize.y - j - 1) * _frameheight;				// nếu có viewport 
+				this->_tileSet->draw(spriteHandle, this->_mapIndex[j][i], pos, viewport);
+			}
 		}
 	}
+	this->co = true;
+
 }
 
 GVector2 Map::getWorldSize()
@@ -130,4 +147,14 @@ vector<string> Map::splitString(const string & input, char seperate)
 	}
 
 	return output;
+}
+void Map::updateTest(float dt) {
+	_animationTests->update(dt);
+	int a = this->_animationTests->getIndex();
+}
+void Map::drawTest(LPD3DXSPRITE spriteHandle, Viewport* viewport)
+{
+	int a = this->_animationTests->getIndex();
+	this->_animationTests->draw(spriteHandle, viewport);
+	//this->draw(spriteHandle, viewport);
 }

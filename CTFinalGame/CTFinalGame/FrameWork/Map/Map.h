@@ -4,6 +4,7 @@
 #include "TileSet.h"
 #include <istream>
 #include <sstream>
+#include "../Animation.h"
 
 class Map
 {
@@ -14,6 +15,8 @@ private:
 						// Kích thước map tính theo số ô Tile.
 	GVector2 _mapSize;
 
+	Sprite* _testSp;
+	Animation* _animationTests;
 	// Ma trận Tile id.
 	// Id trong ma trận này được so sánh với Id của Tile trong TileSet.listTile
 	int** _mapIndex;
@@ -24,9 +27,11 @@ private:
 	static vector<string> splitString(const string & input, char seperate);
 
 public:
+	bool co = false;
 	void draw(LPD3DXSPRITE, Viewport*);
 	void release();
-
+	void updateTest(float dt);
+	void drawTest(LPD3DXSPRITE, Viewport*);
 	/*
 	Load dữ liệu từ một file xml.
 	path: file tiledmap xml được định nghĩa cấu trúc sẵn.
